@@ -6,7 +6,7 @@ import { UsuariosService } from './usuarios.service';
 export class UsuariosController {
     constructor(private usuarioService: UsuariosService){}
 
-    @Get('usuarios')
+    @Get()
     obtenerUsuarios() {
         return this.usuarioService.obtenerUsuarios();
     }
