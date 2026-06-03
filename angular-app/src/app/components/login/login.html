@@ -1,0 +1,70 @@
+<div class="card">
+    <div class="logo">
+        <img src="logo.png" alt="" width="100px">
+    </div>
+    <div class="card-header">
+        <h2>Inicia sesión en Conecta</h2>
+    </div>
+    <div class="card-body">
+         <form [formGroup]="miLogin" (ngSubmit)="enviarForm()">
+
+            <div class="input-mail">
+
+                <label class="form-label" for="nombreUsuario">Nombre de usuario</label>
+                <input type="text" class="form-control" id="nombreUsuario" formControlName="nombreUsuario">
+                @if (nombreUsuario?.hasError('required') && nombreUsuario?.touched) {
+                    <small class="text-danger">El usuario es obligatorio</small>
+                }
+
+                @if (nombreUsuario?.touched && nombreUsuario?.hasError('minlength')) {
+                <small class="text-danger">Mínimo 4 caracteres permitidos</small>
+                    }
+            
+                @if (nombreUsuario?.touched && nombreUsuario?.hasError('maxlength')) {
+                <small class="text-danger">Máximo 10 caracteres permitidos</small>
+                    }
+
+            </div>
+
+            <div class="input-clave">
+
+                <label class="form-label" for="password">Clave</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                @if (password?.hasError('required') && password?.touched) {
+                    <small class="text-danger">La password es obligatoria</small>
+                }
+                @if(password?.hasError('minlength') && password?.touched){
+                    <small class="text-danger">Mínimo 6 caracteres</small>
+                }
+                 @if (password?.touched && password?.hasError('maxlength')) {
+                <small class="text-danger">Máximo 10 caracteres permitidos</small>
+                }
+            </div>
+
+            <div class="botonera-login">
+                <div class="botonera-ingreso">
+                    <button [disabled]="miLogin.invalid" class="btn-envio" type="submit">
+                        Iniciar sesión
+                    </button>
+                    <button class="btn-volver" type="button" (click)="volverARegistro()">
+                        No tengo cuenta
+                    </button>
+                </div>
+                <div class="botonera-acceso-rapido">
+                    <button class="btn-accesoRapido" type="button" (click)="autocompletarYEnviar('userPrueba', '12345678U')">
+                        Entrar como User
+                    </button>
+                    <button class="btn-accesoRapido" type="button" (click)="autocompletarYEnviar('adminPrueba', '12345678U')">
+                        Entrar como Admin
+                    </button>
+                    <button class="btn-accesoRapido" type="button" (click)="autocompletarYEnviar('testerPrueba', '12345678U')">
+                        Entrar como Tester
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+       
+    
+
+</div>

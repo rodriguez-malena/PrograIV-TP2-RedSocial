@@ -1,0 +1,174 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffe4ba, #51442d);
+  overflow-x: hidden;
+}
+
+.card-inicio {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;   
+  left: 20px;
+
+}
+
+.logo img {
+  width: 95px;
+}
+
+.card-izquierda {
+  max-width: 500px;
+}
+
+.card-izquierda h1 {
+  font-size: 100px;
+  color: #8a7555;
+  margin: 0;
+  font-weight: 800;
+  line-height: .95;
+}
+
+.card-izquierda span {
+  color: #edcb94;
+}
+
+.card-izquierda span:hover {
+  color: #8a7555;
+
+}
+
+.slogan {
+  font-size: 22px;
+  color: #5f4f39;
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+.card-derecha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.opciones-registro {
+  padding: 30px;
+  width: 320px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+}
+
+.btn-inicio {
+  background: #8a7555;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-inicio:hover {
+  background: #6f5d44;
+  transform: translateY(-2px);
+}
+
+.btn-registro {
+  background: #ffe4ba;
+  color: #5f4f39;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-registro:hover {
+  background: #f3d6a0;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 950px) {
+
+  .card-inicio {
+    flex-direction: column;
+    gap: 50px;
+
+    text-align: center;
+
+    padding-top: 120px;
+  }
+
+  .card-izquierda {
+    max-width: 100%;
+  }
+
+  .card-izquierda h1 {
+    font-size: 72px;
+  }
+
+  .slogan {
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .card-inicio {
+    padding: 100px 20px 40px;
+    gap: 40px;
+  }
+
+  .logo {
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .logo img {
+    width: 75px;
+  }
+
+  .card-izquierda h1 {
+    font-size: 52px;
+    line-height: 1;
+  }
+
+  .slogan {
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  .opciones-registro {
+    width: 100%;
+    max-width: 300px;
+
+    padding: 24px;
+  }
+
+  .btn-inicio,
+  .btn-registro {
+    height: 46px;
+    font-size: 14px;
+  }
+
+}
