@@ -59,7 +59,7 @@ export class AuthService {
 
 
         if(!usuarioLogueado){
-            throw new UnauthorizedException('Este usuario no existe v');
+            throw new UnauthorizedException('Este usuario no existe');
         }
 
         const passwordCorrecta = await bcrypt.compare(datos.password,usuarioLogueado.password);

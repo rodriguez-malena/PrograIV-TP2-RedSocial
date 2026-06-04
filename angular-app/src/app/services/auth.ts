@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -7,16 +8,16 @@ import { Injectable } from '@angular/core';
 })
 export class Auth {
 
-  private URL = 'https://angular-nest-eight.vercel.app';
+  private readonly url = environment.apiUrl ;
 
   constructor(private http: HttpClient){}
 
   registro(datos: any){
-    return this.http.post(`${this.URL}/auth/registro`, datos)
+    return this.http.post(`${this.url}/auth/registro`, datos)
   }
 
   login(datos: any){
-    return this.http.post(`${this.URL}/auth/login`, datos)
+    return this.http.post(`${this.url}/auth/login`, datos)
   }
 
 }
