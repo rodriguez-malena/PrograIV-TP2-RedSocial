@@ -121,11 +121,15 @@
                 <input type="file" id="imagenPerfil" (change)="manejoDeArchivo($event)">
                   <div class="carga-contenido">
                     
-                    <div class="carga-icon">
+                    <div class="carga-icon" *ngIf="!previewImagen">
                       <img src="subir-imagen.png" alt="">
                     </div>
 
-                    <span>Subir imagen</span>
+                    <img *ngIf="previewImagen"
+                          [src]="previewImagen"
+                          class="preview-imagen"/>
+
+                    <span>{{ previewImagen ? 'Imagen cargada' : 'Subir imagen' }}</span>
                     <small>PNG, JPG o JPEG</small>
 
                   </div>

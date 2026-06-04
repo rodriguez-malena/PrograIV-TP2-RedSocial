@@ -6,10 +6,11 @@ import { confirmarClaveValidator } from '../../validators/claveValidator';
 import { fechaValidator } from '../../validators/fechaValidator';
 import { manejarSubidaImagen } from '../../utils/imagen';
 import { Auth } from '../../services/auth';
+import { NgIf } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
 
 @Component({
   selector: 'app-registro',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })
@@ -17,6 +18,7 @@ export class Registro {
 
    miRegistro!: FormGroup;  
    cargando = false;
+   previewImagen: string | ArrayBuffer | null = null;
 
   constructor(private fb: FormBuilder,
               private auth: Auth,
@@ -35,7 +37,7 @@ export class Registro {
         perfil: ["usuario"],
         password: ["", [ Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/), Validators.minLength(8), Validators.maxLength(25)]],
         repiteClave: [null, Validators.required]
-
+        
     
       },{ validators: confirmarClaveValidator() 
       });
@@ -47,7 +49,18 @@ export class Registro {
 
   manejoDeArchivo(event: any): void {
     manejarSubidaImagen(event, this.miRegistro, 'imagenPerfil')
-  }
+     const archivo = event.target.files[0];
+
+  if (archivo) {
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.previewImagen = reader.result;
+    };
+
+    reader.readAsDataURL(archivo);
+  }}
 
   get nombre() {
     return this.miRegistro.get('nombre');
