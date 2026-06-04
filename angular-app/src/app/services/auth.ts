@@ -7,16 +7,16 @@ import { Injectable } from '@angular/core';
 })
 export class Auth {
 
-  private URL = 'http://localhost:3000/auth';
+  private URL = 'https://angular-nest-eight.vercel.app';
 
   constructor(private http: HttpClient){}
 
   registro(datos: any){
-    return this.http.post(`${this.URL}/registro`, datos)
+    return this.http.post(`${this.URL}/auth/registro`, datos)
   }
 
   login(datos: any){
-    return this.http.post(`${this.URL}/login`, datos)
+    return this.http.post(`${this.URL}/auth/login`, datos)
   }
 
 }
