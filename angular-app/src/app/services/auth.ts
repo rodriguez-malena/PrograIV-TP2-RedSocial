@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class Auth {
 
-  private readonly url = environment.apiUrl ;
+  private readonly url = 'https://angular-nest-eight.vercel.app' ;
 
   constructor(private http: HttpClient){}
 
