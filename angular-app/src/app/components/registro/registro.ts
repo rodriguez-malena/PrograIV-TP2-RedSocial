@@ -17,7 +17,8 @@ export class Registro {
 
    miRegistro!: FormGroup;  
    cargando = false;
-   previewImagen: string | ArrayBuffer | null = null;
+   formEnviado = false;
+   nombreArchivo: string = 'Ningún archivo seleccionado';
 
   constructor(private fb: FormBuilder,
               private auth: Auth,
@@ -32,7 +33,7 @@ export class Registro {
         nombreUsuario: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
         fechaNacimiento: ["",[Validators.required, fechaValidator()]],
         descripcion: ["", [Validators.required, Validators.maxLength(60), Validators.minLength(20)]],
-        imagenPerfil: [null],
+        imagenPerfil: [null, Validators.required],
         perfil: ["usuario"],
         password: ["", [ Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*\d).+$/), Validators.minLength(8), Validators.maxLength(25)]],
         repiteClave: [null, Validators.required]
@@ -47,35 +48,42 @@ export class Registro {
     }
 
   manejoDeArchivo(event: any): void {
+    const archivo = event.target.files?.[0];
+    
+    if (archivo) {
+      this.imagenPerfil.setValue(archivo)
+      this.nombreArchivo = archivo.name;
+
     manejarSubidaImagen(event, this.miRegistro, 'imagenPerfil')
+    }
   }
 
   get nombre() {
-    return this.miRegistro.get('nombre');
+    return this.miRegistro.get('nombre')!;
   }
   get apellido() {
-    return this.miRegistro.get('apellido');
+    return this.miRegistro.get('apellido')!;
   }
   get email() {
-    return this.miRegistro.get('email');
+    return this.miRegistro.get('email')!;
   }
   get nombreUsuario() {
-    return this.miRegistro.get('nombreUsuario');
+    return this.miRegistro.get('nombreUsuario')!;
   }
   get fechaNacimiento() {
-    return this.miRegistro.get('fechaNacimiento')
+    return this.miRegistro.get('fechaNacimiento')!
   }
   get descripcion() {
-    return this.miRegistro.get('descripcion')
+    return this.miRegistro.get('descripcion')!
   }
   get imagenPerfil() { 
-    return this.miRegistro.get('imagenPerfil')
+    return this.miRegistro.get('imagenPerfil')!
   }
   get password() {
-    return this.miRegistro.get('password');
+    return this.miRegistro.get('password')!;
   }
   get repiteClave() {
-    return this.miRegistro.get('repiteClave');
+    return this.miRegistro.get('repiteClave')!;
   }
 
   async enviarForm() {
@@ -83,7 +91,11 @@ export class Registro {
     if(this.cargando) return;
     this.cargando = true;
 
+    this.formEnviado = true
+
     this.miRegistro.markAllAsTouched();
+    this.imagenPerfil.markAsTouched();
+
     console.log("Intento de envío");
 
     if (this.miRegistro.invalid) { 
