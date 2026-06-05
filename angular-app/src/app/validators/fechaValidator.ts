@@ -1,16 +1,29 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function fechaValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    if (!control.value) {
+  return (input): ValidationErrors | null => {
+    if (!input.value) {
       return null; 
     }
 
-    const fechaSeleccionada = new Date(control.value);
+    const fechaSeleccionada = new Date(input.value);
+    
     const fechaHoy = new Date();
-
     fechaHoy.setHours(0, 0, 0, 0);
 
-    return fechaSeleccionada > fechaHoy ? { fechaFutura: true } : null;
-  };
+
+    const fechaMinima = new Date();
+    fechaMinima.setFullYear(fechaHoy.getFullYear() - 100);
+
+
+    if (fechaSeleccionada > fechaHoy) {
+      return { fechaFutura: true }
+    };
+
+    if (fechaSeleccionada < fechaMinima) {
+      return { edadMaxima: true }
+    }
+
+    return null;
+}
 }

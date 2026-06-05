@@ -97,6 +97,10 @@
             @if (fechaNacimiento.touched && fechaNacimiento.hasError('fechaFutura')) {
                 <small class="text-danger">La fecha de nacimiento es inválida</small>
             }
+
+            @if (fechaNacimiento.hasError('edadMaxima') && fechaNacimiento.touched) {
+              <small class="text-danger">La edad máxima permitida es 100 años</small>
+            }
           </div>
 
           <div class="form-group">
