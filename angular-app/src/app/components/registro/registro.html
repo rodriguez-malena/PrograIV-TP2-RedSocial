@@ -20,12 +20,12 @@
               <small class="text-danger">Sólo debe contener letras</small>
             }
 
-            @if (nombre?.touched && nombre?.hasError('minlength')) {
-              <small class="text-danger">Mínimo {{nombre?.getError('minlength').requiredLength}} caracteres</small>
+            @if (nombre?.touched && nombre.hasError('minlength')) {
+              <small class="text-danger">Mínimo {{nombre.getError('minlength').requiredLength}} caracteres</small>
             }
 
-            @if (nombre?.touched && nombre?.hasError('maxlength')) {
-              <small class="text-danger">Máximo {{nombre?.getError('maxlength').requiredLength}} caracteres</small>
+            @if (nombre?.touched && nombre.hasError('maxlength')) {
+              <small class="text-danger">Máximo {{nombre.getError('maxlength').requiredLength}} caracteres</small>
             }
 
             @if (nombre?.hasError('required') && nombre?.touched) {
@@ -40,12 +40,12 @@
               <small class="text-danger">Sólo debe contener letras</small>
             }
 
-            @if (apellido?.touched && apellido?.hasError('minlength')) {
-              <small class="text-danger">Mínimo {{apellido?.getError('minlength').requiredLength}} caracteres</small>
+            @if (apellido?.touched && apellido.hasError('minlength')) {
+              <small class="text-danger">Mínimo {{apellido.getError('minlength').requiredLength}} caracteres</small>
             }
 
-            @if (apellido?.touched && apellido?.hasError('maxlength')) {
-              <small class="text-danger">Máximo {{apellido?.getError('maxlength').requiredLength}} caracteres</small>
+            @if (apellido?.touched && apellido.hasError('maxlength')) {
+              <small class="text-danger">Máximo {{apellido.getError('maxlength').requiredLength}} caracteres</small>
             }
 
             @if (apellido?.hasError('required') && apellido?.touched) {
@@ -63,8 +63,8 @@
             @if (email?.hasError('email') && email?.touched) {
               <small class="text-danger">Formato inválido</small>
             }
-             @if (email?.touched && email?.hasError('maxlength')) {
-              <small class="text-danger">Máximo {{email?.getError('maxlength').requiredLength}} caracteres permitidos</small>
+             @if (email?.touched && email.hasError('maxlength')) {
+              <small class="text-danger">Máximo {{email.getError('maxlength').requiredLength}} caracteres permitidos</small>
             }
           </div>
 
@@ -75,11 +75,11 @@
               <small class="text-danger">El nombre de usuario es obligatorio</small>
             }
             @if (nombreUsuario?.hasError('minlength') && nombreUsuario?.touched) { 
-              <small class="text-danger">Debe tener como mínimo {{nombreUsuario?.getError('minlength').requiredLength}} caracteres</small>
+              <small class="text-danger">Debe tener como mínimo {{nombreUsuario.getError('minlength').requiredLength}} caracteres</small>
             }
 
             @if (nombreUsuario?.hasError('maxlength') && nombreUsuario?.touched) { 
-              <small class="text-danger">Solo se permiten {{nombreUsuario?.getError('maxlength').requiredLength}} caracteres</small>
+              <small class="text-danger">Solo se permiten {{nombreUsuario.getError('maxlength').requiredLength}} caracteres</small>
             }
 
         </div>
@@ -107,11 +107,11 @@
             }
 
             @if (descripcion?.hasError('minlength') && descripcion?.touched ) { 
-              <small class="text-danger">Debe tener como mínimo {{descripcion?.getError('minlength')?.requiredLength}} caracteres</small>
+              <small class="text-danger">Debe tener como mínimo {{descripcion.getError('minlength')?.requiredLength}} caracteres</small>
             }
 
             @if (descripcion?.hasError('maxlength') && descripcion?.touched) { 
-              <small class="text-danger">Solo se permiten hasta {{descripcion?.getError('maxlength')?.requiredLength}} caracteres</small>
+              <small class="text-danger">Solo se permiten hasta {{descripcion.getError('maxlength')?.requiredLength}} caracteres</small>
             }
           </div>
 
@@ -121,15 +121,12 @@
                 <input type="file" id="imagenPerfil" (change)="manejoDeArchivo($event)" hidden>
                   <div class="carga-contenido">
                     
-                    <div class="carga-icono" *ngIf="!previewImagen">
-                      <img src="subir-imagen.png" alt="">
+                    <div class="carga-icon">
+                      <img 
+                      src="subir-imagen.png" alt="">
                     </div>
 
-                    <img *ngIf="previewImagen"
-                          [src]="previewImagen"
-                          class="preview-imagen"/>
-
-                    <span>{{ previewImagen ? 'Imagen cargada' : 'Subir imagen' }}</span>
+                    <span>Subir imagen</span>
                     <small>PNG, JPG o JPEG</small>
 
                   </div>
@@ -145,15 +142,15 @@
             }
 
             @if (password?.hasError('minlength') && password?.touched) { 
-              <small class="text-danger">La password debe tener mínimo {{password?.getError('minlength').requiredLength}} caracteres</small>
+              <small class="text-danger">La password debe tener mínimo {{password.getError('minlength').requiredLength}} caracteres</small>
             }
 
             @if (password?.hasError('pattern') && password?.touched) {
                 <small class="text-danger">La password debe contener al menos una letra mayúscula y un número</small>
             }
 
-            @if (password?.touched && password?.hasError('maxlength')) {
-              <small class="text-danger">Máximo {{password?.getError('maxlength').requiredLength}} caracteres permitidos</small>
+            @if (password?.touched && password.hasError('maxlength')) {
+              <small class="text-danger">Máximo {{password.getError('maxlength').requiredLength}} caracteres permitidos</small>
             }
           </div>
 
