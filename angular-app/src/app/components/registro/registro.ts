@@ -89,12 +89,12 @@ export class Registro {
   async enviarForm() {
 
     if(this.cargando) return;
+    
     this.cargando = true;
 
     this.formEnviado = true
 
     this.miRegistro.markAllAsTouched();
-    this.imagenPerfil.markAsTouched();
 
     console.log("Intento de envío");
 
@@ -103,6 +103,7 @@ export class Registro {
       console.log("Formulario inválido");
       return;
     }
+    
     console.log("Envio exitoso");
 
     const { nombre, apellido, email, nombreUsuario, fechaNacimiento, descripcion, password, imagenPerfil} = this.miRegistro.value;

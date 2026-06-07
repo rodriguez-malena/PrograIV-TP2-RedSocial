@@ -1,12 +1,12 @@
 import {ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function fechaValidator(): ValidatorFn {
-  return (input): ValidationErrors | null => {
-    if (!input.value) {
+  return (fechaNac): ValidationErrors | null => {
+    if (!fechaNac.value) {
       return null; 
     }
 
-    const fechaSeleccionada = new Date(input.value);
+    const fechaSeleccionada = new Date(fechaNac.value);
     
     const fechaHoy = new Date();
     fechaHoy.setHours(0, 0, 0, 0);

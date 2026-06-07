@@ -30,8 +30,8 @@ export class AuthController {
         }
 
         try {
-
             return await this.authService.registrar(body)
+            
         } catch(error) {
             if(archivo){
                 await cloudinary.uploader.destroy('red-social/'+ archivo.filename)
