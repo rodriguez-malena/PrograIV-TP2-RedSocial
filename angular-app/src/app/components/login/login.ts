@@ -58,6 +58,8 @@ export class Login  implements OnInit{
         timer: 1500,
         showConfirmButton: false
       });
+      
+      sessionStorage.setItem('usuario', JSON.stringify(respuesta.usuario));
 
       this.router.navigate(['/mi-perfil']);
    

@@ -6,4 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './publicaciones.html',
   styleUrl: './publicaciones.css',
 })
-export class Publicaciones {}
+export class Publicaciones {
+   usuario = JSON.parse(sessionStorage.getItem('usuario')!
+);
+}

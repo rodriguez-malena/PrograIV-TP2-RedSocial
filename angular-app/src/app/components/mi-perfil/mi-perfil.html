@@ -1,1 +1,53 @@
-<p>mi-perfil works!</p>
+<div class="mi-perfil">
+
+  <div class="perfil-header">
+
+    <div class="perfil-foto">
+      <img [src]="usuario.imagenPerfil" alt="Foto de perfil del usuario">
+    </div>
+
+    <div class="perfil-info">
+      <div class="perfil-topo">
+        <h2>@{{usuario.nombreUsuario}}</h2>
+
+        <button class="btn-editar">Editar perfil</button>
+      </div>
+
+      <div class="perfil-estados">
+        <span><strong>0</strong> publicaciones</span>
+      </div>
+
+      <div class="perfil-nombre">{{usuario.nombre}} {{usuario.apellido}}</div>
+
+      <div class="perfil-descripcion">
+        {{usuario.descripcion}}
+      </div>
+
+      <div class="perfil-extra">
+        {{usuario.fechaNacimiento | date:'dd/MM/yyyy'}}
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="seccion-posts">
+
+    <div class="grid-posts">
+      <div class="post-vacio">
+        Sin publicaciones
+      </div>
+
+      <div class="post-vacio">
+        Sin publicaciones
+      </div>
+
+      <div class="post-vacio">
+        Sin publicaciones
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

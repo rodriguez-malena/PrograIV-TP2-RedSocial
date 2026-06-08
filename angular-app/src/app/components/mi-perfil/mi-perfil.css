@@ -1,0 +1,147 @@
+.mi-perfil {
+  max-width: 935px;
+  margin: 30px auto;
+  padding: 0 20px;
+  color: #262626;
+  font-family: 'Poppins', sans-serif;
+}
+
+.perfil-header {
+  display: flex;
+  gap: 80px;
+  padding: 40px 0;
+  border-bottom: 1px solid #dbdbdb;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.perfil-foto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.perfil-foto img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #d8c3a2;
+}
+
+.perfil-info {
+  flex: 1;
+  min-width: 280px;
+}
+
+.perfil-topo {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.perfil-topo h2 {
+  color: #5f4f39;
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.btn-editar {
+  border: 1px solid #d8c3a2;
+  background: white;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  color: #342b1f;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-editar:hover {
+  background: #fffbf4;
+}
+
+.perfil-estados {
+  display: flex;
+  gap: 35px;
+  margin: 22px 0;
+}
+
+.perfil-estados span {
+  font-size: 1rem;
+}
+
+.perfil-estados strong {
+  font-weight: 700;
+  color: #342b1f;
+  
+}
+
+.perfil-nombre {
+  color: #342b1f;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.perfil-descripcion {
+  color: #5f4f39;
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+.perfil-extra {
+  margin-top: 10px;
+  color: #5f4f39;
+  font-size: .95rem;
+}
+
+.grid-posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 25px;
+}
+
+.post-vacio {
+  height: 320px;
+  background: #fffbf4;
+  border: 1px solid #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5f4f39;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+
+  .perfil-header {
+    gap: 30px;
+    align-items: flex-start;
+  }
+
+  .perfil-foto img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .perfil-topo h2 {
+    font-size: 1.3rem;
+  }
+
+  .perfil-stats {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .grid-posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .post-vacio {
+    height: 200px;
+  }
+}

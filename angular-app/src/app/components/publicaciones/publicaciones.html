@@ -1,1 +1,79 @@
-<p>publicaciones works!</p>
+<div class="publicaciones-container">
+
+  <div class="crear-publicacion">
+
+    <div class="crear-top">
+
+      <img [src]="usuario.imagenPerfil" alt="">
+
+      <input 
+        type="text"
+        placeholder="¿Qué estás pensando?"
+        class="input-publicacion"
+      >
+
+    </div>
+
+    <div class="crear-bottom">
+
+      <button class="btn-subir">
+        Agregar imagen
+      </button>
+
+      <button class="btn-publicar">
+        Publicar
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="feed-publicaciones">
+
+    <div class="post">
+
+      <div class="post-header">
+
+<!--        <img src="" alt=""> -->  
+
+        <div class="post-user">
+          <strong>male123</strong>
+          <small>Hace 2 horas</small>
+        </div>
+
+        <div class="post-menu">
+          ⋯
+        </div>
+
+      </div>
+
+      <img 
+        src="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
+        class="post-imagen"
+        alt="">
+
+      <div class="post-body">
+        <div class="post-actions">         
+
+        </div>
+
+        <div class="likes">
+          10 me gusta
+        </div>
+
+        <div class="post-texto">
+          <strong>@male123</strong>
+          Mi primera publicación en Conecta 
+        </div>
+
+        <div class="post-fecha">
+          Hace 2 horas
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
