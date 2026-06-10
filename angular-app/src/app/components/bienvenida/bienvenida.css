@@ -1,11 +1,11 @@
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ffe4ba, #51442d);
-  overflow-x: hidden;
-}
 
 .card-inicio {
+    background-image: url('/fondoBienvenida.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     position: relative;
     min-height: 100vh;
     display: flex;

@@ -1,3 +1,20 @@
+.card-inicio { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-image: url('/fondoComun.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+
 .publicaciones-container {
   max-width: 680px;
   margin: 30px auto;

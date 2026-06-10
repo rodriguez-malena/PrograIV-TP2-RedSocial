@@ -15,13 +15,9 @@ export class AuthService {
     
     async registrar(datos: RegistroDto){
 
-        const existeEmail = await this.usuarioModel.findOne({
-            email: datos.email
-        });
+        const existeEmail = await this.usuarioModel.findOne({ email: datos.email });
 
-        const existerUsuario = await this.usuarioModel.findOne({
-            nombreUsuario: datos.nombreUsuario
-        });
+        const existerUsuario = await this.usuarioModel.findOne({ nombreUsuario: datos.nombreUsuario });
 
         if(existeEmail){
             throw new ConflictException(
@@ -50,9 +46,7 @@ export class AuthService {
     }
     
     async login(datos: LoginDto){
-        const usuarioLogueado = await this.usuarioModel.findOne({
-            nombreUsuario: datos.nombreUsuario
-        });
+        const usuarioLogueado = await this.usuarioModel.findOne({ nombreUsuario: datos.nombreUsuario });
         
         console.log(usuarioLogueado);
 

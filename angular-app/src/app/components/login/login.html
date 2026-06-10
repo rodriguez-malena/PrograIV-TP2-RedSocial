@@ -1,6 +1,8 @@
-<div class="card">
-    <div class="logo">
-        <img src="logo.png" alt="" width="100px">
+
+<div class="card-inicio">
+    <div class="card">
+        <div class="logo">
+            <img src="logo.png" alt="" width="100px">
     </div>
     <div class="card-header">
         <h2>Inicia sesión en Conecta</h2>
@@ -23,8 +25,8 @@
                 @if (nombreUsuario?.touched && nombreUsuario?.hasError('maxlength')) {
                 <small class="text-danger">Máximo 10 caracteres permitidos</small>
                     }
-
-            </div>
+                    
+                </div>
 
             <div class="input-clave">
 
@@ -40,7 +42,7 @@
                 <small class="text-danger">Máximo 10 caracteres permitidos</small>
                 }
             </div>
-
+            
             <div class="botonera-login">
                 <div class="botonera-ingreso">
                     <button [disabled]="miLogin.invalid" class="btn-envio" type="submit">
@@ -66,5 +68,6 @@
     </div>
        
     
-
+    
+    </div>
 </div>

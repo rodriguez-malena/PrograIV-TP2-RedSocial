@@ -26,9 +26,8 @@ export class RegistroDto {
   @MaxLength(60)
   descripcion: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   imagenPerfil: string;
 
-  @IsOptional()
-  perfil: string;
+  
 }

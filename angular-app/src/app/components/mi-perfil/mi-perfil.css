@@ -1,3 +1,18 @@
+.card-inicio { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-image: url('/fondoBienvenida.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
 .mi-perfil {
   max-width: 935px;
   margin: 30px auto;
@@ -9,8 +24,7 @@
 .perfil-header {
   display: flex;
   gap: 80px;
-  padding: 40px 0;
-  border-bottom: 1px solid #dbdbdb;
+  padding: 40px ;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -107,6 +121,7 @@
 
 .post-vacio {
   height: 320px;
+  width: 100%;
   background: #fffbf4;
   border: 1px solid #efefef;
   display: flex;

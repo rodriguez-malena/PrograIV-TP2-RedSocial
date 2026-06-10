@@ -1,13 +1,17 @@
-body {
+.card-inicio { 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #ffe4ba, #fff7ec);
     min-height: 100vh;
-    padding: 20px;
     box-sizing: border-box;
+    background-image: url('/fondoComun.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
 
 .card {

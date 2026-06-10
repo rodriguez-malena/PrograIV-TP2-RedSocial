@@ -51,7 +51,6 @@ export class Registro {
     const archivo = event.target.files?.[0];
     
     if (archivo) {
-      this.imagenPerfil.setValue(archivo)
       this.nombreArchivo = archivo.name;
 
     manejarSubidaImagen(event, this.miRegistro, 'imagenPerfil')
