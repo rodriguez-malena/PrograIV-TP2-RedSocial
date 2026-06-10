@@ -85,6 +85,37 @@
               }
   
           </div>
+          <div class="form-group">
+              <label class="form-label" for="password">Clave</label>
+              <input type="password" class="form-control" id="clave" formControlName="password">
+                @if (password.touched && password.hasError('required')) {
+                  <small class="text-danger">La password es obligatoria</small>
+                }
+    
+                @if (password.touched && password.hasError('minlength')) { 
+                  <small class="text-danger">La password debe tener mínimo {{password.getError('minlength').requiredLength}} caracteres</small>
+                }
+    
+                @if (password.touched && password.hasError('pattern')) {
+                    <small class="text-danger">La password debe contener al menos una letra mayúscula y un número</small>
+                }
+    
+                @if (password.touched && password.hasError('maxlength')) {
+                  <small class="text-danger">Máximo {{password.getError('maxlength').requiredLength}} caracteres permitidos</small>
+                }
+            </div>
+  
+            <div class="form-group">
+              <label class="form-label" for="repiteClave">Repite clave</label>
+              <input type="password" class="form-control" id="repiteClave" formControlName="repiteClave">
+                @if (repiteClave.touched && repiteClave.hasError('required')) {
+                  <small class="text-danger">La clave es obligatoria</small>
+                }
+    
+                @if (repiteClave.touched && repiteClave.hasError('noCoincide')) {
+                  <small class="text-danger">Las claves no coinciden</small>
+                }
+            </div>
         </div>
   
           <div class="col">
@@ -141,37 +172,7 @@
                   }
             </div> 
   
-            <div class="form-group">
-              <label class="form-label" for="password">Clave</label>
-              <input type="password" class="form-control" id="clave" formControlName="password">
-              @if (password.touched && password.hasError('required')) {
-                <small class="text-danger">La password es obligatoria</small>
-              }
-  
-              @if (password.touched && password.hasError('minlength')) { 
-                <small class="text-danger">La password debe tener mínimo {{password.getError('minlength').requiredLength}} caracteres</small>
-              }
-  
-              @if (password.touched && password.hasError('pattern')) {
-                  <small class="text-danger">La password debe contener al menos una letra mayúscula y un número</small>
-              }
-  
-              @if (password.touched && password.hasError('maxlength')) {
-                <small class="text-danger">Máximo {{password.getError('maxlength').requiredLength}} caracteres permitidos</small>
-              }
-            </div>
-  
-            <div class="form-group">
-              <label class="form-label" for="repiteClave">Repite clave</label>
-              <input type="password" class="form-control" id="repiteClave" formControlName="repiteClave">
-              @if (repiteClave.touched && repiteClave.hasError('required')) {
-                <small class="text-danger">La clave es obligatoria</small>
-              }
-  
-              @if (repiteClave.touched && repiteClave.hasError('noCoincide')) {
-                <small class="text-danger">Las claves no coinciden</small>
-              }
-            </div>
+            
           </div>
         </div>
   
