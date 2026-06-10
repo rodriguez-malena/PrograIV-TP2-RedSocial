@@ -30,6 +30,7 @@ export class AuthController {
         }
         if (!archivo) {
             throw new BadRequestException('La foto de perfil es obligatoria');
+        }
 
         try {
             return await this.authService.registrar(body)
