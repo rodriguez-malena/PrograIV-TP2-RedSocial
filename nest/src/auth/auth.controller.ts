@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { RegistroDto } from './dto/registro.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -28,6 +28,8 @@ export class AuthController {
         if(archivo){
             body.imagenPerfil = archivo.path
         }
+        if (!archivo) {
+            throw new BadRequestException('La foto de perfil es obligatoria');
 
         try {
             return await this.authService.registrar(body)
