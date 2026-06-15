@@ -73,6 +73,7 @@
           <div class="post-header">
 
             <div class="post-user">
+               <img [src]="usuario.imagenPerfil" alt="">
               <strong> {{ publicacion.nombreUsuario }} </strong>
               <small> {{ publicacion.fechaCreacion | date:'short' }} </small>
             </div>
@@ -92,9 +93,9 @@
 
             <div class="post-texto">
               <strong>
-                {{ publicacion.titulo }}
+                {{ usuario.nombreUsuario }}
               </strong>
-
+              {{ publicacion.titulo}}
               {{ publicacion.descripcion }}
             </div>
 

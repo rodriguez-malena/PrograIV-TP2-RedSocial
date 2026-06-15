@@ -112,6 +112,8 @@ export class Publicaciones implements OnInit {
   
     cargarPublicaciones(){
       this.publicacionService.obtener().subscribe((respuesta: any) => {
+        console.log('RESPUESTA DEL BACK:', respuesta);
+
         this.publicaciones = respuesta;
 
         console.log(this.publicaciones);
