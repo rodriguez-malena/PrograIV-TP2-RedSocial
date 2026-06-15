@@ -13,9 +13,11 @@ export class PublicacionesService {
     async crear(datos: PublicacionDto){
         const publicacion = new this.publicacionModel(datos)
         await publicacion.save()
-        return {
+
+        return publicacion;
+        /*return {
             message: 'Publicación creada'
-        };
+        };*/
     }
 
     async listar(){

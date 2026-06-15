@@ -86,13 +86,15 @@ export class Publicaciones implements OnInit {
         formData.append('imagen', imagen)
       }
 
-      this.publicacionService.crear(formData).subscribe((respuesta: any) => {
-        console.log(respuesta)
+      this.publicacionService.crear(formData).subscribe((publicacion: any) => {
+        console.log(publicacion)
         this.cargando = false;
         Swal.fire({
           icon: 'success',
           title: 'Carga exitosa',
         });
+        
+        this.publicaciones.unshift(publicacion);
 
         this.miPublicacion.reset();
         this.nombreArchivo = 'Ningún archivo seleccionado';
