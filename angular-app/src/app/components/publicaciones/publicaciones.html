@@ -5,8 +5,10 @@
     <div class="crear-publicacion">
 
       <div class="crear-top">
-
-        <img [src]="usuario.imagenPerfil" alt="">
+        <div class="usuarioFoto">
+          <img [src]="usuario.imagenPerfil" alt="">
+          <p>@{{ usuario.nombreUsuario }}</p>
+        </div>
 
         <button class="btn-subir"(click)="mostrarModal = true">
           Agregar imagen
@@ -28,7 +30,7 @@
             <div class="ingreso-datos">
               <div>
               <label class="form-label" for="titulo">Título</label>
-              <input type="text" id="titulo" placeholder="Agrega un titulo" class="form-control" formControlName="titulo">
+              <input type="text" id="titulo" class="form-control" formControlName="titulo">
               @if (titulo.touched && titulo.hasError('required')) {
                 <small class="text-danger">El titulo es obligatorio</small>
               }
@@ -42,7 +44,7 @@
 
               <div>
               <label class="form-label" for="descripcion">Descripción</label>
-              <textarea placeholder="Agregue una descripción" class="form-control" id="descripcion" formControlName="descripcion"></textarea>
+              <textarea class="form-control" id="descripcion" formControlName="descripcion"></textarea>
               @if (descripcion.touched && descripcion.hasError('required')) {
                 <small class="text-danger">La descripcion es obligatoria</small>
               }
@@ -109,10 +111,7 @@
 
           </div>
 
-          <img
-            [src]="publicacion.imagen"
-            class="post-imagen"
-            alt="">
+          <img [src]="publicacion.imagen" class="post-imagen" alt="">
 
           <div class="post-body">
 
@@ -130,6 +129,7 @@
                 {{ publicacion.descripcion }}
               </div>
 
+            
             </div>
 
           </div>
