@@ -24,6 +24,9 @@ export class Publicacion extends Document {
     @Prop({ default: [] })
     likes: string[];
 
+    @Prop({ required: true })
+    imagenPerfil: string;
+
     @Prop({ default: false })
     eliminada: boolean;
 

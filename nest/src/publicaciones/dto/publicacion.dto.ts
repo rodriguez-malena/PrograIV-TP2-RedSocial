@@ -15,5 +15,8 @@ export class PublicacionDto {
     usuarioId: string;
 
     @IsNotEmpty()
+    imagenPerfil: string;
+
+    @IsNotEmpty()
     nombreUsuario: string;
     }

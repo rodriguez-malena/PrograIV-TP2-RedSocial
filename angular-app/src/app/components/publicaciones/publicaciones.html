@@ -24,24 +24,42 @@
         <div class="modal-overlay">
 
           <div class="modal-publicacion">
-
             <h3>Nueva publicación</h3>
 
-            <input
-              type="text"
-              placeholder="Agrega un titulo"
-              class="form-control"
-              formControlName="titulo">
+            <div class="ingreso-datos">
+              <div>
+              <label class="form-label">Título</label>
+              <input
+                type="text"
+                placeholder="Agrega un titulo"
+                class="form-control"
+                formControlName="titulo">
+              </div>
 
-            <textarea
-              placeholder="Agregue una descripción"
-              class="form-control"
-              formControlName="descripcion">
-            </textarea>
-
-            <input
-              type="file"
-              (change)="seleccionarImagen($event)">
+              <div>
+              <label class="form-label">Descripción</label>
+              <textarea
+                placeholder="Agregue una descripción"
+                class="form-control"
+                formControlName="descripcion">
+              </textarea>
+              </div>
+  
+              <label class="box-carga-imagen" for="imagen">
+                <input type="file" id="imagen" (change)="seleccionarImagen($event)">
+  
+                <div class="carga-contenido">
+                  <img src="subir-imagen.png" class="carga-icono">
+  
+                  <span>Subir imagen<br>
+                  <small>PNG, JPG o JPEG</small>
+                  </span>
+  
+                  <small class="nombre-archivo">{{ nombreArchivo }}</small>
+                </div>
+  
+              </label>
+            </div>
 
             <div class="acciones-modal">
 
@@ -65,7 +83,6 @@
     }
 
     <div class="feed-publicaciones">
-      <h2>Total: {{ publicaciones.length }}</h2>
 
       @for (publicacion of publicaciones; track publicacion._id) {
 
@@ -74,7 +91,7 @@
           <div class="post-header">
 
             <div class="post-user">
-               <img [src]="usuario.imagenPerfil" alt="">
+               <img [src]="publicacion.imagenPerfil" alt="">
               <strong> {{ publicacion.nombreUsuario }} </strong>
               <small> {{ publicacion.fechaCreacion | date:'short' }} </small>
             </div>
@@ -93,11 +110,15 @@
             </div>
 
             <div class="post-texto">
-              <strong>
-                {{ publicacion.nombreUsuario }}
-              </strong>
-              {{ publicacion.titulo}}
-              {{ publicacion.descripcion }}
+              <div class="post-titulo">
+                <strong>{{ publicacion.nombreUsuario }}</strong>
+                <small>{{ publicacion.titulo}}</small>
+              </div>
+
+              <div class="post-descripcion">
+                {{ publicacion.descripcion }}
+              </div>
+
             </div>
 
           </div>
