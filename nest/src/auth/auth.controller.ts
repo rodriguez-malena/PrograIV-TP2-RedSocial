@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import cloudinary from '../cloudinary/cloudinary.config';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import { crearStorageCloudinary } from '../cloudinary/cloudinary.storage';
 
 
 
@@ -15,13 +15,7 @@ export class AuthController {
     @Post('registro')
     @UseInterceptors(
         FileInterceptor('imagenPerfil', {
-            storage: new CloudinaryStorage({
-                cloudinary,
-                params: {
-                    folder: 'red-social',
-                    allowed_formats: ['jpg','jpeg','png']} as any
-            })
-        })
+            storage: crearStorageCloudinary('red-social')})
     )
 
     async registro(@UploadedFile() archivo: Express.Multer.File, @Body() body: RegistroDto){

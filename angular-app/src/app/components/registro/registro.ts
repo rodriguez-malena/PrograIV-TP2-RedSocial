@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ import { Auth } from '../../services/auth';
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })
-export class Registro {
+export class Registro implements OnInit {
 
    miRegistro!: FormGroup;  
    cargando = false;
@@ -90,7 +90,6 @@ export class Registro {
     if(this.cargando) return;
     
     this.cargando = true;
-
     this.formEnviado = true
 
     this.miRegistro.markAllAsTouched();

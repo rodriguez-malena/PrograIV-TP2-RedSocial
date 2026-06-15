@@ -1,79 +1,111 @@
 <div class="card-inicio">
 
   <div class="publicaciones-container">
-  
+
     <div class="crear-publicacion">
-  
+
       <div class="crear-top">
-  
+
         <img [src]="usuario.imagenPerfil" alt="">
-  
-        <input 
-          type="text"
-          placeholder="¿Qué estás pensando?"
-          class="input-publicacion"
-        >
-  
-      </div>
-  
-      <div class="crear-bottom">
-  
-        <button class="btn-subir">
+
+        <button class="btn-subir"
+                (click)="mostrarModal = true">
           Agregar imagen
         </button>
-  
-        <button class="btn-publicar">
-          Publicar
-        </button>
-  
+
       </div>
-  
+
     </div>
-  
+
+    @if(mostrarModal){
+      <form [formGroup]="miPublicacion"
+            (ngSubmit)="subir()">
+
+        <div class="modal-overlay">
+
+          <div class="modal-publicacion">
+
+            <h3>Nueva publicación</h3>
+
+            <input
+              type="text"
+              placeholder="Agrega un titulo"
+              class="form-control"
+              formControlName="titulo">
+
+            <textarea
+              placeholder="Agregue una descripción"
+              class="form-control"
+              formControlName="descripcion">
+            </textarea>
+
+            <input
+              type="file"
+              (change)="seleccionarImagen($event)">
+
+            <div class="acciones-modal">
+
+              <button
+                type="button"
+                (click)="mostrarModal = false">
+                Cancelar
+              </button>
+
+              <button type="submit">
+                Publicar
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </form>
+    }
+
     <div class="feed-publicaciones">
-  
-      <div class="post">
-  
-        <div class="post-header">
-  
-  <!--        <img src="" alt=""> -->  
-  
-          <div class="post-user">
-            <strong>userX</strong>
-            <small>Hace 2 horas</small>
+
+      @for (publicacion of publicaciones; track publicacion._id) {
+
+        <div class="post">
+
+          <div class="post-header">
+
+            <div class="post-user">
+              <strong> {{ publicacion.nombreUsuario }} </strong>
+              <small> {{ publicacion.fechaCreacion | date:'short' }} </small>
+            </div>
+
           </div>
-  
-          <div class="post-menu">
-            ⋯
+
+          <img
+            [src]="publicacion.imagen"
+            class="post-imagen"
+            alt="">
+
+          <div class="post-body">
+
+            <div class="likes">
+              {{ publicacion.likes.length }} me gusta
+            </div>
+
+            <div class="post-texto">
+              <strong>
+                {{ publicacion.titulo }}
+              </strong>
+
+              {{ publicacion.descripcion }}
+            </div>
+
           </div>
-  
+
         </div>
-  
-        <img 
-          src="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-          class="post-imagen"
-          alt="">
-  
-        <div class="post-body">
-          <div class="post-actions">         
-  
-          </div>
-  
-          <div class="likes">
-            10 me gusta
-          </div>
-  
-          <div class="post-texto">
-            <strong>@userX</strong>
-            Mi primera publicación en Conecta 
-          </div>
-  
-  
-        </div>
-  
-      </div>
-  
+
+      }
+
     </div>
-  
+
   </div>
+
 </div>

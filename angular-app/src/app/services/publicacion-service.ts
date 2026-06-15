@@ -1,22 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root',
 })
-export class Auth {
+export class PublicacionService {
 
   private readonly url = 'https://angular-nest-eight.vercel.app' ;
 
   constructor(private http: HttpClient){}
 
-  registro(datos: any){
-    return this.http.post(`${this.url}/auth/registro`, datos)
+  crear(datos: FormData){
+    return this.http.post(`${this.url}/publicaciones`, datos)
   }
-
-  login(datos: any){
-    return this.http.post(`${this.url}/auth/login`, datos)
+  
+  obtener(){
+    return this.http.get(`${this.url}/publicaciones`)
   }
-
 }
