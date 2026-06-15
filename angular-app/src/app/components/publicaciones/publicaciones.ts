@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { manejarSubidaImagen } from '../../utils/imagen';
 import { PublicacionService } from '../../services/publicacion-service';
 import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-publicaciones',
@@ -22,7 +23,8 @@ export class Publicaciones implements OnInit {
     publicaciones: any[] = [];
 
     constructor(private fb: FormBuilder,
-                private publicacionService: PublicacionService){}
+                private publicacionService: PublicacionService,
+                private cdr: ChangeDetectorRef){}
     
     ngOnInit(): void {
       this.miPublicacion = this.fb.group({
@@ -114,6 +116,7 @@ export class Publicaciones implements OnInit {
       this.publicacionService.obtener().subscribe((respuesta: any) => {
 
         this.publicaciones = [...respuesta];
+        this.cdr.detectChanges();
 
         console.log(this.publicaciones);
         
