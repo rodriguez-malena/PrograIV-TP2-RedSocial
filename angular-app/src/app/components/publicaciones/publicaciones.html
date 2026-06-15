@@ -65,8 +65,9 @@
     }
 
     <div class="feed-publicaciones">
+      <h2>Total: {{ publicaciones.length }}</h2>
 
-      @for (publicacion of publicaciones; track $index) {
+      @for (publicacion of publicaciones; track publicacion._id) {
 
         <div class="post">
 
