@@ -25,6 +25,7 @@ export class Publicaciones implements OnInit {
                 private publicacionService: PublicacionService){}
     
     ngOnInit(): void {
+       console.log('ENTRE A NGONINIT');
       this.miPublicacion = this.fb.group({
 
         titulo: ["",[Validators.required, Validators.minLength(1), Validators.maxLength(25)]],
@@ -33,6 +34,7 @@ export class Publicaciones implements OnInit {
       
       })
 
+      console.log('ANTES DE CARGAR');
       this.cargarPublicaciones();
     }
     
@@ -111,6 +113,7 @@ export class Publicaciones implements OnInit {
     }
   
     cargarPublicaciones(){
+      console.log('ENTRE A CARGAR PUBLICACIONES');
       this.publicacionService.obtener().subscribe((respuesta: any) => {
         console.log('RESPUESTA DEL BACK:', respuesta);
 
@@ -118,6 +121,9 @@ export class Publicaciones implements OnInit {
 
         console.log(this.publicaciones);
         
-      })
+      },
+     (err) => {
+      console.log('ERROR DEL GET:', err);
+    })
     }
 }
