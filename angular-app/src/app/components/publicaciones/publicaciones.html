@@ -8,8 +8,7 @@
 
         <img [src]="usuario.imagenPerfil" alt="">
 
-        <button class="btn-subir"
-                (click)="mostrarModal = true">
+        <button class="btn-subir"(click)="mostrarModal = true">
           Agregar imagen
         </button>
 
@@ -28,21 +27,30 @@
 
             <div class="ingreso-datos">
               <div>
-              <label class="form-label">Título</label>
-              <input
-                type="text"
-                placeholder="Agrega un titulo"
-                class="form-control"
-                formControlName="titulo">
-              </div>
+              <label class="form-label" for="titulo">Título</label>
+              <input type="text" id="titulo" placeholder="Agrega un titulo" class="form-control" formControlName="titulo">
+              @if (titulo.touched && titulo.hasError('required')) {
+                <small class="text-danger">El titulo es obligatorio</small>
+              }
+              @if (titulo.touched && titulo.hasError('maxlength')) {
+                <small class="text-danger">
+                  Solo se permiten hasta {{titulo.getError('maxlength').requiredLength}} caracteres
+                </small>
+              }
+            </div>
+
 
               <div>
-              <label class="form-label">Descripción</label>
-              <textarea
-                placeholder="Agregue una descripción"
-                class="form-control"
-                formControlName="descripcion">
-              </textarea>
+              <label class="form-label" for="descripcion">Descripción</label>
+              <textarea placeholder="Agregue una descripción" class="form-control" id="descripcion" formControlName="descripcion"></textarea>
+              @if (descripcion.touched && descripcion.hasError('required')) {
+                <small class="text-danger">La descripcion es obligatoria</small>
+              }
+              @if (descripcion.touched && descripcion.hasError('maxlength')) {
+                <small class="text-danger">
+                  Solo se permiten hasta {{descripcion.getError('maxlength').requiredLength}} caracteres
+                </small>
+              }
               </div>
   
               <label class="box-carga-imagen" for="imagen">
@@ -59,6 +67,9 @@
                 </div>
   
               </label>
+               @if (formEnviado && imagen.hasError('required')) {
+                    <small class="text-danger">Agregar una imagen es obligatorio</small>
+                  }
             </div>
 
             <div class="acciones-modal">
@@ -111,7 +122,7 @@
 
             <div class="post-texto">
               <div class="post-titulo">
-                <strong>{{ publicacion.nombreUsuario }}</strong>
+                <strong>@{{ publicacion.nombreUsuario }}</strong>
                 <small>{{ publicacion.titulo}}</small>
               </div>
 

@@ -90,7 +90,7 @@ export class Registro implements OnInit {
     if(this.cargando) return;
     
     this.cargando = true;
-    this.formEnviado = true
+    this.formEnviado = true;
 
     this.miRegistro.markAllAsTouched();
 

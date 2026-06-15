@@ -63,7 +63,7 @@ export class Publicaciones implements OnInit {
       if(this.cargando) return;
     
       this.cargando = true;
-      this.formEnviado = true
+      this.formEnviado = true;
 
       this.miPublicacion.markAllAsTouched();
       console.log("Intento de envío");

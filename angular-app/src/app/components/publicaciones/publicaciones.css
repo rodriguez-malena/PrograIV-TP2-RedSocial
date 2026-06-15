@@ -39,6 +39,7 @@
 
 .btn-subir {
   background: #8a7555;
+  font-family: "Poppins",sans-serif;
   color: white;
   border: none;
   border-radius: 10px;
@@ -174,6 +175,11 @@
   font-size: 24px;
 }
 
+.modal-publicacion .form-label {
+  font-family: "Chonburi", serif;
+  color: #5f4f39;
+  font-size: 12px;
+}
 
 .modal-publicacion .form-control {
   border: 1.5px solid #ead8b9;
@@ -210,19 +216,14 @@
 .box-carga-imagen {
   width: 100%;
   min-height: 140px;
-
   border: 1px dashed #d8c3a2;
   border-radius: 18px;
-
   background: #fffaf2;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   transition: .25s ease;
-
   overflow: hidden;
 }
 
@@ -262,13 +263,15 @@
 
 .carga-contenido span {
   color: #5f4f39;
-  font-weight: 600;
   font-size: 14px;
+  font-family: "Chonburi", serif;
+
 }
 
 .carga-contenido small {
   color: #a28d6e;
   font-size: 12px;
+  font-family: "Poppins", sans-serif;
 }
 
 .nombre-archivo {
@@ -329,4 +332,9 @@
 
 .acciones-modal button[type="button"]:hover {
   color: white;
+}
+
+.text-danger {
+  color: rgb(156, 8, 8);
+  font-family: "Poppins", sans-serif;
 }
