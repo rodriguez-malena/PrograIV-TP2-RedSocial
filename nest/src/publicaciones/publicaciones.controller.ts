@@ -47,13 +47,13 @@ export class PublicacionesController {
     }
 
     @Post(':id/like')
-    darLike( @Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
-        
+    darLike(@Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
+        return this.publicacionService.darLike(publicacionId, usuarioId)
     }
 
     @Delete(':id/like')
-    eliminarLike(){
-
+    eliminarLike(@Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
+        return this.publicacionService.eliminarLike(publicacionId, usuarioId)
     }
 
 
