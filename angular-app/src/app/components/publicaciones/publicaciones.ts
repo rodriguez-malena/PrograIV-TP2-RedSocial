@@ -1,14 +1,13 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { manejarSubidaImagen } from '../../utils/imagen';
 import { PublicacionService } from '../../services/publicacion-service';
 import Swal from 'sweetalert2';
-import { DatePipe } from '@angular/common';
-
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-publicaciones',
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, CommonModule],
   templateUrl: './publicaciones.html',
   styleUrl: './publicaciones.css',
 })
@@ -20,12 +19,11 @@ export class Publicaciones implements OnInit {
     nombreArchivo: string = 'Ningún archivo seleccionado';
     miPublicacion!: FormGroup;
 
-    publicaciones: any[] = [];
+    publicaciones = signal<any[]>([])
 
     constructor(private fb: FormBuilder,
                 private publicacionService: PublicacionService,
-                private cdr: ChangeDetectorRef){}
-    
+    ){}   
     ngOnInit(): void {
       this.miPublicacion = this.fb.group({
 
@@ -98,7 +96,13 @@ export class Publicaciones implements OnInit {
           title: 'Carga exitosa',
         });
         
-        this.publicaciones.unshift(publicacion);
+        this.publicaciones.update(lista => [
+          {
+            ...publicacion,
+            likes: [...(publicacion.likes || [])]
+          },
+          ...lista
+        ]);
 
         this.miPublicacion.reset();
         this.nombreArchivo = 'Ningún archivo seleccionado';
@@ -116,11 +120,18 @@ export class Publicaciones implements OnInit {
   
     cargarPublicaciones(){
       this.publicacionService.obtener().subscribe((respuesta: any) => {
+    console.log('RESPUESTA BACKEND:', respuesta);
 
-        this.publicaciones = [...respuesta];
-        this.cdr.detectChanges();
+        const data = Array.isArray(respuesta) ? respuesta : [];
 
-        console.log(this.publicaciones);
+        this.publicaciones.set(
+          data.map(p => ({
+            ...p,
+            likes:[...(p.likes || [])]
+          }))
+          )
+
+        console.log(this.publicaciones());
         
       },
      (err) => {
@@ -135,18 +146,31 @@ export class Publicaciones implements OnInit {
 
   cambiarLike(publicacion: any){
       console.log('POST:', publicacion._id);
-      console.log('LIKES ANTES:', publicacion.likes);
+      const id = this.usuario._id;
     
       if(this.yaDioLike(publicacion)){
-      this.publicacionService.borrarLike(publicacion._id, this.usuario._id).subscribe((actualizacion: any)=> {
-        publicacion.likes = actualizacion.likes
+      this.publicacionService.borrarLike(publicacion._id, id).subscribe((actualizacion: any)=> {
+        this.actualizarLikes(publicacion._id, actualizacion.likes)
       })
     
     } else {
       this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe((actualizacion: any)=> 
-        publicacion.likes = actualizacion.likes
+        this.actualizarLikes(publicacion._id, actualizacion.likes)
+
       )
     }
 
   }
+
+   actualizarLikes(postId: string, likes: string[]) {
+
+    this.publicaciones.update(list =>
+      list.map(p =>
+        p._id === postId
+          ? { ...p, likes: [...(likes || [])] }
+          : p
+      )
+    );
+  }
+
 }

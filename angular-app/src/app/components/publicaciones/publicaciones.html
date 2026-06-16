@@ -97,7 +97,7 @@
 
     <div class="feed-publicaciones">
 
-      @for (publicacion of publicaciones; track publicacion._id) {
+      @for (publicacion of publicaciones(); track publicacion._id) {
 
         <div class="post">
 
