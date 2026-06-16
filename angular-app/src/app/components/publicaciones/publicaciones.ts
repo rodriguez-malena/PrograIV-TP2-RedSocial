@@ -36,12 +36,7 @@ export class Publicaciones implements OnInit {
       })
 
       this.cargarPublicaciones();
-      console.log(
-      this.publicaciones.map(p => ({
-        id: p._id,
-        likes: p.likes.length
-      }))
-    );
+      
     }
     
     seleccionarImagen(event: any): void {
@@ -134,20 +129,22 @@ export class Publicaciones implements OnInit {
     }
 
   yaDioLike(publicacion: any){
-    return publicacion.likes.includes(this.usuario._id);
+    return (publicacion.likes || []).filter(Boolean).includes(this.usuario._id);
+
   }
 
   cambiarLike(publicacion: any){
       console.log('POST:', publicacion._id);
-        console.log('LIKES ANTES:', publicacion.likes);
-    if(this.yaDioLike(publicacion)){
-      this.publicacionService.borrarLike(publicacion._id, this.usuario._id).subscribe(()=> {
-        publicacion.likes = publicacion.likes.filter((id:string)=> id !== this.usuario._id)
+      console.log('LIKES ANTES:', publicacion.likes);
+    
+      if(this.yaDioLike(publicacion)){
+      this.publicacionService.borrarLike(publicacion._id, this.usuario._id).subscribe((actualizacion: any)=> {
+        publicacion.likes = actualizacion.likes
       })
     
     } else {
-      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe(()=> 
-        publicacion.likes.push(this.usuario._id)
+      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe((actualizacion: any)=> 
+        publicacion.likes = actualizacion.likes
       )
     }
 

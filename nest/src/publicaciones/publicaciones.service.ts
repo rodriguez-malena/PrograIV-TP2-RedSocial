@@ -36,6 +36,8 @@ export class PublicacionesService {
             throw new BadRequestException('Ya diste like');
         }
 
+        publicacion.likes = (publicacion.likes || []).filter(Boolean);
+
         publicacion.likes.push(usuarioId);
 
         await publicacion.save()
@@ -49,6 +51,9 @@ export class PublicacionesService {
         if(!publicacion){
             throw new NotFoundException('Publicación no encontrada')
         }
+
+    
+        publicacion.likes = (publicacion.likes || []).filter(Boolean);
 
        publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
 
