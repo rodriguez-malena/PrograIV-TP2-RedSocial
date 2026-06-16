@@ -40,9 +40,7 @@ export class PublicacionesService {
 
         await publicacion.save()
 
-        return {
-            message: 'Like agregado'
-        };
+        return publicacion;
     }
     
     async eliminarLike(publicacionId: string, usuarioId: string){
@@ -56,9 +54,8 @@ export class PublicacionesService {
 
         await publicacion.save()
 
-        return {
-            message: 'Like eliminado'
-        };
+        return publicacion
+        
 
     }
 
