@@ -134,15 +134,13 @@ export class Publicaciones implements OnInit {
   cambiarLike(publicacion: any){
     if(this.yaDioLike(publicacion)){
       this.publicacionService.borrarLike(publicacion._id, this.usuario._id).subscribe(()=> {
-        publicacion.likes = publicacion.likes.filter((id:string)=> {
-          id !== this.usuario._id
-        })
+        publicacion.likes = publicacion.likes.filter((id:string)=> id !== this.usuario._id)
       })
     
     } else {
-      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe(()=> {
+      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe(()=> 
         publicacion.likes.push(this.usuario._id)
-      })
+      )
     }
 
   }

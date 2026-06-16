@@ -19,7 +19,7 @@ export class PublicacionService {
   }
 
   darLike(publicacionId: string, usuarioId: string){
-    return this.http.post(`${this.url}/publicaciones/${publicacionId}/like`, usuarioId)
+    return this.http.post(`${this.url}/publicaciones/${publicacionId}/like`, { usuarioId })
   }
 
   borrarLike(publicacionId: string, usuarioId: string){
