@@ -36,6 +36,12 @@ export class Publicaciones implements OnInit {
       })
 
       this.cargarPublicaciones();
+      console.log(
+      this.publicaciones.map(p => ({
+        id: p._id,
+        likes: p.likes.length
+      }))
+    );
     }
     
     seleccionarImagen(event: any): void {
@@ -132,6 +138,8 @@ export class Publicaciones implements OnInit {
   }
 
   cambiarLike(publicacion: any){
+      console.log('POST:', publicacion._id);
+        console.log('LIKES ANTES:', publicacion.likes);
     if(this.yaDioLike(publicacion)){
       this.publicacionService.borrarLike(publicacion._id, this.usuario._id).subscribe(()=> {
         publicacion.likes = publicacion.likes.filter((id:string)=> id !== this.usuario._id)
