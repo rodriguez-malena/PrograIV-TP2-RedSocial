@@ -126,4 +126,24 @@ export class Publicaciones implements OnInit {
       console.log('ERROR DEL GET:', err);
     })
     }
+
+  yaDioLike(publicacion: any){
+    return publicacion.likes.includes(this.usuario._id);
+  }
+
+  cambiarLike(publicacion: any){
+    if(this.yaDioLike(publicacion)){
+      this.publicacionService.borrarLike(publicacion._id, this.usuario._id).subscribe(()=> {
+        publicacion.likes = publicacion.likes.filter((id:string)=> {
+          id !== this.usuario._id
+        })
+      })
+    
+    } else {
+      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe(()=> {
+        publicacion.likes.push(this.usuario._id)
+      })
+    }
+
+  }
 }

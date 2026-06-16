@@ -114,9 +114,19 @@
           <img [src]="publicacion.imagen" class="post-imagen" alt="">
 
           <div class="post-body">
+            <div class="post-acciones">
+              <img
+                [src]="yaDioLike(publicacion)
+                  ? 'Like.png'
+                  : 'Nolike.png'"
+                class="icono-like"
+                (click)="cambiarLike(publicacion)"
+                alt="Like">
+  
+              <div class="likes">
+                {{ publicacion.likes.length }} me gusta
+              </div>
 
-            <div class="likes">
-              {{ publicacion.likes.length }} me gusta
             </div>
 
             <div class="post-texto">

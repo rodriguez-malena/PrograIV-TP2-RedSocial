@@ -17,4 +17,16 @@ export class PublicacionService {
   obtener(){
     return this.http.get(`${this.url}/publicaciones`)
   }
+
+  darLike(publicacionId: string, usuarioId: string){
+    return this.http.post(`${this.url}/publicaciones/${publicacionId}/like`, usuarioId)
+  }
+
+  borrarLike(publicacionId: string, usuarioId: string){
+    return this.http.delete(`${this.url}/publicaciones/${publicacionId}/like`,
+      {
+        body: { usuarioId }
+      }
+    )
+  }
 }

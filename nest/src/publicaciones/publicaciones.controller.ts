@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { crearStorageCloudinary } from '../cloudinary/cloudinary.storage';
 import { PublicacionDto } from './dto/publicacion.dto';
@@ -47,8 +47,8 @@ export class PublicacionesController {
     }
 
     @Post(':id/like')
-    darLike(){
-
+    darLike( @Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
+        
     }
 
     @Delete(':id/like')
