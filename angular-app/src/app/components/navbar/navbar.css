@@ -58,15 +58,10 @@
 }
 
 .navbar-menu a:hover {
-    color: #ffe4ba;
+    color: #8a7555;
     transform: translateY(-1px);
 }
 
-
-.navbar-menu a.active {
-    background: linear-gradient(135deg, #8a7555, #b59b74);
-    color: white;
-}
 
 
 @media (max-width: 600px) {

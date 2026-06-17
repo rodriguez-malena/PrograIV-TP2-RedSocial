@@ -76,6 +76,7 @@
 
 .post-header {
   display: flex;
+  justify-content: space-between;
   padding: 12px 14px;
   align-items: center;
   gap: 10px;
@@ -356,3 +357,49 @@
 .icono-like:hover {
   transform: scale(1.1);
 }
+
+.feed-filtros {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0 15px;
+}
+
+.select-orden {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color:#5f4f39;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.select-orden option {
+  background: white;
+  color: #d8c3a2;
+}
+.select-orden:hover {
+  border-color: #d8c3a2;
+}
+
+.btn-eliminar {
+  background: transparent;
+  border: 1px solid  rgb(156, 8, 8);
+  color: rgb(156, 8, 8);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  background: rgb(156, 8, 8);
+  color: white;
+}
+
+
+

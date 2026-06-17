@@ -216,7 +216,7 @@ export class Publicaciones implements OnInit {
   eliminarPublicacion(publicacion: Publicacion){
     Swal.fire({
       title: '¿Estás seguro?',
-      text: 'Estas por borrar esta publlicación',
+      text: 'Estas por borrar esta publicación',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
