@@ -158,8 +158,10 @@ export class Publicaciones implements OnInit {
   -------------------*/
   
   cambiarOrden(event: Event){
+      console.log("ENTRÉ A CAMBIAR ORDEN");
     const select = event.target as HTMLSelectElement // TS no sabe que event.target es un <select> entonces necesito aclararle para obtener su valor
     const valor = select.value // obtengo valor 
+   console.log("VALOR:", valor);
 
     const orden =  valor as 'fecha' | 'likes'; // y que solo puede ser 'fecha' o 'likes'
     this.orden.set(orden)
