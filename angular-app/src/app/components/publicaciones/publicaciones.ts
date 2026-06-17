@@ -214,11 +214,31 @@ export class Publicaciones implements OnInit {
   -----------------------*/
 
   eliminarPublicacion(publicacion: Publicacion){
-    this.publicacionService.eliminar(publicacion._id, this.usuario._id).subscribe(() => {
-      
-      this.publicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id))
-    })
-  
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Estas por borrar esta publlicación',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#d8c3a2',
+      cancelButtonColor: '#5f4f39'
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+
+        this.publicacionService.eliminar(publicacion._id, this.usuario._id).subscribe(() => {
+           
+          this.publicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id)); // Actualizo filtrando las que no tienen el id de la eliminada 
+
+            Swal.fire(
+              'Eliminado',
+              'La publicación fue eliminada',
+              'success'
+            );
+          });
+      }
+  })
   }
 
 }
