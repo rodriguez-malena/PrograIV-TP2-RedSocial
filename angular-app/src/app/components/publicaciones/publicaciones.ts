@@ -156,12 +156,12 @@ export class Publicaciones implements OnInit {
   /*---------------------
   Orden de publicaciones
   -------------------*/
-
+  
   cambiarOrden(event: Event){
     const select = event.target as HTMLSelectElement // TS no sabe que event.target es un <select> entonces necesito aclararle para obtener su valor
     const valor = select.value // obtengo valor 
 
-    const orden =  valor as 'fecha' | 'likes'; // solo puede ser 'fecha' o 'likes'
+    const orden =  valor as 'fecha' | 'likes'; // y que solo puede ser 'fecha' o 'likes'
     this.orden.set(orden)
     this.cargarPublicaciones();
   }
@@ -171,6 +171,7 @@ export class Publicaciones implements OnInit {
   -----------------*/
   yaDioLike(publicacion: Publicacion){
     return publicacion.likes.includes(this.usuario._id)
+    //return (publicacion.likes || []).filter(Boolean).includes(this.usuario._id);
 
   }
 
@@ -196,12 +197,12 @@ export class Publicaciones implements OnInit {
    actualizarLikes(postId: string, likes: string[]) {
 
       this.publicaciones.update(lista =>
-        lista.map(publicacion => publicacion._id === postId // si es la publi que le dieron like
-            ? { ...publicacion, // hace una copia con cambios
-               likes,
+        lista.map(publicacion => publicacion._id === postId // si le dieron like a esa publicacion
+            ? { ...publicacion,
+               likes: [...likes], // la actualiza 
               cantidadLikes: likes.length }
 
-            : publicacion // si no la dejo igual
+            : publicacion //la deja como estaba
         )
       );
   }
