@@ -97,7 +97,7 @@
 
     <div class="feed-publicaciones">
     
-      <select #ordenamiento (change)="cambiarOrden(ordenamiento.value)" id="ordenamiento">
+      <select (change)="cambiarOrden($event)" id="ordenamiento">
         <option value="likes">Más likes</option>
         <option value="fecha">Más reciente</option>
       </select>

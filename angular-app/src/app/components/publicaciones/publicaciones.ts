@@ -157,7 +157,11 @@ export class Publicaciones implements OnInit {
   Orden de publicaciones
   -------------------*/
 
-  cambiarOrden(orden: 'fecha' | 'likes'){
+  cambiarOrden(event: Event){
+    const select = event.target as HTMLSelectElement // TS no sabe que event.target es un <select> entonces necesito aclararle para obtener su valor
+    const valor = select.value // obtengo valor 
+
+    const orden =  valor as 'fecha' | 'likes'; // solo puede ser 'fecha' o 'likes'
     this.orden.set(orden)
     this.cargarPublicaciones();
   }
