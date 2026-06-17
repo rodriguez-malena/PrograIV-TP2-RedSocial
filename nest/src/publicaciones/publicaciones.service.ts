@@ -20,9 +20,15 @@ export class PublicacionesService {
 
     // Listar publis
     async listar(orden: 'fecha' | 'likes' = 'fecha'){
+        console.log(orden)
+        
         if(orden === 'likes'){
+            console.log('ORDENANDO POR LIKES');
+
             return this.publicacionModel.find({ eliminada: false}).sort({ cantidadLikes: -1}) 
         }
+
+        console.log('ORDENANDO POR FECHA');
 
         return this.publicacionModel.find({ eliminada: false}).sort({ fechaCreacion: -1}) 
         // Trae las publicaciones activas ordenadas desde la mas nueva x default
@@ -57,9 +63,6 @@ export class PublicacionesService {
         if(!publicacion){
             throw new NotFoundException('Publicación no encontrada')
         }
-
-    
-    //publicacion.likes = (publicacion.likes || []).filter(Boolean);
 
         publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
         
