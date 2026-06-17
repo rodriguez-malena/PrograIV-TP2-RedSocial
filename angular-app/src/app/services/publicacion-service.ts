@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Publicacion } from '../interfaces/publicacion';
 
 @Injectable({
   providedIn: 'root',
@@ -11,19 +12,19 @@ export class PublicacionService {
   constructor(private http: HttpClient){}
 
   crear(datos: FormData){
-    return this.http.post(`${this.url}/publicaciones`, datos)
+    return this.http.post<Publicacion>(`${this.url}/publicaciones`, datos)
   }
   
   obtener(){
-    return this.http.get(`${this.url}/publicaciones`)
+    return this.http.get<Publicacion[]>(`${this.url}/publicaciones`)
   }
 
   darLike(publicacionId: string, usuarioId: string){
-    return this.http.post(`${this.url}/publicaciones/${publicacionId}/like`, { usuarioId })
+    return this.http.post<Publicacion>(`${this.url}/publicaciones/${publicacionId}/like`, { usuarioId })
   }
 
   borrarLike(publicacionId: string, usuarioId: string){
-    return this.http.delete(`${this.url}/publicaciones/${publicacionId}/like`,
+    return this.http.delete<Publicacion>(`${this.url}/publicaciones/${publicacionId}/like`,
       {
         body: { usuarioId }
       }

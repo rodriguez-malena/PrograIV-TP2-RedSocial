@@ -4,6 +4,7 @@ import { manejarSubidaImagen } from '../../utils/imagen';
 import { PublicacionService } from '../../services/publicacion-service';
 import Swal from 'sweetalert2';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Publicacion } from '../../interfaces/publicacion';
 
 @Component({
   selector: 'app-publicaciones',
@@ -19,11 +20,14 @@ export class Publicaciones implements OnInit {
     nombreArchivo: string = 'Ningún archivo seleccionado';
     miPublicacion!: FormGroup;
 
-    publicaciones = signal<any[]>([])
+    publicaciones = signal<Publicacion[]>([])
+    orden = signal<'fecha' | 'likes'>('fecha')
 
     constructor(private fb: FormBuilder,
                 private publicacionService: PublicacionService,
     ){}   
+
+
     ngOnInit(): void {
       this.miPublicacion = this.fb.group({
 
@@ -36,7 +40,10 @@ export class Publicaciones implements OnInit {
       this.cargarPublicaciones();
       
     }
-    
+  
+    /*----------------------
+    Seleccion de imagenes
+    ------------------------*/
     seleccionarImagen(event: any): void {
       const archivo = event.target.files?.[0];
           
@@ -46,6 +53,9 @@ export class Publicaciones implements OnInit {
           }
     }
 
+    /*----------------------
+    GETTERS
+    ------------------------*/
     get titulo() {
       return this.miPublicacion.get('titulo')!;
     }
@@ -57,6 +67,10 @@ export class Publicaciones implements OnInit {
     get imagen(){
       return this.miPublicacion.get('imagen')!;
     }
+
+    /*----------------------
+    Subida de publicación
+    ------------------------*/
 
     async subir(){
       if(this.cargando) return;
@@ -77,6 +91,7 @@ export class Publicaciones implements OnInit {
 
       const { titulo, descripcion, imagen } = this.miPublicacion.value
 
+    /*Creación del formData*/
       const formData = new FormData();
       formData.append('titulo', titulo);
       formData.append('descripcion', descripcion);
@@ -88,7 +103,8 @@ export class Publicaciones implements OnInit {
         formData.append('imagen', imagen)
       }
 
-      this.publicacionService.crear(formData).subscribe((publicacion: any) => {
+  // Llamada al service
+      this.publicacionService.crear(formData).subscribe((publicacion: Publicacion) => {
         console.log(publicacion)
         this.cargando = false;
         Swal.fire({
@@ -96,6 +112,7 @@ export class Publicaciones implements OnInit {
           title: 'Carga exitosa',
         });
         
+    // Actualización de la lista de publicaciones
         this.publicaciones.update(lista => [
           {
             ...publicacion,
@@ -104,6 +121,7 @@ export class Publicaciones implements OnInit {
           ...lista
         ]);
 
+      //LIMPIEZA
         this.miPublicacion.reset();
         this.nombreArchivo = 'Ningún archivo seleccionado';
         this.mostrarModal = false;
@@ -118,18 +136,23 @@ export class Publicaciones implements OnInit {
       })
     }
   
+    /*----------------------------
+    Muestra de feed de publicaciones
+    ------------------------*/
     cargarPublicaciones(){
       this.publicacionService.obtener().subscribe((respuesta: any) => {
-    console.log('RESPUESTA BACKEND:', respuesta);
+      console.log('RESPUESTA BACKEND:', respuesta);
 
-        const data = Array.isArray(respuesta) ? respuesta : [];
+       // const data = Array.isArray(respuesta) ? respuesta : []; // Comprueba si respuesta es realmente un arreglo.
 
-        this.publicaciones.set(
+        this.publicaciones.set(respuesta)
+        
+        /*set(
           data.map(p => ({
             ...p,
             likes:[...(p.likes || [])]
           }))
-          )
+          )*/
 
         console.log(this.publicaciones());
         
@@ -139,12 +162,23 @@ export class Publicaciones implements OnInit {
     })
     }
 
-  yaDioLike(publicacion: any){
-    return (publicacion.likes || []).filter(Boolean).includes(this.usuario._id);
+  /*---------------------
+  Orden de publicaciones
+  -------------------*/
+
+  cambiarOrden(event: Event){
+  }
+
+  /*---------------
+  Acciones del like
+  -----------------*/
+  yaDioLike(publicacion: Publicacion){
+    return publicacion.likes.includes(this.usuario._id)
+    //return (publicacion.likes || []).filter(Boolean).includes(this.usuario._id);
 
   }
 
-  cambiarLike(publicacion: any){
+  cambiarLike(publicacion: Publicacion){
       console.log('POST:', publicacion._id);
       const id = this.usuario._id;
     
@@ -164,13 +198,12 @@ export class Publicaciones implements OnInit {
 
    actualizarLikes(postId: string, likes: string[]) {
 
-    this.publicaciones.update(list =>
-      list.map(p =>
-        p._id === postId
-          ? { ...p, likes: [...(likes || [])] }
-          : p
-      )
-    );
+      this.publicaciones.update(lista =>
+        lista.map(publicacion => publicacion._id === postId
+            ? { ...publicacion, likes: [...likes] }
+            : publicacion
+        )
+      );
   }
 
 }
