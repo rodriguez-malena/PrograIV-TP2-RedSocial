@@ -98,8 +98,8 @@
     <div class="feed-publicaciones">
     
       <select (change)="cambiarOrden($event)" id="ordenamiento">
-        <option value="likes">Más likes</option>
         <option value="fecha">Más reciente</option>
+        <option value="likes">Más likes</option>
       </select>
 
       @for (publicacion of publicaciones(); track publicacion._id) {
