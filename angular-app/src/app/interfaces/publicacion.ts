@@ -8,6 +8,7 @@ export interface Publicacion {
     imagenPerfil: string;
     fechaCreacion: string;
     likes: string[];
+    cantidadLikes: number
     comentarios: any[];
     eliminada: boolean;
 }

@@ -97,7 +97,7 @@
 
     <div class="feed-publicaciones">
     
-      <select (change)="cambiarOrden($event)" id="ordenamiento">
+      <select #ordenamiento (change)="cambiarOrden(ordenamiento.value)" id="ordenamiento">
         <option value="likes">Más likes</option>
         <option value="fecha">Más reciente</option>
       </select>
@@ -129,7 +129,7 @@
                 alt="Like">
   
               <div class="likes">
-                {{ publicacion.likes.length }} me gusta
+                {{ publicacion.cantidadLikes }} me gusta
               </div>
 
             </div>

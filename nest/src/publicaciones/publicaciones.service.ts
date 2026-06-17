@@ -19,9 +19,13 @@ export class PublicacionesService {
     }
 
     // Listar publis
-    async listar(){
+    async listar(orden: 'fecha' | 'likes'){
+        if(orden === 'likes'){
+            return this.publicacionModel.find({ eliminada: false}).sort({ cantidadLikes: -1}) 
+        }
+
         return this.publicacionModel.find({ eliminada: false}).sort({ fechaCreacion: -1}) 
-        // Trae las publicaciones activas ordenadas desde la mas nueva
+        // Trae las publicaciones activas ordenadas desde la mas nueva x default
     }
 
     // Dar like
@@ -36,9 +40,9 @@ export class PublicacionesService {
             throw new BadRequestException('Ya diste like');
         }
 
-        publicacion.likes = (publicacion.likes || []).filter(Boolean);
 
         publicacion.likes.push(usuarioId);
+        publicacion.cantidadLikes++;
 
         await publicacion.save()
 
@@ -53,9 +57,11 @@ export class PublicacionesService {
         }
 
     
-        publicacion.likes = (publicacion.likes || []).filter(Boolean);
+    //publicacion.likes = (publicacion.likes || []).filter(Boolean);
 
-       publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
+        publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
+        
+        publicacion.cantidadLikes = Math.max(0, publicacion.cantidadLikes - 1); // evita que quede negativo
 
         await publicacion.save()
 

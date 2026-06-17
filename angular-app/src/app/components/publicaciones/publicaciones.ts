@@ -112,13 +112,13 @@ export class Publicaciones implements OnInit {
           title: 'Carga exitosa',
         });
         
-    // Actualización de la lista de publicaciones
-        this.publicaciones.update(lista => [
-          {
-            ...publicacion,
-            likes: [...(publicacion.likes || [])]
-          },
-          ...lista
+  // Actualización de la lista de publicaciones
+      this.publicaciones.update(lista => [
+        {
+          ...publicacion,
+          likes: [...(publicacion.likes || [])]
+        },
+        ...lista
         ]);
 
       //LIMPIEZA
@@ -140,20 +140,11 @@ export class Publicaciones implements OnInit {
     Muestra de feed de publicaciones
     ------------------------*/
     cargarPublicaciones(){
-      this.publicacionService.obtener().subscribe((respuesta: any) => {
-      console.log('RESPUESTA BACKEND:', respuesta);
-
-       // const data = Array.isArray(respuesta) ? respuesta : []; // Comprueba si respuesta es realmente un arreglo.
-
-        this.publicaciones.set(respuesta)
+      this.publicacionService.obtener(this.orden()).subscribe((respuesta: any) => {
         
-        /*set(
-          data.map(p => ({
-            ...p,
-            likes:[...(p.likes || [])]
-          }))
-          )*/
-
+        console.log('RESPUESTA:', respuesta);
+        this.publicaciones.set(respuesta)
+  
         console.log(this.publicaciones());
         
       },
@@ -166,7 +157,9 @@ export class Publicaciones implements OnInit {
   Orden de publicaciones
   -------------------*/
 
-  cambiarOrden(event: Event){
+  cambiarOrden(orden: 'fecha' | 'likes'){
+    this.orden.set(orden)
+    this.cargarPublicaciones();
   }
 
   /*---------------
@@ -174,7 +167,6 @@ export class Publicaciones implements OnInit {
   -----------------*/
   yaDioLike(publicacion: Publicacion){
     return publicacion.likes.includes(this.usuario._id)
-    //return (publicacion.likes || []).filter(Boolean).includes(this.usuario._id);
 
   }
 
@@ -189,6 +181,7 @@ export class Publicaciones implements OnInit {
     
     } else {
       this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe((actualizacion: any)=> 
+        
         this.actualizarLikes(publicacion._id, actualizacion.likes)
 
       )
@@ -199,9 +192,12 @@ export class Publicaciones implements OnInit {
    actualizarLikes(postId: string, likes: string[]) {
 
       this.publicaciones.update(lista =>
-        lista.map(publicacion => publicacion._id === postId
-            ? { ...publicacion, likes: [...likes] }
-            : publicacion
+        lista.map(publicacion => publicacion._id === postId // si es la publi que le dieron like
+            ? { ...publicacion, // hace una copia con cambios
+               likes,
+              cantidadLikes: likes.length }
+
+            : publicacion // si no la dejo igual
         )
       );
   }

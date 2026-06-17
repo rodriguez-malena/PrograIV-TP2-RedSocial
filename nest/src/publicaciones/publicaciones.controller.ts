@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { crearStorageCloudinary } from '../cloudinary/cloudinary.storage';
 import { PublicacionDto } from './dto/publicacion.dto';
@@ -36,8 +36,8 @@ export class PublicacionesController {
     }
 
     @Get()
-    obtenerPublicaciones(){
-        return this.publicacionService.listar();
+    obtenerPublicaciones(@Query('orden') orden: 'fecha' | 'likes'){
+        return this.publicacionService.listar(orden);
 
     }
 
