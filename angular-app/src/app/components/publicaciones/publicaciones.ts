@@ -180,12 +180,14 @@ export class Publicaciones implements OnInit {
       const id = this.usuario._id;
     
       if(this.yaDioLike(publicacion)){
-      this.publicacionService.borrarLike(publicacion._id, id).subscribe((actualizacion: any)=> {
+      this.publicacionService.borrarLike(publicacion._id, id).subscribe((actualizacion: Publicacion)=> {
+        console.log(actualizacion.likes);
+      console.log(actualizacion.cantidadLikes);
         this.actualizarLikes(publicacion._id, actualizacion.likes)
       })
     
     } else {
-      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe((actualizacion: any)=> 
+      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe((actualizacion: Publicacion)=> 
         
         this.actualizarLikes(publicacion._id, actualizacion.likes)
 

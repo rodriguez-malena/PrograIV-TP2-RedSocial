@@ -44,6 +44,8 @@ export class PublicacionesService {
         publicacion.likes.push(usuarioId);
         publicacion.cantidadLikes++;
 
+        console.log(publicacion.likes);
+
         await publicacion.save()
 
         return publicacion;
@@ -62,6 +64,7 @@ export class PublicacionesService {
         publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
         
         publicacion.cantidadLikes = Math.max(0, publicacion.cantidadLikes - 1); // evita que quede negativo
+        console.log(publicacion.likes);
 
         await publicacion.save()
 
