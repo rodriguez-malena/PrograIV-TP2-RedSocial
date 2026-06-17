@@ -19,7 +19,7 @@ export class PublicacionesService {
     }
 
     // Listar publis
-    async listar(orden: 'fecha' | 'likes'){
+    async listar(orden: 'fecha' | 'likes' = 'fecha'){
         if(orden === 'likes'){
             return this.publicacionModel.find({ eliminada: false}).sort({ cantidadLikes: -1}) 
         }
