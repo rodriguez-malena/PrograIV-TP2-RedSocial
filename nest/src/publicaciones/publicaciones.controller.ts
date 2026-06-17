@@ -37,7 +37,7 @@ export class PublicacionesController {
 
     @Get()
     obtenerPublicaciones(@Query('orden') orden: 'fecha' | 'likes'){
-        console.log('orden: ', orden);
+        console.log('Controller: ', orden);
         
         return this.publicacionService.listar(orden);
 

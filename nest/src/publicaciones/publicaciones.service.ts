@@ -24,7 +24,7 @@ export class PublicacionesService {
         
         if(orden === 'likes'){
             console.log('ORDENANDO POR LIKES');
-
+            
             return this.publicacionModel.find({ eliminada: false}).sort({ cantidadLikes: -1}) 
         }
 
@@ -48,7 +48,7 @@ export class PublicacionesService {
 
 
         publicacion.likes.push(usuarioId);
-        publicacion.cantidadLikes++;
+        publicacion.cantidadLikes = publicacion.likes.length;
 
         console.log(publicacion.likes);
 
@@ -66,7 +66,7 @@ export class PublicacionesService {
 
         publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
         
-        publicacion.cantidadLikes = Math.max(0, publicacion.cantidadLikes - 1); // evita que quede negativo
+        publicacion.cantidadLikes = publicacion.likes.length;       
         console.log(publicacion.likes);
 
         await publicacion.save()
