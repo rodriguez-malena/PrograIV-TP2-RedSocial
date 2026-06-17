@@ -20,7 +20,6 @@ export class PublicacionesService {
 
     // Listar publis
     async listar(orden: 'fecha' | 'likes' = 'fecha'){
-        console.log(orden)
         
         if(orden === 'likes'){
             console.log('ORDENANDO POR LIKES');
@@ -29,7 +28,6 @@ export class PublicacionesService {
         }
 
         console.log('ORDENANDO POR FECHA');
-
         return this.publicacionModel.find({ eliminada: false}).sort({ fechaCreacion: -1}) 
         // Trae las publicaciones activas ordenadas desde la mas nueva x default
     }
@@ -76,5 +74,25 @@ export class PublicacionesService {
 
     }
 
+    async eliminar(publicacionId: string, usuarioId: string){
+        const publicacion =  await this.publicacionModel.findById(publicacionId);
+        
+        if(!publicacion){
+            throw new NotFoundException('Publicación no encontrada')
+        }
 
+        if(publicacion.usuarioId != usuarioId){
+            throw new BadRequestException('No podes eliminar publicaciones que no te pertenecen!');
+
+        }
+
+        publicacion.eliminada = true;
+
+        await publicacion.save();
+
+        return {
+            mensaje: "Publicación eliminada"
+        }
+
+    }
 }

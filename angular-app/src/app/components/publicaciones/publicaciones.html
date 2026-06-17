@@ -114,6 +114,15 @@
               <small> {{ publicacion.fechaCreacion | date:'short' }} </small>
             </div>
 
+            <div>
+              @if(publicacion.usuarioId === usuario._id){
+
+                <button (click)="eliminarPublicacion(publicacion)">
+                  Eliminar
+                </button>
+              }
+            </div>
+
           </div>
 
           <img [src]="publicacion.imagen" class="post-imagen" alt="">

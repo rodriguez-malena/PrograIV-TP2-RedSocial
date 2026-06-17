@@ -37,15 +37,14 @@ export class PublicacionesController {
 
     @Get()
     obtenerPublicaciones(@Query('orden') orden: 'fecha' | 'likes'){
-        console.log('Controller: ', orden);
         
         return this.publicacionService.listar(orden);
 
     }
 
     @Delete(':id') 
-    borrarPublicacion(){
-
+    borrarPublicacion(@Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
+        return this.publicacionService.eliminar(publicacionId, usuarioId)
     }
 
     @Post(':id/like')

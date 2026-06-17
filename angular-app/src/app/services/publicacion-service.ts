@@ -30,4 +30,13 @@ export class PublicacionService {
       }
     )
   }
+
+  eliminar(publicacionId: string, usuarioId: string){
+    return this.http.delete(`${this.url}/publicaciones/${publicacionId}`,
+      {
+        body : { usuarioId }
+      }
+    )
+  }
+  
 }

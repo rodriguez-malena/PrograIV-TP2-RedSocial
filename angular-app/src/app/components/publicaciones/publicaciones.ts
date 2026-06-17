@@ -173,7 +173,6 @@ export class Publicaciones implements OnInit {
   -----------------*/
   yaDioLike(publicacion: Publicacion){
     return publicacion.likes.includes(this.usuario._id)
-    //return (publicacion.likes || []).filter(Boolean).includes(this.usuario._id);
 
   }
 
@@ -183,13 +182,12 @@ export class Publicaciones implements OnInit {
     
       if(this.yaDioLike(publicacion)){
       this.publicacionService.borrarLike(publicacion._id, id).subscribe((actualizacion: Publicacion)=> {
-        console.log(actualizacion.likes);
-      console.log(actualizacion.cantidadLikes);
+        
         this.actualizarLikes(publicacion._id, actualizacion.likes)
       })
     
     } else {
-      this.publicacionService.darLike(publicacion._id, this.usuario._id).subscribe((actualizacion: Publicacion)=> 
+      this.publicacionService.darLike(publicacion._id, id).subscribe((actualizacion: Publicacion)=> 
         
         this.actualizarLikes(publicacion._id, actualizacion.likes)
 
@@ -209,6 +207,18 @@ export class Publicaciones implements OnInit {
             : publicacion //la deja como estaba
         )
       );
+  }
+
+  /*-------------------------
+  Eliminación de publicaciones
+  -----------------------*/
+
+  eliminarPublicacion(publicacion: Publicacion){
+    this.publicacionService.eliminar(publicacion._id, this.usuario._id).subscribe(() => {
+      
+      this.publicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id))
+    })
+  
   }
 
 }
