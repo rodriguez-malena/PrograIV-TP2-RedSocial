@@ -73,7 +73,7 @@ export class Publicaciones implements OnInit {
     ------------------------*/
 
     async subir(){
-      if(this.cargando) return;
+      if(this.cargando) return; 
     
       this.cargando = true;
       this.formEnviado = true;
@@ -112,13 +112,13 @@ export class Publicaciones implements OnInit {
           title: 'Carga exitosa',
         });
         
-  // Actualización de la lista de publicaciones
-      this.publicaciones.update(lista => [
+  // Actualización del estado de publicaciones
+      this.publicaciones.update(estado => [
         {
           ...publicacion,
           likes: [...(publicacion.likes || [])]
         },
-        ...lista
+        ...estado
         ]);
 
       //LIMPIEZA
@@ -158,14 +158,12 @@ export class Publicaciones implements OnInit {
   -------------------*/
   
   cambiarOrden(event: Event){
-      console.log("ENTRÉ A CAMBIAR ORDEN");
-    const select = event.target as HTMLSelectElement // TS no sabe que event.target es un <select> entonces necesito aclararle para obtener su valor
-    const valor = select.value // obtengo valor 
-   console.log("VALOR:", valor);
-
-    const orden =  valor as 'fecha' | 'likes'; // y que solo puede ser 'fecha' o 'likes'
-    this.orden.set(orden)
-    this.cargarPublicaciones();
+      const select = event.target as HTMLSelectElement 
+      const valor = select.value // obtengo valor 
+ 
+      const orden =  valor as 'fecha' | 'likes'; 
+      this.orden.set(orden)
+      this.cargarPublicaciones();
   }
 
   /*---------------
@@ -178,10 +176,11 @@ export class Publicaciones implements OnInit {
 
   cambiarLike(publicacion: Publicacion){
       console.log('POST:', publicacion._id);
+
       const id = this.usuario._id;
     
       if(this.yaDioLike(publicacion)){
-      this.publicacionService.borrarLike(publicacion._id, id).subscribe((actualizacion: Publicacion)=> {
+        this.publicacionService.borrarLike(publicacion._id, id).subscribe((actualizacion: Publicacion)=> {
         
         this.actualizarLikes(publicacion._id, actualizacion.likes)
       })
@@ -198,13 +197,13 @@ export class Publicaciones implements OnInit {
 
    actualizarLikes(postId: string, likes: string[]) {
 
-      this.publicaciones.update(lista =>
-        lista.map(publicacion => publicacion._id === postId // si le dieron like a esa publicacion
+      this.publicaciones.update(estado =>
+        estado.map(publicacion => publicacion._id === postId // si le dieron like a esa publicacion
             ? { ...publicacion,
-               likes: [...likes], // la actualiza 
+               likes: [...likes], // reemplazo array
               cantidadLikes: likes.length }
 
-            : publicacion //la deja como estaba
+            : publicacion 
         )
       );
   }
@@ -229,7 +228,7 @@ export class Publicaciones implements OnInit {
 
         this.publicacionService.eliminar(publicacion._id, this.usuario._id).subscribe(() => {
            
-          this.publicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id)); // Actualizo filtrando las que no tienen el id de la eliminada 
+          this.publicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id)); // Actualizo y creo nuevo array filtrando las que no tienen el id de la eliminada 
 
             Swal.fire(
               'Eliminado',

@@ -36,9 +36,8 @@ export class PublicacionesController {
     }
 
     @Get()
-    obtenerPublicaciones(@Query('orden') orden: 'fecha' | 'likes'){
-        
-        return this.publicacionService.listar(orden);
+    obtenerPublicaciones(@Query('orden') orden: 'fecha' | 'likes', @Query('offset') offset = 0, @Query('limit') limit = 5,){
+        return this.publicacionService.listar(orden, Number(offset), Number(limit));
 
     }
 
