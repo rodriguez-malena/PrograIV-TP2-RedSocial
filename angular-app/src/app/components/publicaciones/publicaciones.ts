@@ -26,7 +26,7 @@ export class Publicaciones implements OnInit {
     orden = signal<'fecha' | 'likes'>('fecha')
 
     offset = signal(0);
-    limit = 2;
+    limit = 3;
 
     constructor(private fb: FormBuilder,
                 private publicacionService: PublicacionService,
@@ -260,7 +260,7 @@ paginaSiguiente() {
 paginaAnterior() {
   if (this.offset() === 0) return;
 
-  const nuevoOffset = Math.max(0, this.offset() - this.limit)
+  const nuevoOffset = this.offset() - this.limit
   this.offset.set(nuevoOffset);
 
   this.cargarPublicaciones();
