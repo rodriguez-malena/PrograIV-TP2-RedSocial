@@ -48,14 +48,27 @@
 }
 
 .btn-subir {
-  background: #8a7555;
-  font-family: "Poppins",sans-serif;
-  color: white;
+  width: 30px;
+  height: 30px;
+  background: #a28d6e;
   border: none;
-  border-radius: 10px;
-  padding: 10px 18px;
+  border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 4px 0 #8a7555;
+  transition: all 0.15s ease;
 }
+
+.btn-subir img {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-subir:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #cfcfcf;
+
+}
+
 
 
 .feed-publicaciones {
@@ -401,5 +414,36 @@
   color: white;
 }
 
+.contenedor-paginacion {
+ display: flex;
+ flex-direction: column;
+ gap: 10PX;
+ align-items: center;
+}
 
 
+.btn-paginacion {
+    background-color: whitesmoke;
+    color: #5f4f39;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 8px;
+    width: 90px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #a28d6e;
+    transition: all 0.15s ease;
+    
+}
+
+.btn-paginacion:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #cfcfcf;
+
+}
+
+.btn-paginacion:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

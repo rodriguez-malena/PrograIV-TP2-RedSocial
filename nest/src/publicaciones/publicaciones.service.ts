@@ -33,7 +33,7 @@ export class PublicacionesService {
         } else {
             
             console.log('ORDENANDO POR FECHA');
-            publicaciones = this.publicacionModel.find(filtro).sort({ fechaCreacion: -1}).skip(offset).limit(limit);
+            publicaciones = await this.publicacionModel.find(filtro).sort({ fechaCreacion: -1}).skip(offset).limit(limit);
             // Trae las publicaciones activas ordenadas desde la mas nueva x default
         }
         

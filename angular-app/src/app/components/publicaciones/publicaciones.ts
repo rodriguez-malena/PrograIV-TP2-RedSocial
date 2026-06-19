@@ -250,15 +250,16 @@ export class Publicaciones implements OnInit {
 Paginación
 ------------------*/
 paginaSiguiente() {
-  this.offset.update(valor => valor + this.limit);
+  const nuevoOffset = this.offset() + this.limit;
+  this.offset.set(nuevoOffset)
   this.cargarPublicaciones();
 }
 
 paginaAnterior() {
 
-  if (this.offset() === 0) return;
-
-  this.offset.update(valor => valor - this.limit);
+  if (this.offset() + this.limit >= this.totalPublicaciones()) return;
+  const nuevoOffset = Math.max(0, this.offset() - this.limit)
+  this.offset.set(nuevoOffset);
 
   this.cargarPublicaciones();
 }
