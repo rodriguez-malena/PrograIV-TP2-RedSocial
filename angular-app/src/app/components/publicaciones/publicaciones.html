@@ -163,9 +163,21 @@
           </div>
 
         </div>
-
+        
       }
+      
+        <button
+          (click)="paginaAnterior()"
+          [disabled]="offset() === 0">
+          Anterior
+        </button>
 
+        <button
+          (click)="paginaSiguiente()"
+          [disabled]="offset() + limit >= totalPublicaciones()">
+          
+          Siguiente
+        </button>
     </div>
 
   </div>

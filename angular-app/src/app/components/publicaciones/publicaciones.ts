@@ -21,7 +21,12 @@ export class Publicaciones implements OnInit {
     miPublicacion!: FormGroup;
 
     publicaciones = signal<Publicacion[]>([])
+    totalPublicaciones = signal(0);
+    
     orden = signal<'fecha' | 'likes'>('fecha')
+
+    offset = signal(0);
+    limit = 2;
 
     constructor(private fb: FormBuilder,
                 private publicacionService: PublicacionService,
@@ -140,11 +145,12 @@ export class Publicaciones implements OnInit {
     Muestra de feed de publicaciones
     ------------------------*/
     cargarPublicaciones(){
-      this.publicacionService.obtener(this.orden()).subscribe((respuesta: any) => {
+      this.publicacionService.obtener(this.orden(), this.offset(), this.limit).subscribe((respuesta: any) => {
         
-        console.log('RESPUESTA:', respuesta);
-        this.publicaciones.set(respuesta)
-  
+        this.publicaciones.set(respuesta.publicaciones)
+        this.totalPublicaciones.set(respuesta.total)
+       
+       
         console.log(this.publicaciones());
         
       },
@@ -240,4 +246,20 @@ export class Publicaciones implements OnInit {
   })
   }
 
+/*-------------------
+Paginación
+------------------*/
+paginaSiguiente() {
+  this.offset.update(valor => valor + this.limit);
+  this.cargarPublicaciones();
+}
+
+paginaAnterior() {
+
+  if (this.offset() === 0) return;
+
+  this.offset.update(valor => valor - this.limit);
+
+  this.cargarPublicaciones();
+}
 }

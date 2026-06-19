@@ -21,15 +21,28 @@ export class PublicacionesService {
     // Listar publis
     async listar(orden: 'fecha' | 'likes' = 'fecha', offset = 0, limit = 5){
         
+        const filtro = { eliminada : false};
+
+        const total = await this.publicacionModel.countDocuments(filtro);
+        
+        let publicaciones;
+
         if(orden === 'likes'){
             console.log('ORDENANDO POR LIKES');
+            publicaciones = await this.publicacionModel.find(filtro).sort({ cantidadLikes: -1}).skip(offset).limit(limit);
+        } else {
             
-            return this.publicacionModel.find({ eliminada: false}).sort({ cantidadLikes: -1}).skip(offset).limit(limit)
+            console.log('ORDENANDO POR FECHA');
+            publicaciones = this.publicacionModel.find(filtro).sort({ fechaCreacion: -1}).skip(offset).limit(limit);
+            // Trae las publicaciones activas ordenadas desde la mas nueva x default
         }
+        
+        return {
+            publicaciones,
+            total
+        }
+        
 
-        console.log('ORDENANDO POR FECHA');
-        return this.publicacionModel.find({ eliminada: false}).sort({ fechaCreacion: -1}).skip(offset).limit(limit)
-        // Trae las publicaciones activas ordenadas desde la mas nueva x default
     }
 
     // Dar like

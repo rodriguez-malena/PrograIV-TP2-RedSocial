@@ -15,8 +15,8 @@ export class PublicacionService {
     return this.http.post<Publicacion>(`${this.url}/publicaciones`, datos)
   }
   
-  obtener(orden: 'fecha' | 'likes'){
-    return this.http.get<Publicacion[]>(`${this.url}/publicaciones?orden=${orden}`)
+  obtener(orden: 'fecha' | 'likes', offset: number, limit: number){
+    return this.http.get<Publicacion[]>(`${this.url}/publicaciones?orden=${orden}&offset=${offset}&limit=${limit}`)
   }
 
   darLike(publicacionId: string, usuarioId: string){
