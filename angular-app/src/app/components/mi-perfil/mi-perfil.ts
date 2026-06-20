@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Publicacion } from '../../interfaces/publicacion';
 import { PublicacionService } from '../../services/publicacion-service';
 
@@ -9,7 +9,7 @@ import { PublicacionService } from '../../services/publicacion-service';
   templateUrl: './mi-perfil.html',
   styleUrl: './mi-perfil.css',
 })
-export class MiPerfil {
+export class MiPerfil implements OnInit {
 
   misPublicaciones = signal<Publicacion[]>([]);
 
@@ -17,7 +17,11 @@ export class MiPerfil {
 
   constructor(private publicacionService: PublicacionService,){}  
 
-  cargarPublicaciones(){
+  ngOnInit(): void {
+    this.cargarMisPublicaciones()
+  }
+  
+  cargarMisPublicaciones(){
       this.publicacionService.obtener('fecha', 0, 3).subscribe((respuesta: any) => {
         
         this.misPublicaciones.set(respuesta.publicaciones)
