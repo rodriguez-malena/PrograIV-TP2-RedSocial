@@ -26,6 +26,8 @@ export class PublicacionesService {
         if(usuarioId){
             filtro.usuarioId = usuarioId;
         }
+
+        console.log('FILTRO:', filtro);
         const total = await this.publicacionModel.countDocuments(filtro);
         
         let criterioDeOrden;
