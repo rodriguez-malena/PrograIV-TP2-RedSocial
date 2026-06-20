@@ -24,8 +24,6 @@ export class PublicacionService {
       url += `&usuarioId=${usuarioId}`
     }
 
-    console.log(url);
-
     return this.http.get<RespuestaPublicacion>(url)
   
   }

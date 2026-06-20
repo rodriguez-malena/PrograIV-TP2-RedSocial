@@ -5,6 +5,8 @@
     margin: 0;
     font-family: "Poppins", sans-serif;
     min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     box-sizing: border-box;
     background-image: url('/fondoBienvenida.png');
     background-size: cover;
@@ -13,8 +15,10 @@
     background-attachment: fixed;
 
 }
+
 .mi-perfil {
   max-width: 935px;
+  width: 100%;
   margin: 30px auto;
   padding: 0 20px;
   color: #262626;
@@ -114,14 +118,15 @@
 
 .grid-posts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 4px;
   margin-top: 25px;
 }
 
-.post-vacio {
-  height: 320px;
+.post {
   width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
   background: #fffbf4;
   border: 1px solid #efefef;
   display: flex;
@@ -130,6 +135,14 @@
   color: #5f4f39;
   font-weight: 500;
 }
+
+.post-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+} 
+
 
 @media (max-width: 768px) {
 
@@ -152,8 +165,8 @@
     flex-wrap: wrap;
   }
 
-  .grid-posts {
-    grid-template-columns: repeat(2, 1fr);
+ .grid-posts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .post-vacio {
