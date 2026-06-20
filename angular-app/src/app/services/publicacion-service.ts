@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Publicacion } from '../interfaces/publicacion';
+import { RespuestaPublicacion } from '../interfaces/respuestaPublicacion';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,16 @@ export class PublicacionService {
     return this.http.post<Publicacion>(`${this.url}/publicaciones`, datos)
   }
   
-  obtener(orden: 'fecha' | 'likes', offset: number, limit: number){
-    return this.http.get<Publicacion[]>(`${this.url}/publicaciones?orden=${orden}&offset=${offset}&limit=${limit}`)
+  obtener(orden: 'fecha' | 'likes', offset: number, limit: number, usuarioId?: string){
+    
+    let url = `${this.url}/publicaciones?orden=${orden}&offset=${offset}&limit=${limit}`
+    
+    if(usuarioId){
+      url += `&usuarioId=${usuarioId}`
+    }
+
+    return this.http.get<RespuestaPublicacion>(url)
+  
   }
 
   darLike(publicacionId: string, usuarioId: string){
