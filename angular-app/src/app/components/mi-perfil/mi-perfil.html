@@ -12,7 +12,6 @@
         <div class="perfil-topo">
           <h2>@{{usuario.nombreUsuario}}</h2>
   
-          <button class="btn-editar">Editar perfil</button>
         </div>
   
         <div class="perfil-estados">
@@ -32,6 +31,51 @@
       </div>
   
     </div>
+
+  @if (postAbierto && postSeleccionado) {
+
+    <div class="modal-backdrop" (click)="cerrarPost()">
+
+      <div class="modal-contenido" (click)="$event.stopPropagation()">
+
+        <div class="post-header">
+          <div class="post-user">
+            <img [src]="postSeleccionado.imagenPerfil" alt="">
+            <strong>{{ postSeleccionado.nombreUsuario }}</strong>
+            <small>{{ postSeleccionado.fechaCreacion | date:'short' }}</small>
+          </div>
+          <div>
+              <button class="btn-eliminar" (click)="eliminarPublicacion(postSeleccionado)">
+                <strong>Eliminar</strong>
+              </button>
+          </div>
+        </div>
+        
+        <img
+          [src]="postSeleccionado.imagen"
+          class="modal-imagen"
+        />
+
+        <div class="likes">
+          {{ postSeleccionado.likes.length }} me gusta
+        </div>
+
+        <div class="post-titulo">
+          <strong>@{{ postSeleccionado.nombreUsuario }}</strong>
+          <small>{{ postSeleccionado.titulo }}</small>
+        </div>
+
+        <div class="post-descripcion">
+          {{ postSeleccionado.descripcion }}
+        </div>
+
+        <button class="cerrar" (click)="cerrarPost()">✕</button>
+
+    </div>
+
+  </div>
+
+}
   
     <div class="seccion-posts">
       @if (misPublicaciones().length === 0){
@@ -44,8 +88,13 @@
 
         @for (publicacion of misPublicaciones(); track publicacion._id) {
 
-          <div class="post">
+          <div class="post" (click)="abrirPost(publicacion)">
             <img [src]="publicacion.imagen" class="post-imagen" alt="">
+          
+          
+             <div class="overlay">
+              <img src="Like.png" alt=""> {{ publicacion.likes.length }}
+            </div>
           </div>
 
         }
