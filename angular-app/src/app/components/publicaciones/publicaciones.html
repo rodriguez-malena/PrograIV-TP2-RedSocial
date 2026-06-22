@@ -108,52 +108,12 @@
 
       @for (publicacion of publicaciones(); track publicacion._id) {
 
-        <div class="post">
-
-          <div class="post-header">
-
-            <div class="post-user">
-              <img [src]="publicacion.imagenPerfil" alt="">
-              <strong> {{ publicacion.nombreUsuario }} </strong>
-              <small> {{ publicacion.fechaCreacion | date:'short' }} </small>
-            </div>
-
-          </div>
-
-          <img [src]="publicacion.imagen" class="post-imagen" alt="">
-
-          <div class="post-body">
-            <div class="post-acciones">
-              <img
-                [src]="yaDioLike(publicacion)
-                  ? 'Like.png'
-                  : 'Nolike.png'"
-                class="icono-like"
-                (click)="cambiarLike(publicacion)"
-                alt="Like">
-  
-              <div class="likes">
-                {{ publicacion.likes.length }} me gusta
-              </div>
-
-            </div>
-
-            <div class="post-texto">
-              <div class="post-titulo">
-                <strong>@{{ publicacion.nombreUsuario }}</strong>
-                <small>{{ publicacion.titulo}}</small>
-              </div>
-
-              <div class="post-descripcion">
-                {{ publicacion.descripcion }}
-              </div>
-
-            
-            </div>
-
-          </div>
-
-        </div>
+          <app-publicacion
+              [publicacion]="publicacion"
+              [usuarioId]="usuario._id"
+              (like)="cambiarLike(publicacion)"
+              (eliminar)="eliminarPublicacion(publicacion)">
+          </app-publicacion>
         
       }
       

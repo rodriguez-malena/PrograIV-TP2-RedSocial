@@ -5,10 +5,13 @@ import { PublicacionService } from '../../services/publicacion-service';
 import Swal from 'sweetalert2';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Publicacion } from '../../interfaces/publicacion';
+import { PublicacionComponent } from '../publicacionComponent/publicacionComponent';
+
+
 
 @Component({
   selector: 'app-publicaciones',
-  imports: [ReactiveFormsModule, DatePipe, CommonModule],
+  imports: [ReactiveFormsModule, DatePipe, CommonModule, PublicacionComponent],
   templateUrl: './publicaciones.html',
   styleUrl: './publicaciones.css',
 })
