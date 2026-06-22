@@ -28,7 +28,7 @@ export class MiPerfil implements OnInit {
   }
   
   cargarMisPublicaciones(){
-      this.publicacionService.obtener('fecha', 0, 3).subscribe((respuesta: any) => {
+      this.publicacionService.obtener('fecha', 0, 3, this.usuario._id).subscribe((respuesta: any) => {
         
         this.misPublicaciones.set(respuesta.publicaciones)
        
