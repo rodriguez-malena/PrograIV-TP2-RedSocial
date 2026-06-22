@@ -98,3 +98,7 @@
 .icono-like:hover {
   transform: scale(1.1);
 }
+
+.post-acciones {
+  margin-bottom: 10px;
+}
