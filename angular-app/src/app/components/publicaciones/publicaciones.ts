@@ -11,7 +11,7 @@ import { PublicacionComponent } from '../publicacionComponent/publicacionCompone
 
 @Component({
   selector: 'app-publicaciones',
-  imports: [ReactiveFormsModule, DatePipe, CommonModule, PublicacionComponent],
+  imports: [ReactiveFormsModule, CommonModule, PublicacionComponent],
   templateUrl: './publicaciones.html',
   styleUrl: './publicaciones.css',
 })
