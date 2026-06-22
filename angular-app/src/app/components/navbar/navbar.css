@@ -57,6 +57,10 @@
         transform .2s ease;
 }
 
+.navbar-menu a img {
+    width: 25px;
+}
+
 .navbar-menu a:hover {
     color: #8a7555;
     transform: translateY(-1px);
