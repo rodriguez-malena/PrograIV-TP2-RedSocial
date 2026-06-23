@@ -73,6 +73,7 @@
   border-radius: 14px;
   padding: 0 16px;
   font-size: 15px;
+  font-family: 'Poppins', sans-serif;
   background: #fffdf9;
   box-sizing: border-box;
   outline: none;
@@ -123,12 +124,16 @@
   border: none;
   background: #8a7555;
   color: white;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .btn-volver {
   border: 1.5px solid #d8c3a2;
   background: white;
   color: #5f4f39;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .btn-envio::before,

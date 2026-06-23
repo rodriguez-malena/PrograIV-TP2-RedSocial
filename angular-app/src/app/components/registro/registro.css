@@ -81,6 +81,7 @@
   border-radius: 14px;
   padding: 18px;
   font-size: 15px;
+  font-family: 'Poppins', sans-serif;
   background: #fffdf9;
   box-sizing: border-box;
   outline: none;
@@ -311,6 +312,7 @@ textarea.form-control {
 
   .form-control {
     height: 48px;
+    
     font-size: 14px;
     padding: 0 14px;
   }
