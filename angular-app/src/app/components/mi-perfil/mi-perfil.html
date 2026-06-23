@@ -21,9 +21,9 @@
 
        @if (editarPerfil) {
 
-        <form [formGroup]="formEditarPerfil">
+        <form [formGroup]="formEditarPerfil" (ngSubmit)="guardarCambios()">
 
-          <div class="modal-overlay" (click)="cerrarEditarPerfil()">
+          <div class="modal-overlay">
 
             <div class="modal-contenido" (click)="$event.stopPropagation()">
 

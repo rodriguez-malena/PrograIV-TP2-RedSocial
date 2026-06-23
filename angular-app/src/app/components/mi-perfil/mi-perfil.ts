@@ -182,7 +182,6 @@ export class MiPerfil implements OnInit {
         text: 'Los cambios se han guardado'
       });
 
-      this.cerrarEditarPerfil()
 
     }, (error) => {
 
