@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario-service';
 import { fechaValidator } from '../../validators/fechaValidator';
+import { manejarSubidaImagen } from '../../utils/imagen';
 
 
 @Component({
@@ -22,18 +23,11 @@ export class MiPerfil implements OnInit {
   
   imagenSeleccionada: File | null = null;
   cargando = false;
+  nombreArchivo: string = 'Ningún archivo seleccionado';
+
 
   postAbierto = false;
   editarPerfil = false;
-
-  datosEditar = {
-    nombre: '',
-    apellido: '',
-    nombreUsuario: '',
-    fechaNacimiento:'',
-    descripcion: '',
-    imagenPerfil: ''
-  };
 
   usuario = JSON.parse(sessionStorage.getItem('usuario')!);
 
@@ -188,6 +182,8 @@ export class MiPerfil implements OnInit {
         text: 'Los cambios se han guardado'
       });
 
+      this.cerrarEditarPerfil()
+
     }, (error) => {
 
         this.cargando = false;
@@ -204,11 +200,7 @@ export class MiPerfil implements OnInit {
   }
 
   seleccionarImagen(event: Event){
-    const input = event.target as HTMLInputElement;
-
-    if(input.files?.length){
-        this.imagenSeleccionada = input.files[0];
-    }
+    manejarSubidaImagen(event, this.formEditarPerfil, 'imagenPerfil')
 
   }
 
