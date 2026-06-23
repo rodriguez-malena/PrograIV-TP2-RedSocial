@@ -200,8 +200,14 @@ export class MiPerfil implements OnInit {
   }
 
   seleccionarImagen(event: Event){
-    manejarSubidaImagen(event, this.formEditarPerfil, 'imagenPerfil')
+    const input = event.target as HTMLInputElement;
+    const archivo = input.files?.[0];
+    
+    if (archivo) {
+      this.nombreArchivo = archivo.name;
 
+    manejarSubidaImagen(event, this.formEditarPerfil, 'imagenPerfil')
+    }
   }
 
   
