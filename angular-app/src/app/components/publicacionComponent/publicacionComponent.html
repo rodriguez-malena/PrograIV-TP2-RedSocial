@@ -15,11 +15,7 @@
           <div class="post-body">
             <div class="post-acciones">
               <img
-                [src]="yaDioLike()
-                  ? 'Like.png'
-                  : 'Nolike.png'"
-                class="icono-like"
-                (click)="like.emit()"
+                [src]="yaDioLike() ? 'Like.png' : 'Nolike.png'" class="icono-like" (click)="like.emit()"
                 alt="Like">
   
               <div class="likes">

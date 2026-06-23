@@ -10,10 +10,169 @@
   
       <div class="perfil-info">
         <div class="perfil-topo">
+
           <h2>@{{usuario.nombreUsuario}}</h2>
   
+          <button class="btn-editar" (click)="abrirEditarPerfil()">
+            Editar perfil
+          </button>
         </div>
-  
+
+
+       @if (editarPerfil) {
+
+        <form [formGroup]="formEditarPerfil">
+
+          <div class="modal-overlay" (click)="cerrarEditarPerfil()">
+
+            <div class="modal-contenido" (click)="$event.stopPropagation()">
+
+              <h3>Editar perfil</h3>
+
+              <div class="ingreso-datos">
+
+                <div class="columna-form">
+
+                  <div class="form-group">
+                    <label class="form-label">Nombre</label>
+                    <input class="form-control" type="text" formControlName="nombre">
+
+                    @if (nombre.touched && nombre.hasError('pattern')) {
+                      <small class="text-danger">Sólo debe contener letras</small>
+                    }
+
+                    @if (nombre.touched && nombre.hasError('minlength')) {
+                      <small class="text-danger">
+                        Mínimo {{ nombre.getError('minlength')?.requiredLength }} caracteres
+                      </small>
+                    }
+
+                    @if (nombre.touched && nombre.hasError('maxlength')) {
+                      <small class="text-danger">
+                        Máximo {{ nombre.getError('maxlength')?.requiredLength }} caracteres
+                      </small>
+                    }
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Apellido</label>
+                    <input class="form-control" type="text" formControlName="apellido">
+
+                    @if (apellido.touched && apellido.hasError('pattern')) {
+                      <small class="text-danger">Sólo debe contener letras</small>
+                    }
+
+                    @if (apellido.touched && apellido.hasError('minlength')) {
+                      <small class="text-danger">
+                        Mínimo {{ apellido.getError('minlength')?.requiredLength }} caracteres
+                      </small>
+                    }
+
+                    @if (apellido.touched && apellido.hasError('maxlength')) {
+                      <small class="text-danger">
+                        Máximo {{ apellido.getError('maxlength')?.requiredLength }} caracteres
+                      </small>
+                    }
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Nombre de usuario</label>
+                    <input class="form-control" type="text" formControlName="nombreUsuario">
+
+                    @if (nombreUsuario.touched && nombreUsuario.hasError('minlength')) {
+                      <small class="text-danger">
+                        Debe tener como mínimo {{ nombreUsuario.getError('minlength').requiredLength }} caracteres
+                      </small>
+                    }
+
+                    @if (nombreUsuario.touched && nombreUsuario.hasError('maxlength')) {
+                      <small class="text-danger">
+                        Solo se permiten {{ nombreUsuario.getError('maxlength').requiredLength }} caracteres
+                      </small>
+                    }
+                  </div>
+
+                  <div class="form-group">
+                    <label class="form-label">Fecha nacimiento</label>
+                    <input class="form-control" type="date" formControlName="fechaNacimiento">
+
+                    @if (fechaNacimiento.touched && fechaNacimiento.hasError('fechaFutura')) {
+                      <small class="text-danger">La fecha de nacimiento es inválida</small>
+                    }
+
+                    @if (fechaNacimiento.touched && fechaNacimiento.hasError('edadMaxima')) {
+                      <small class="text-danger">La edad máxima permitida es 100 años</small>
+                    }
+                  </div>
+
+
+                </div>
+
+                <div class="columna-form">
+
+                  <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="form-control" formControlName="descripcion"></textarea>
+
+                    @if (descripcion.touched && descripcion.hasError('minlength')) {
+                      <small class="text-danger">
+                        Debe tener como mínimo {{ descripcion.getError('minlength').requiredLength }} caracteres
+                      </small>
+                    }
+
+                    @if (descripcion.touched && descripcion.hasError('maxlength')) {
+                      <small class="text-danger">
+                        Solo se permiten hasta {{ descripcion.getError('maxlength').requiredLength }} caracteres
+                      </small>
+                    }
+                  </div>
+
+                  <div class="form-group">
+                    <label class="box-carga-imagen">
+
+                      <input
+                        type="file"
+                        (change)="seleccionarImagen($event)">
+
+                      <div class="carga-contenido">
+                        <img src="subir-imagen.png" class="carga-icono">
+
+                        <span>
+                          Actualizar foto de perfil
+                          <br>
+                          <small>PNG, JPG o JPEG</small>
+                        </span>
+                      </div>
+
+                    </label>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="acciones-modal">
+
+                <button type="button" (click)="cerrarEditarPerfil()">
+                  Cancelar
+                </button>
+
+                <button type="submit" (click)="guardarCambios()">
+                  Guardar
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+
+        }
+
+
+        
         <div class="perfil-estados">
           <span><strong>{{ misPublicaciones().length }}</strong> publicaciones</span>
         </div>

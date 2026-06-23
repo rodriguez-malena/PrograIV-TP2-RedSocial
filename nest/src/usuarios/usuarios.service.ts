@@ -14,4 +14,9 @@ export class UsuariosService {
     async obtenerUsuarios(){
         return await this.usuarioModel.find().select('-password');
     }
+
+    async actualizarUsuario(id: string, datos: any){
+
+        return await this.usuarioModel.findByIdAndUpdate(id, datos, { new: true}).select('-password')
+    }
 }

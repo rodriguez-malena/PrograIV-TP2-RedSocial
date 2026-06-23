@@ -184,7 +184,6 @@ export class Publicaciones implements OnInit {
   }
 
   cambiarLike(publicacion: Publicacion){
-      console.log('POST:', publicacion._id);
 
       const id = this.usuario._id;
     
@@ -206,8 +205,7 @@ export class Publicaciones implements OnInit {
 
    actualizarLikes(postId: string, likes: string[]) {
 
-      this.publicaciones.update(estado =>
-        estado.map(publicacion => publicacion._id === postId // si le dieron like a esa publicacion
+      this.publicaciones.update(estado => estado.map(publicacion => publicacion._id === postId // si le dieron like a esa publicacion
             ? { ...publicacion,
                likes: [...likes], // reemplazo array
               cantidadLikes: likes.length }
@@ -250,7 +248,7 @@ export class Publicaciones implements OnInit {
   }
 
 /*-------------------
-Paginación
+ Paginación
 ------------------*/
 paginaSiguiente() {
   if (this.offset() + this.limit >= this.totalPublicaciones()) return;

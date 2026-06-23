@@ -19,8 +19,7 @@
     </div>
 
     @if(mostrarModal){
-      <form [formGroup]="miPublicacion"
-            (ngSubmit)="subir()">
+      <form [formGroup]="miPublicacion" (ngSubmit)="subir()">
 
         <div class="modal-overlay">
 
@@ -28,17 +27,20 @@
             <h3>Nueva publicación</h3>
 
             <div class="ingreso-datos">
+
               <div>
               <label class="form-label" for="titulo">Título</label>
               <input type="text" id="titulo" class="form-control" formControlName="titulo">
-              @if (titulo.touched && titulo.hasError('required')) {
-                <small class="text-danger">El titulo es obligatorio</small>
-              }
-              @if (titulo.touched && titulo.hasError('maxlength')) {
-                <small class="text-danger">
-                  Solo se permiten hasta {{titulo.getError('maxlength').requiredLength}} caracteres
-                </small>
-              }
+
+                @if (titulo.touched && titulo.hasError('required')) {
+                  <small class="text-danger">El titulo es obligatorio</small>
+                }
+
+                @if (titulo.touched && titulo.hasError('maxlength')) {
+                  <small class="text-danger">
+                    Solo se permiten hasta {{titulo.getError('maxlength').requiredLength}} caracteres
+                  </small>
+                }
             </div>
 
 

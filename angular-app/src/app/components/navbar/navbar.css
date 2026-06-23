@@ -59,6 +59,7 @@
 
 .navbar-menu a img {
     width: 25px;
+    cursor: pointer;
 }
 
 .navbar-menu a:hover {

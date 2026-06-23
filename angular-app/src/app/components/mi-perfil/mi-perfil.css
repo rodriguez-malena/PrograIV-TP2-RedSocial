@@ -55,7 +55,7 @@
 .perfil-topo {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 7rem;
   flex-wrap: wrap;
 }
 
@@ -64,6 +64,26 @@
   font-size: 1.7rem;
   font-weight: 400;
   margin: 0;
+}
+
+.btn-editar {
+    background-color: whitesmoke;
+    color: #5f4f39;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 8px;
+    width: 90px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #a28d6e;
+    transition: all 0.15s ease;
+    
+}
+
+.btn-editar:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #cfcfcf;
 }
 
 .perfil-estados {
@@ -201,8 +221,8 @@
 
 .modal-contenido {
   background: white;
-  width: 90%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 800px;
   border-radius: 10px;
   padding: 20px;
   position: relative;
@@ -278,9 +298,205 @@
 }
 
 
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-contenido {
+  width: 100%;
+  max-width: 450px;
+  background: rgba(255,255,255,0.92);
+  box-shadow:
+    0 10px 35px rgba(138,117,85,.15),
+    0 2px 10px rgba(0,0,0,.05);
+  padding: 25px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.5);
+
+  animation: aparecer .25s ease;
+}
+
+.modal-contenido h3 {
+  font-family: "Chonburi", serif;
+  color: #5f4f39;
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 22px;
+}
+
+.ingreso-datos {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+.columna-form{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.form-label {
+  font-family: "Chonburi", serif;
+  color: #8a7555;
+  font-size: 12px;
+}
+
+.form-control {
+  border: 1.5px solid #fffaf2;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 12px;
+  color: #a19e9e;
+  background: #fffdf9;
+  box-sizing: border-box;
+  outline: none;
+  transition: .25s ease;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-control:focus {
+  border-color: #8a7555;
+  background: white;
+  box-shadow: 0 0 0 5px rgba(138,117,85,.12);
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: none;
+}
+
+input[type="file"] {
+  background: #fffdf9;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1.5px dashed #d8c3a2;
+  
+}
+
+.box-carga-imagen {
+  width: 100%;
+  min-height: 140px;
+  border: 1px dashed #d8c3a2;
+  border-radius: 18px;
+  background: #fffdf9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .25s ease;
+  overflow: hidden;
+}
+
+.box-carga-imagen:hover {
+  border-color: #8a7555;
+  box-shadow: 0 0 0 5px rgba(138,117,85,.12);
+}
+
+.box-carga-imagen input {
+  display: none;
+}
+
+
+.carga-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.carga-icono {
+  width: 28px;
+}
+
+.carga-contenido span {
+  color: #5f4f39;
+  font-size: 12px;
+  font-family: "Chonburi", serif;
+
+}
+
+.carga-contenido small {
+  color: #a28d6e;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
+.acciones-modal {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.acciones-modal button {
+  position: relative;
+  overflow: hidden;
+  width: 100px;
+  height: 35px;
+  border: none;
+  border-radius: 999px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s ease;
+  z-index: 1;
+}
+
+.acciones-modal button[type="submit"] {
+  border: none;
+  background: #8a7555;
+  color: white;
+}
+
+.acciones-modal button[type="button"] {
+  border: 1.5px solid #d8c3a2;
+  background: white;
+  color: #5f4f39;
+}
+
+.acciones-modal button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #8a7555, #b59b74);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+  z-index: -1;
+}
+
+.acciones-modal button:hover::before {
+  transform: scaleX(1);
+}
+
+.acciones-modal button[type="button"]:hover {
+  color: white;
+}
+
+
 
 @media (max-width: 768px) {
 
+  .ingreso-datos {
+    flex-direction: column;
+  }
   .perfil-header {
     gap: 30px;
     align-items: flex-start;
