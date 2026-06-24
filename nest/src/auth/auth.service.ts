@@ -51,7 +51,7 @@ export class AuthService {
             rol: usuario.perfil
         }
         
-        const token = this.jwtService.sign(payload, { expiresIn: '15m'})
+        const token = this.jwtService.sign(payload, { expiresIn: '20s'})
         
         const usuarioObj = usuario.toObject();
 
@@ -88,7 +88,7 @@ export class AuthService {
             rol: usuarioLogueado.perfil
         }
 
-        const token = this.jwtService.sign(payload, { expiresIn: '15m'})
+        const token = this.jwtService.sign(payload, { expiresIn: '20s'})
 
         const usuarioObj = usuarioLogueado.toObject();
         const { password, ...usuarioSinPassword } = usuarioObj;
@@ -103,7 +103,11 @@ export class AuthService {
 
     async autorizar(token: string) {
     try {
-        return this.jwtService.verify(token); //validación del token y de la expiracion, devuelvbe payload si cumple
+        const payload = this.jwtService.verify(token); //validación del token y de la expiracion, devuelvbe payload si cumple
+
+        const usuario = await this.usuarioModel.findById(payload.sub).select('-password')       
+
+        return usuario;
 
     } catch (err) {
         throw new UnauthorizedException('Token inválido o vencido');
@@ -123,7 +127,7 @@ export class AuthService {
 
             return {
                 token: this.jwtService.sign(newPayload, {
-                    expiresIn: '15m'
+                    expiresIn: '20s'
                 })
             };
 

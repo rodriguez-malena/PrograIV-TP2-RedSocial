@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { Auth } from '../../services/auth';
+import { RouterLink } from '@angular/router';
+import { SessionService } from '../../services/session-service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,14 +10,11 @@ import { Auth } from '../../services/auth';
 })
 export class Navbar {
 
-  constructor(private router: Router, 
-              private auth: Auth){}
+  constructor(private sessionService: SessionService){}
 
   
   logout() {
-    this.auth.logout().subscribe(() => {
-      sessionStorage.removeItem('usuario');
-      this.router.navigate(['/bienvenida']);
-    })
+    this.sessionService.cerrarSesion()
+    
   }
 }

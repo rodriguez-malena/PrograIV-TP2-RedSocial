@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Auth } from '../../services/auth';
+import { SessionService } from '../../services/session-service';
 
 
 
@@ -18,6 +19,7 @@ export class Login  implements OnInit{
 
   constructor(private fb: FormBuilder,
               private authService: Auth,
+              private sessionService: SessionService,
               private router: Router) {} 
 
   ngOnInit(): void {
@@ -61,7 +63,9 @@ export class Login  implements OnInit{
       
       sessionStorage.setItem('usuario', JSON.stringify(respuesta.usuario));
 
-      this.router.navigate(['/mi-perfil']);
+      this.sessionService.iniciarTemporizador();
+
+      this.router.navigate(['/publicaciones']);
    
     },
       
