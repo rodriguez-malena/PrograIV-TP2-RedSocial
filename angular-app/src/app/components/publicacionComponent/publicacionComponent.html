@@ -86,11 +86,12 @@
                  @if (comentarioEditandoId === comentario._id) {
 
                     <input [formControl]="comentarioEditado"/>
-                    @if (comentarioControl.touched && comentarioControl.hasError('maxlength')) {
-                      <small class="text-danger">
-                          Máximo {{ comentarioControl.getError('maxlength')?.requiredLength }} caracteres
-                      </small>
-                    }
+                     
+                      @if (comentarioEditado.touched && comentarioEditado.hasError('maxlength')) {
+                        <small class="text-danger">
+                            Máximo {{ comentarioEditado.getError('maxlength')?.requiredLength }} caracteres
+                        </small>
+                      }
 
                     <button (click)="guardarEdicion(comentario._id)">Guardar</button>
                     <button (click)="cancelarEdicion()">Cancelar</button>
