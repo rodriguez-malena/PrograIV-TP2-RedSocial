@@ -67,7 +67,6 @@
 
       </div>
 
-      <!-- RIGHT -->
       <div class="modal-right">
 
         <div class="modal-header">
@@ -80,14 +79,16 @@
           @for (comentario of comentarios(); track comentario._id) {
 
             <div class="comentario-item">
+              <div class="comentario-burbuja">
 
-              <strong>{{ comentario.usuario?.nombreUsuario }}</strong>
-
-              <p>{{ comentario.mensaje }}</p>
-
-              @if (comentario.modificado) {
-                <small>Editado</small>
-              }
+                <strong>{{ comentario.usuario?.nombreUsuario }}</strong>
+  
+                <p>{{ comentario.mensaje }}</p>
+  
+                @if (comentario.modificado) {
+                  <small>Editado</small>
+                }
+              </div>
 
             </div>
 

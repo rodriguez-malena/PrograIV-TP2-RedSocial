@@ -118,18 +118,20 @@
 
 .modal {
   width: 90%;
-  height: 85%;
+  max-width: 1200px;
+  height: 85vh;
   background: white;
   display: flex;
-  border-radius: 12px;
+  border-radius: 18px;
   overflow: hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,.2);
+
 }
 
 .modal-left {
   width: 60%;
-  background: #f5f5f5;
-  display: flex;
-  flex-direction: column;
+  background: #ececee;
+  position: relative;
 }
 
 .modal-img {
@@ -138,31 +140,123 @@
   object-fit: cover;
 }
 
+.modal-info {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:20px;
+    color:white;
+    background:linear-gradient(transparent,rgba(0,0,0,.75));
+}
+
+.modal-info strong{
+    display:block;
+    font-size:18px;
+    margin-bottom:6px;
+}
+
 .modal-right {
   width: 40%;
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  background: white;;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 18px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+
+.modal-header h3{
+  margin:0;
+  color:#5f4f39;
+}
+
+.modal-header button{
+  border:none;
+  background:none;
+  font-size:22px;
+  cursor:pointer;
+  color:#777;
 }
 
 .comentarios {
   flex: 1;
   overflow-y: auto;
-  margin: 10px 0;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.comentario {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+.comentario-item {
+  display: flex;
+}
+
+
+.comentario-burbuja{
+    max-width:90%;
+    background:white;
+    padding:12px 14px;
+    border-radius:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.comentario-burbuja strong{
+    display:block;
+    color:#5f4f39;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.comentario-burbuja p{
+    margin:0;
+    color:#555;
+    line-height:1.4;
+    word-break:break-word;
+}
+
+.comentario-burbuja small{
+    display:block;
+    margin-top:8px;
+    color:#999;
+    font-size:11px;
+    text-align:right;
 }
 
 .nuevo-comentario {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  padding: 18px;
+  border-top:  1px solid #e8e8e8;
+  background: white;
+}
+
+.nuevo-comentario input {
+    flex:1;
+    border:none;
+    background:#f3f3f3;
+    border-radius:30px;
+    padding:12px 18px;
+    outline:none;
+    font-size:14px;
+}
+
+.nuevo-comentario button{
+    border:none;
+    background:#d8c3a2;
+    color:#fff;
+    padding:0 22px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.nuevo-comentario button:hover{
+    background:#c8b08a;
 }
