@@ -25,6 +25,12 @@
 
 }
 
+.pantalla-carga h2 {
+    font-family: "Chonburi", serif;
+    color: #8a7555;
+    font-size: 28px;
+}
+
 @keyframes girar{
 
     to{
