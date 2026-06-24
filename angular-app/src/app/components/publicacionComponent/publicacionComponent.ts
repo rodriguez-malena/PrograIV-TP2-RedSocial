@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { Publicacion } from '../../interfaces/publicacion';
 import { DatePipe } from '@angular/common';
 import { ComentarioService } from '../../services/comentario-service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class PublicacionComponent {
   limit = 5;
   offset = 0;
   postAbierto = false;
-  comentarioControl = new FormControl('');
+  comentarioControl = new FormControl('',  [Validators.maxLength(30)]);
   
   constructor(private comentarioService: ComentarioService){}
 
@@ -57,7 +57,8 @@ export class PublicacionComponent {
   comentarPublicacion(){
     const mensaje = this.comentarioControl.value
 
-    if(!mensaje || !mensaje.trim()) return
+    if(!mensaje || !mensaje.trim()) return;
+    if (mensaje.length > 30) return;
 
     const datos = {
       mensaje,
