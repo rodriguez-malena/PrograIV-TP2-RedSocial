@@ -16,13 +16,13 @@ export class PaginaCarga implements OnInit {
     this.auth.autorizar().subscribe((usuario: any) => {
 
       sessionStorage.setItem('usuario', JSON.stringify(usuario))
-    
+      
+      setTimeout(()=> this.router.navigate(['/publicaciones']), 1500)
 
-      this.router.navigate(['/publicaciones'])
     },
 
     () => {
-        this.router.navigate(['/login']);
+        setTimeout(()=> this.router.navigate(['/login']), 1500)
 
     }
   )
