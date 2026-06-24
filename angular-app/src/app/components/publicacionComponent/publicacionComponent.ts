@@ -62,7 +62,7 @@ export class PublicacionComponent  implements OnInit {
 
     this.comentarioService.crearComentario(datos).subscribe((respuesta: any)=> {
     
-      this.comentarios.unshift(respuesta);
+      this.comentarios = [respuesta, ...this.comentarios];
       this.comentarioControl.setValue('')
     })
 
@@ -84,6 +84,7 @@ export class PublicacionComponent  implements OnInit {
 
 abrirPost() {
     this.postAbierto = true;
+    this.offset = 0
     this.cargarComentarios();
   }
   
