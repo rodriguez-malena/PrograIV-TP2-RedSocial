@@ -42,7 +42,7 @@ export class PublicacionComponent {
 
     this.comentarioService.obtenerComentarios(this.publicacion._id, this.offset, this.limit).subscribe((respuesta: any) => {
       console.log('Respuesta', respuesta)
-      this.comentarios.set(respuesta)
+      this.comentarios.set([...respuesta])
       
       console.log('Después', this.comentarios.length);
 
@@ -55,7 +55,6 @@ export class PublicacionComponent {
   }
 
   comentarPublicacion(){
-
     const mensaje = this.comentarioControl.value
 
     if(!mensaje || !mensaje.trim()) return
@@ -70,6 +69,9 @@ export class PublicacionComponent {
     
       this.comentarios.update(actual => [respuesta, ...actual])
       this.comentarioControl.setValue('')
+      this.inicializarComentarios();
+
+      console.log(this.comentarios())
     })
 
   }
@@ -89,8 +91,8 @@ export class PublicacionComponent {
 }
 
 
-abrirPost() {
-    console.log('Abrir', this.publicacion._id);
+  abrirPost() {
+    console.log('Abriendo', this.publicacion._id);
 
     this.postAbierto = true;
     this.inicializarComentarios();
