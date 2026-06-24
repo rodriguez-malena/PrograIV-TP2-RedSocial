@@ -8,10 +8,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
 
   app.use(cookieParser());
-  app.enableCors({
-    origin: 'https://angular-tawny-kappa.vercel.app',
-    credentials: true,
-  });
+  app.enableCors();
 
   await app.listen(process.env.PORT ?? 3000);
 
