@@ -65,7 +65,7 @@ export class Login  implements OnInit{
 
       this.sessionService.iniciarTemporizador();
 
-      this.router.navigate(['/publicaciones']);
+      this.router.navigate(['/pagina-carga']);
    
     },
       
