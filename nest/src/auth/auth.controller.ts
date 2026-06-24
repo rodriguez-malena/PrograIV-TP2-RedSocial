@@ -1,12 +1,18 @@
-import { BadRequestException, Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, Req, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { RegistroDto } from './dto/registro.dto';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import cloudinary from '../cloudinary/cloudinary.config';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { crearStorageCloudinary } from '../cloudinary/cloudinary.storage';
+import type { Request, Response } from 'express';
 
-
+const cookieOptions = {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none' as const,
+  maxAge: 15 * 60 * 1000,
+};
 
 @Controller('auth')
 export class AuthController {
@@ -18,7 +24,7 @@ export class AuthController {
             storage: crearStorageCloudinary('red-social')})
     )
 
-    async registro(@UploadedFile() archivo: Express.Multer.File, @Body() body: RegistroDto){
+    async registro(@UploadedFile() archivo: Express.Multer.File, @Body() body: RegistroDto, @Res({ passthrough: true }) res: Response){
         if(archivo){
             body.imagenPerfil = archivo.path
         }
@@ -27,7 +33,14 @@ export class AuthController {
         }
 
         try {
-            return await this.authService.registrar(body)
+            const respuesta = await this.authService.registrar(body);
+            
+            res.cookie('token', respuesta.token, cookieOptions)
+
+        return {
+            message: respuesta.message,
+            usuario: respuesta.usuario
+        }
             
         } catch(error) {
             if(archivo){
@@ -38,7 +51,49 @@ export class AuthController {
     }
 
     @Post('login')
-    login(@Body() body: LoginDto){
-        return this.authService.login(body)
+    async login(@Body() body: LoginDto, @Res({ passthrough: true }) res: Response){
+        
+        const respuesta = await this.authService.login(body)
+        
+        res.cookie('token', respuesta.token, cookieOptions)
+
+        return {
+            message: respuesta.message,
+            usuario: respuesta.usuario
+        }
+        
+    }
+
+    @Post('autorizar')
+    autorizar(@Req() req: Request){
+        return this.authService.autorizar(req.cookies.token);
+    }
+
+    @Post('refrescar')
+    async refrescar(@Req() req: Request, @Res({ passthrough: true }) res: Response){
+    
+
+        const respuesta = await this.authService.refrescar(req.cookies.token)
+        
+        res.cookie('token', respuesta.token, cookieOptions)
+
+        return {
+            message: 'Token actualizado'
+        }
+    
+    }
+
+    @Post('logout')
+    logout(@Res({ passthrough: true }) res: Response){
+
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
+        });
+
+        return {
+            message: 'Sesión cerrada'
+        }
     }
 }

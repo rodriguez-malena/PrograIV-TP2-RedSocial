@@ -12,11 +12,23 @@ export class Auth {
   constructor(private http: HttpClient){}
 
   registro(datos: any){
-    return this.http.post(`${this.url}/auth/registro`, datos)
+    return this.http.post(`${this.url}/auth/registro`, datos, { withCredentials: true })
   }
 
   login(datos: any){
-    return this.http.post(`${this.url}/auth/login`, datos)
+    return this.http.post(`${this.url}/auth/login`, datos, { withCredentials: true } )
+  }
+
+  logout(){
+    return this.http.post(`${this.url}/auth/logout`, {}, { withCredentials: true })
+  }
+
+  autorizar() {
+    return this.http.post(`${this.url}/auth/autorizar`, {}, { withCredentials: true })
+  }
+
+  refrescar(){
+    return this.http.post(`${this.url}/auth/refrescar`, {}, { withCredentials: true })
   }
 
 }
