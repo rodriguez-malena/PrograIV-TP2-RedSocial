@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { Publicacion } from '../../interfaces/publicacion';
-import { DatePipe, NgIf } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ComentarioService } from '../../services/comentario-service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, NgIf, ReactiveFormsModule],
+  imports: [DatePipe, ReactiveFormsModule],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
@@ -21,7 +21,7 @@ export class PublicacionComponent {
   
   @Output() eliminar = new EventEmitter<void>();
   
-  comentarios: any[] = [];
+  comentarios = signal<any[]>([]);
   limit = 5;
   offset = 0;
   postAbierto = false;
@@ -31,22 +31,20 @@ export class PublicacionComponent {
 
 
   inicializarComentarios() {
-    this.comentarios = [];
     this.offset = 0;
     this.cargarComentarios();
   }
 
 
   cargarComentarios(){
-    console.log('Antes', this.comentarios.length);
+    console.log('Antes', this.comentarios().length);
 
 
     this.comentarioService.obtenerComentarios(this.publicacion._id, this.offset, this.limit).subscribe((respuesta: any) => {
       console.log('Respuesta', respuesta)
-      this.comentarios = [...this.comentarios, ...respuesta]
+      this.comentarios.set(respuesta)
       
       console.log('Después', this.comentarios.length);
-      console.log(this.comentarios.map(c => c._id));
 
       this.offset += this.limit
     })
@@ -70,7 +68,7 @@ export class PublicacionComponent {
 
     this.comentarioService.crearComentario(datos).subscribe((respuesta: any)=> {
     
-      this.comentarios = [respuesta, ...this.comentarios];
+      this.comentarios.update(actual => [respuesta, ...actual])
       this.comentarioControl.setValue('')
     })
 
@@ -81,9 +79,10 @@ export class PublicacionComponent {
 
   this.comentarioService.editarComentario(id, { mensaje: nuevoComentario}).subscribe(() => {
 
-    const c = this.comentarios.find(c => c._id === id);
-    c.mensaje = nuevoComentario;
-    c.modificado = true;
+    const c = this.comentarios().find(c => c._id === id ? { ...c , mensaje: nuevoComentario, modificado: true}
+      : c
+    );
+   
 
   });
 
