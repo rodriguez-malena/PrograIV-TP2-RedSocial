@@ -1,29 +1,98 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Publicacion } from '../../interfaces/publicacion';
-import { DatePipe } from '@angular/common';
-
+import { DatePipe, NgIf } from '@angular/common';
+import { ComentarioService } from '../../services/comentario-service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe],
+  imports: [DatePipe, NgIf, ReactiveFormsModule],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
-export class PublicacionComponent {
-
+export class PublicacionComponent  implements OnInit {
+  
   @Input() publicacion! : Publicacion;
 
   @Input() usuarioId!: string;
-
-  @Output() like = new EventEmitter<void>();
-
-  @Output() eliminar = new EventEmitter<void>();
-
-
-    yaDioLike(){
-      return this.publicacion.likes.includes(this.usuarioId)
   
+  @Output() like = new EventEmitter<void>();
+  
+  @Output() eliminar = new EventEmitter<void>();
+  
+  comentarios: any[] = [];
+  limit = 5;
+  offset = 0;
+  postAbierto = false;
+  comentarioControl = new FormControl('');
+  
+  constructor(private comentarioService: ComentarioService){}
+
+  ngOnInit(): void {
+    if (this.publicacion) {
+      this.cargarComentarios();
+    }
+  }
+
+
+  cargarComentarios(){
+    this.comentarioService.obtenerComentarios(this.publicacion._id, this.offset, this.limit).subscribe((respuesta: any) => {
+      this.comentarios = [...this.comentarios, ...respuesta]
+
+      this.offset += this.limit
+    })
+  }
+
+  cargarMas() {
+    this.cargarComentarios();
+  }
+
+  comentarPublicacion(){
+
+    const mensaje = this.comentarioControl.value
+
+    if(!mensaje || mensaje.trim()) return
+
+    const datos = {
+      mensaje,
+      publicacionId : this.publicacion._id,
+      tusuarioId: this.usuarioId
     }
 
+    this.comentarioService.crearComentario(datos).subscribe((respuesta: any)=> {
+    
+      this.comentarios.unshift(respuesta);
+      this.comentarioControl.setValue('')
+    })
+
+  }
+  
+
+  editarComentario(id: string, nuevoComentario: string) {
+
+  this.comentarioService.editarComentario(id, { mensaje: nuevoComentario}).subscribe(() => {
+
+    const c = this.comentarios.find(c => c._id === id);
+    c.mensaje = nuevoComentario;
+    c.modificado = true;
+
+  });
+
 }
+
+
+abrirPost() {
+    this.postAbierto = true;
+    this.cargarComentarios();
+  }
+  
+  cerrarModal() {
+    this.postAbierto = false;
+  }
+
+    
+  yaDioLike(){
+    return this.publicacion.likes.includes(this.usuarioId)
+    }
+  }

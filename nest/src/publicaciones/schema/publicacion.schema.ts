@@ -33,18 +33,6 @@ export class Publicacion extends Document {
     @Prop({ default: false })
     eliminada: boolean;
 
-    @Prop({
-    type: [
-      {
-        usuarioId: String,
-        nombreUsuario: String,
-        comentario: String,
-        fecha: Date
-      }
-    ],
-    default: []
-  })
-  comentarios: any[];
 
 }
 

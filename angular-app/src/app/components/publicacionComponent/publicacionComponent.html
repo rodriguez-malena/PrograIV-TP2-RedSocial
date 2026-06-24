@@ -7,6 +7,9 @@
               <strong> {{ publicacion.nombreUsuario }} </strong>
               <small> {{ publicacion.fechaCreacion | date:'short' }} </small>
             </div>
+            <button class="btn-ver" (click)="abrirPost()">
+              Ver publicación
+            </button>
 
           </div>
 
@@ -40,3 +43,114 @@
           </div>
 
         </div>
+
+  <div class="post">
+
+  <div class="post-header">
+
+    <div class="post-user">
+      <img [src]="publicacion.imagenPerfil" alt="">
+      <strong>{{ publicacion.nombreUsuario }}</strong>
+      <small>{{ publicacion.fechaCreacion | date:'short' }}</small>
+    </div>
+
+    <button class="btn-ver" (click)="abrirPost()">
+      Ver publicación
+    </button>
+
+  </div>
+
+  <img [src]="publicacion.imagen" class="post-imagen" alt="">
+
+  <div class="post-body">
+
+    <div class="post-acciones">
+
+      <img
+        [src]="yaDioLike() ? 'Like.png' : 'Nolike.png'"
+        class="icono-like"
+        (click)="like.emit()"
+        alt="Like"
+      >
+
+      <div class="likes">
+        {{ publicacion.likes.length }} me gusta
+      </div>
+
+    </div>
+
+    <div class="post-texto">
+
+      <div class="post-titulo">
+        <strong>@{{ publicacion.nombreUsuario }}</strong>
+        <small>{{ publicacion.titulo }}</small>
+      </div>
+
+      <div class="post-descripcion">
+        {{ publicacion.descripcion }}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+@if (postAbierto) {
+
+  <div class="modal-backdrop">
+
+    <div class="modal">
+
+      <!-- LEFT -->
+      <div class="modal-left">
+
+        <img [src]="publicacion.imagen" class="modal-img">
+
+        <div class="modal-info">
+          <strong>@{{ publicacion.nombreUsuario }}</strong>
+          <p>{{ publicacion.descripcion }}</p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="modal-right">
+
+        <div class="modal-header">
+          <h3>Comentarios</h3>
+          <button (click)="cerrarModal()">✕</button>
+        </div>
+
+        <div class="comentarios">
+
+          @for (comentario of comentarios; track comentario._id) {
+
+            <div class="comentario-item">
+
+              <strong>{{ comentario.usuario?.nombreUsuario }}</strong>
+
+              <p>{{ comentario.mensaje }}</p>
+
+              @if (comentario.modificado) {
+                <small>Editado</small>
+              }
+
+            </div>
+
+          }
+
+        </div>
+
+        <div class="nuevo-comentario">
+          <input [formControl]="comentarioControl" placeholder="Escribe un comentario...">
+          <button (click)="comentarPublicacion()">Enviar</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
