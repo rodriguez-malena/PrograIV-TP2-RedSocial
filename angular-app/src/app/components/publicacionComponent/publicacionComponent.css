@@ -191,11 +191,13 @@
   padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
+  background: #f7f7f7;
 }
 
 .comentario-item {
   display: flex;
+  justify-content: center;
 }
 
 
@@ -205,6 +207,7 @@
     padding:12px 14px;
     border-radius:16px;
     box-shadow:0 2px 8px rgba(0,0,0,.08);
+    position: relative;
 }
 
 .comentario-burbuja strong{
