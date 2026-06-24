@@ -11,7 +11,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
-export class PublicacionComponent  implements OnInit {
+export class PublicacionComponent {
   
   @Input() publicacion! : Publicacion;
 
@@ -29,10 +29,11 @@ export class PublicacionComponent  implements OnInit {
   
   constructor(private comentarioService: ComentarioService){}
 
-  ngOnInit(): void {
-    if (this.publicacion) {
-      this.cargarComentarios();
-    }
+
+  inicializarComentarios() {
+    this.comentarios = [];
+    this.offset = 0;
+    this.cargarComentarios();
   }
 
 
@@ -84,8 +85,7 @@ export class PublicacionComponent  implements OnInit {
 
 abrirPost() {
     this.postAbierto = true;
-    this.offset = 0
-    this.cargarComentarios();
+    this.inicializarComentarios();
   }
   
   cerrarModal() {

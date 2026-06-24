@@ -51,7 +51,7 @@ export class AuthService {
             rol: usuario.perfil
         }
         
-        const token = this.jwtService.sign(payload, { expiresIn: '20s'})
+        const token = this.jwtService.sign(payload, { expiresIn: '40s'})
         
         const usuarioObj = usuario.toObject();
 
@@ -88,7 +88,7 @@ export class AuthService {
             rol: usuarioLogueado.perfil
         }
 
-        const token = this.jwtService.sign(payload, { expiresIn: '20s'})
+        const token = this.jwtService.sign(payload, { expiresIn: '40s'})
 
         const usuarioObj = usuarioLogueado.toObject();
         const { password, ...usuarioSinPassword } = usuarioObj;
@@ -127,7 +127,7 @@ export class AuthService {
 
             return {
                 token: this.jwtService.sign(newPayload, {
-                    expiresIn: '20s'
+                    expiresIn: '40s'
                 })
             };
 

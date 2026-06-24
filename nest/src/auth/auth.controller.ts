@@ -11,8 +11,7 @@ const cookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: 'none' as const,
-  maxAge: 20 * 1000,
-  // 15 * 60 * 1000, 15 min
+  maxAge: 1 * 60 * 1000,
 };
 
 @Controller('auth')
