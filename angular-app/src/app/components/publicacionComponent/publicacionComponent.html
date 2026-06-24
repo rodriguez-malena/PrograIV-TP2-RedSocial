@@ -86,6 +86,11 @@
                  @if (comentarioEditandoId === comentario._id) {
 
                     <input [formControl]="comentarioEditado"/>
+                    @if (comentarioControl.touched && comentarioControl.hasError('maxlength')) {
+                      <small class="text-danger">
+                          Máximo {{ comentarioControl.getError('maxlength')?.requiredLength }} caracteres
+                      </small>
+                    }
 
                     <button (click)="guardarEdicion(comentario._id)">Guardar</button>
                     <button (click)="cancelarEdicion()">Cancelar</button>
@@ -101,7 +106,7 @@
                   }
 
                   @if (comentario.usuario?._id === usuarioId && comentarioEditandoId !== comentario._id) {
-                    <button (click)="iniciarEdicion(comentario)">Editar</button>
+                    <button (click)="iniciarEdicion(comentario)" class="btn-edit-comentario">Editar</button>
                   }
 
 
@@ -115,11 +120,13 @@
 
         <div class="nuevo-comentario">
           <input [formControl]="comentarioControl" placeholder="Escribe un comentario...">
-          @if (comentarioControl.touched && comentarioControl.hasError('maxlength')) {
-            <small class="text-danger">
-                Máximo {{ comentarioControl.getError('maxlength')?.requiredLength }} caracteres
-            </small>
-          }
+            
+            @if (comentarioControl.touched && comentarioControl.hasError('maxlength')) {
+              <small class="text-danger">
+                  Máximo {{ comentarioControl.getError('maxlength')?.requiredLength }} caracteres
+              </small>
+            }
+
           <button (click)="comentarPublicacion()">Enviar</button>
         </div>
 

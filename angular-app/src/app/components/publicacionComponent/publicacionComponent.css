@@ -270,7 +270,7 @@
     border-radius:30px;
     padding:6px;
     outline:none;
-    font-size: 12px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -290,6 +290,20 @@
     background:#c8b08a;
 }
 
+.btn-edit-comentario {
+  background:  transparent;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  color:#a28d6e;
+  font-size: 10px;
+
+}
+
+.btn-edit-comentario:hover {
+  opacity: 1;
+  color: #342b1f;
+
+}
 
 .text-danger {
   display: block;
