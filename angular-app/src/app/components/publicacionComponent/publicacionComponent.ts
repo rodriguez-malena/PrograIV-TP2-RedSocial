@@ -52,12 +52,12 @@ export class PublicacionComponent  implements OnInit {
 
     const mensaje = this.comentarioControl.value
 
-    if(!mensaje || mensaje.trim()) return
+    if(!mensaje || !mensaje.trim()) return
 
     const datos = {
       mensaje,
       publicacionId : this.publicacion._id,
-      tusuarioId: this.usuarioId
+      usuarioId: this.usuarioId
     }
 
     this.comentarioService.crearComentario(datos).subscribe((respuesta: any)=> {

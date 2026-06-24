@@ -13,10 +13,7 @@ export class Comentario {
     
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Publicacion'})
     publicacion: string;
-    
-    @Prop({ default: Date.now  })
-    fecha: Date;
-        
+
     @Prop({ default: false })
     modificado: boolean;
 

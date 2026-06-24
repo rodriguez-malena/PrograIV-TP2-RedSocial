@@ -7,7 +7,7 @@
               <strong> {{ publicacion.nombreUsuario }} </strong>
               <small> {{ publicacion.fechaCreacion | date:'short' }} </small>
             </div>
-            
+
             <button class="btn-ver" (click)="abrirPost()">
               Ver publicación
             </button>
@@ -103,7 +103,6 @@
 
     <div class="modal">
 
-      <!-- LEFT -->
       <div class="modal-left">
 
         <img [src]="publicacion.imagen" class="modal-img">

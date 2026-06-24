@@ -15,9 +15,8 @@ export class ComentarioService {
   
   obtenerComentarios(publicacionId: string , offset: number, limit: number){
     
-    let url = `${this.url}/comentarios/${publicacionId}?p&offset=${offset}&limit=${limit}`
+    let url = `${this.url}/comentarios/${publicacionId}?&offset=${offset}&limit=${limit}`
   
-
     return this.http.get(url)
   
   }

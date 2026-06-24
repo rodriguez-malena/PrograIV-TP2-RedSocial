@@ -16,7 +16,6 @@ export class ComentariosService {
             mensaje: datos.mensaje,
             usuario : datos.usuarioId,
             publicacion : datos.publicacionId,
-            fecha: new Date(),
             modificado: false
         })
     }
