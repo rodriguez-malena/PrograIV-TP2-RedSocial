@@ -11,9 +11,7 @@ async function bootstrap() {
   app.enableCors({
     origin: 'https://angular-tawny-kappa.vercel.app',
     credentials: true,
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  });
+    });
 
   await app.listen(process.env.PORT ?? 3000);
 
