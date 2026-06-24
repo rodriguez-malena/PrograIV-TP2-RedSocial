@@ -256,7 +256,7 @@
 }
 
 .comentario-burbuja input {
-  width: 100%;
+  width: 50%;
   border: none;
   outline: none;
 
@@ -275,7 +275,8 @@
 .comentario-burbuja button {
   margin-top: 8px;
   margin-right: 6px;
-
+  background:#d8c3a2;
+  color:#fff;
   border: none;
   border-radius: 10px;
 
@@ -285,6 +286,12 @@
   cursor: pointer;
 }
 
+
+.comentario-burbuja button:hover {
+  opacity: 1;
+  color: #342b1f;
+
+}
 .nuevo-comentario {
   display: flex;
   gap: 10px;
