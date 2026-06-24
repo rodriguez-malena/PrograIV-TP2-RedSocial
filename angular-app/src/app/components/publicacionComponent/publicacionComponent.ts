@@ -25,20 +25,22 @@ export class PublicacionComponent {
   limit = 5;
   offset = 0;
   postAbierto = false;
-  comentarioControl = new FormControl('',  [Validators.maxLength(30)]);
+  comentarioControl = new FormControl('', [Validators.maxLength(30)]);
+
+  comentarioEditandoId: string | null = null;
+  comentarioEditado = new FormControl('', [Validators.maxLength(30)]);
   
   constructor(private comentarioService: ComentarioService){}
 
-
+/*--------------------------------
+  Vista de comentarios 
+----------------------------------*/
   inicializarComentarios() {
     this.offset = 0;
     this.cargarComentarios();
   }
 
-
   cargarComentarios(){
-    console.log('Antes', this.comentarios().length);
-
 
     this.comentarioService.obtenerComentarios(this.publicacion._id, this.offset, this.limit).subscribe((respuesta: any) => {
       console.log('Respuesta', respuesta)
@@ -53,6 +55,10 @@ export class PublicacionComponent {
   cargarMas() {
     this.cargarComentarios();
   }
+
+/*----------------
+  Nuevo comentario
+----------------*/
 
   comentarPublicacion(){
     const mensaje = this.comentarioControl.value
@@ -77,21 +83,46 @@ export class PublicacionComponent {
 
   }
   
+/*-------------------
+  Editar comentario
+--------------------*/
 
-  editarComentario(id: string, nuevoComentario: string) {
+  iniciarEdicion(comentario: any) {
+    this.comentarioEditandoId = comentario._id;
+    this.comentarioEditado.setValue(comentario.mensaje);
+  }
 
-  this.comentarioService.editarComentario(id, { mensaje: nuevoComentario}).subscribe(() => {
-
-    const c = this.comentarios().find(c => c._id === id ? { ...c , mensaje: nuevoComentario, modificado: true}
-      : c
-    );
-   
-
-  });
-
-}
+  cancelarEdicion() {
+  this.comentarioEditandoId = null;
+  this.comentarioEditado.reset();
+  }
 
 
+  guardarEdicion(comentarioId: string) {
+
+    const nuevoMensaje = this.comentarioEditado.value;
+
+    if (!nuevoMensaje || !nuevoMensaje.trim()) return;
+
+    this.comentarioService
+      .editarComentario(comentarioId, { mensaje: nuevoMensaje })
+      .subscribe((actualizado: any) => {
+
+        this.comentarios.update(lista =>
+          lista.map(c =>
+            c._id === comentarioId
+              ? { ...c, mensaje: actualizado.mensaje, modificado: true }
+              : c
+          )
+        );
+
+        this.cancelarEdicion();
+      });
+  }
+
+/*-------------------
+Acciones del modal Post
+--------------------*/
   abrirPost() {
     console.log('Abriendo', this.publicacion._id);
 
@@ -103,7 +134,9 @@ export class PublicacionComponent {
     this.postAbierto = false;
   }
 
-    
+/*-------
+Like
+--------*/
   yaDioLike(){
     return this.publicacion.likes.includes(this.usuarioId)
     }

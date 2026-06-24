@@ -83,11 +83,28 @@
 
                 <strong>{{ comentario.usuario?.nombreUsuario }}</strong>
   
-                <p>{{ comentario.mensaje }}</p>
-  
-                @if (comentario.modificado) {
-                  <small>Editado</small>
-                }
+                 @if (comentarioEditandoId === comentario._id) {
+
+                    <input [formControl]="comentarioEditado"/>
+
+                    <button (click)="guardarEdicion(comentario._id)">Guardar</button>
+                    <button (click)="cancelarEdicion()">Cancelar</button>
+
+                  } @else {
+
+                    <p>{{ comentario.mensaje }}</p>
+
+                    @if (comentario.modificado) {
+                      <small>Editado</small>
+                    }
+
+                  }
+
+                  @if (comentario.usuario?._id === usuarioId && comentarioEditandoId !== comentario._id) {
+                    <button (click)="iniciarEdicion(comentario)">Editar</button>
+                  }
+
+
               </div>
 
             </div>

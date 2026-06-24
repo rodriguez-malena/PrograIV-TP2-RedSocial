@@ -268,9 +268,9 @@
     border:none;
     background:#f3f3f3;
     border-radius:30px;
-    padding:12px 18px;
+    padding:6px;
     outline:none;
-    font-size: 14px;
+    font-size: 12px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -284,6 +284,7 @@
     transition:.2s;
     font-family: 'Poppins', sans-serif;
 }
+
 
 .nuevo-comentario button:hover{
     background:#c8b08a;
