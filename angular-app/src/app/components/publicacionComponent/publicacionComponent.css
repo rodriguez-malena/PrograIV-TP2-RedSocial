@@ -106,6 +106,30 @@
 
 /*Comentariooos*/
 
+.btn-ver { 
+    background-color: whitesmoke;
+    color: #5f4f39;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 8px;
+    width: 90px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #a28d6e;
+    transition: all 0.15s ease;
+    
+}
+
+
+
+.btn-editar:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #cfcfcf;
+}
+
+
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -197,7 +221,6 @@
 
 .comentario-item {
   display: flex;
-  justify-content: center;
 }
 
 
