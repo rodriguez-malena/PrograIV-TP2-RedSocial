@@ -12,12 +12,14 @@ export class ComentariosService {
 
     async comentar(datos){
 
-        return this.comentarioModel.create({
+        const comentario = await this.comentarioModel.create({
             mensaje: datos.mensaje,
             usuario : datos.usuarioId,
             publicacion : datos.publicacionId,
             modificado: false
         })
+
+        return comentario.populate('usuario')
     }
 
     async obtener(publicacionId: string, limit: number, offset: number){

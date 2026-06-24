@@ -38,8 +38,15 @@ export class PublicacionComponent {
 
 
   cargarComentarios(){
+    console.log('Antes', this.comentarios.length);
+
+
     this.comentarioService.obtenerComentarios(this.publicacion._id, this.offset, this.limit).subscribe((respuesta: any) => {
+      console.log('Respuesta', respuesta)
       this.comentarios = [...this.comentarios, ...respuesta]
+      
+      console.log('Después', this.comentarios.length);
+      console.log(this.comentarios.map(c => c._id));
 
       this.offset += this.limit
     })
@@ -84,6 +91,8 @@ export class PublicacionComponent {
 
 
 abrirPost() {
+    console.log('Abrir', this.publicacion._id);
+
     this.postAbierto = true;
     this.inicializarComentarios();
   }
