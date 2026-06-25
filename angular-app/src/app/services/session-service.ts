@@ -24,7 +24,14 @@ export class SessionService {
           icon: 'warning',
           showCancelButton: true,
           confirmButtonText: 'Sí, extender',
-          cancelButtonText: 'Cerrar sesión'
+          cancelButtonText: 'Cerrar sesión',
+          customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+            confirmButton: 'swal-confirm-btn',
+            cancelButton: 'swal-cancel-btn'
+          }
         });
 
         if (respuesta.isConfirmed) {
