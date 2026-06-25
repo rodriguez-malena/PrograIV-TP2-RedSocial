@@ -146,9 +146,6 @@ export class MiPerfil implements OnInit {
     this.editarPerfil = true;
   }
 
-  cerrarEditarPerfil(){
-    this.editarPerfil = false;
-  }
 
   guardarCambios(){
 
@@ -187,22 +184,23 @@ export class MiPerfil implements OnInit {
 
       sessionStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
 
-      this.cerrarEditarPerfil()
 
+      
       Swal.fire({
         icon:'success',
         title:'Perfil actualizado',
         text: 'Los cambios se guardaron',
         showConfirmButton: false,
-
+        
         customClass: {
-            popup: 'swal-popup',
-            title: 'swal-titulo',
-            htmlContainer: 'swal-texto',
-            
-          }
+          popup: 'swal-popup',
+          title: 'swal-titulo',
+          htmlContainer: 'swal-texto',
+          
+        }
       });
-
+      
+      this.cerrarEditarPerfil()
 
     }, (error) => {
 
@@ -225,6 +223,14 @@ export class MiPerfil implements OnInit {
       }
     );
   }
+
+  cerrarEditarPerfil(){
+    this.editarPerfil = false;
+    this.formEditarPerfil.reset();
+    this.imagenSeleccionada = null;
+    this.nombreArchivo = 'Ningún archivo seleccionado';
+  }
+
 
   seleccionarImagen(event: Event){
     const input = event.target as HTMLInputElement;
