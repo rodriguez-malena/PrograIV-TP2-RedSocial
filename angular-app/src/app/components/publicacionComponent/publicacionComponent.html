@@ -79,9 +79,17 @@
           @for (comentario of comentarios(); track comentario._id) {
 
             <div class="comentario-item">
+
               <div class="comentario-burbuja">
 
-                <strong>{{ comentario.usuario?.nombreUsuario }}</strong>
+                <div class="comentario-header">
+                  <strong>{{ comentario.usuario?.nombreUsuario }}</strong>
+
+                  @if (comentario.usuario?._id === usuarioId && comentarioEditandoId !== comentario._id) {
+                    <button (click)="iniciarEdicion(comentario)" class="btn-edit-comentario">Editar</button>
+                  }
+                </div>
+
   
                  @if (comentarioEditandoId === comentario._id) {
 
@@ -93,22 +101,23 @@
                         </small>
                       }
 
-                    <button (click)="guardarEdicion(comentario._id)">Guardar</button>
-                    <button (click)="cancelarEdicion()">Cancelar</button>
+                    <div class="acciones-edit">
+
+                      <button (click)="guardarEdicion(comentario._id)">Guardar</button>
+                      <button (click)="cancelarEdicion()">Cancelar</button>
+                    </div>
 
                   } @else {
 
-                    <p>{{ comentario.mensaje }}</p>
+                    <p class="comentario-texto">{{ comentario.mensaje }}</p>
 
                     @if (comentario.modificado) {
-                      <small>Editado</small>
+                      <small class="editado">Editado</small>
                     }
 
                   }
 
-                  @if (comentario.usuario?._id === usuarioId && comentarioEditandoId !== comentario._id) {
-                    <button (click)="iniciarEdicion(comentario)" class="btn-edit-comentario">Editar</button>
-                  }
+                 
 
 
               </div>

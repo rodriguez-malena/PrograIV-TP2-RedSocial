@@ -225,27 +225,43 @@
 
 
 .comentario-burbuja{
-    max-width:90%;
+    max-width:100%;
     background:white;
     padding:12px 14px;
-    border-radius:16px;
+    border-radius:14px;
     box-shadow:0 2px 8px rgba(0,0,0,.08);
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.comentario-burbuja strong{
-    display:block;
+.comentario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comentario-header strong{
     color:#5f4f39;
     font-size:13px;
     margin-bottom:6px;
 }
 
-.comentario-burbuja p{
+.comentario-texto{
     margin:0;
-    color:#555;
+    color:#333;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
     line-height:1.4;
     word-break:break-word;
 }
+
+.editado {
+  font-size: 11px;
+  color: #999;
+  text-align: right;
+}
+
 
 .comentario-burbuja small{
     display:block;
@@ -313,7 +329,7 @@
 
 .nuevo-comentario button{
     border:none;
-    background:#d8c3a2;
+    background:none;
     color:#fff;
     padding:0 22px;
     border-radius:30px;
@@ -322,23 +338,36 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.acciones-edit {
+  display: flex;
+  gap: 8px;
+}
+
+.acciones-edit button {
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
 
 .nuevo-comentario button:hover{
     background:#c8b08a;
 }
 
 .btn-edit-comentario {
-  background:  transparent;
+  background: transparent;
   border: none;
   font-family: 'Poppins', sans-serif;
-  color:#a28d6e;
-  font-size: 10px;
+  color:#888;
+  font-size: 12px;
+  cursor: pointer;
 
 }
 
 .btn-edit-comentario:hover {
   opacity: 1;
-  color: #342b1f;
+  color: #5f4f39;
 
 }
 
