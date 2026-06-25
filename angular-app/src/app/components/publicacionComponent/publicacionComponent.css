@@ -359,14 +359,13 @@
   background: transparent;
   border: none;
   font-family: 'Poppins', sans-serif;
-  color:#888;
+  color:#c8b08a;
   font-size: 12px;
   cursor: pointer;
 
 }
 
 .btn-edit-comentario:hover {
-  opacity: 1;
   color: #5f4f39;
 
 }
