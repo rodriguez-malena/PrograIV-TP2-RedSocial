@@ -83,15 +83,14 @@
               <div class="comentario-burbuja">
 
                 <div class="comentario-header">
-                  <strong>{{ comentario.usuario?.nombreUsuario }}</strong>
+                  <strong>@{{ comentario.usuario?.nombreUsuario }}</strong>
 
                   @if (comentario.usuario?._id === usuarioId && comentarioEditandoId !== comentario._id) {
                     <button (click)="iniciarEdicion(comentario)" class="btn-edit-comentario">Editar</button>
                   }
                 </div>
 
-               
-  
+        
                  @if (comentarioEditandoId === comentario._id) {
 
                     <input [formControl]="comentarioEditado"/>

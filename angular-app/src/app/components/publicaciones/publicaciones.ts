@@ -117,10 +117,11 @@ export class Publicaciones implements OnInit {
         this.cargando = false;
         Swal.fire({
           icon: 'success',
-          title: 'Carga exitosa',
+          title: 'Se ha publicado tu post!',
            customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
+            confirmButton: 'swal-confirm-btn',
           }
         });
         
@@ -148,6 +149,7 @@ export class Publicaciones implements OnInit {
               popup: 'swal-popup',
               title: 'swal-titulo',
               htmlContainer: 'swal-texto',
+              confirmButton: 'swal-confirm-btn',
               
             }
           });

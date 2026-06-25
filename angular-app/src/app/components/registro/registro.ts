@@ -132,6 +132,8 @@ export class Registro implements OnInit {
             popup: 'swal-popup',
             title: 'swal-titulo',
             htmlContainer: 'swal-texto',
+            confirmButton: 'swal-confirm-btn',
+
           }
             
         });
@@ -150,6 +152,7 @@ export class Registro implements OnInit {
             popup: 'swal-popup',
             title: 'swal-titulo',
             htmlContainer: 'swal-texto',
+            confirmButton: 'swal-confirm-btn',
           }
           
       });
