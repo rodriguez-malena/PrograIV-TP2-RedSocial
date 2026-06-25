@@ -93,8 +93,14 @@ export class MiPerfil implements OnInit {
         showCancelButton: true,
         confirmButtonText: 'Sí, eliminar',
         cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#d8c3a2',
-        cancelButtonColor: '#5f4f39'
+        customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+            confirmButton: 'swal-confirm-btn',
+            cancelButton: 'swal-cancel-btn'
+          }
+
       }).then((result) => {
   
         if (result.isConfirmed) {
@@ -179,7 +185,13 @@ export class MiPerfil implements OnInit {
       Swal.fire({
         icon:'success',
         title:'Perfil actualizado',
-        text: 'Los cambios se han guardado'
+        text: 'Los cambios se guardaron',
+        customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+            
+          }
       });
 
 
@@ -192,7 +204,12 @@ export class MiPerfil implements OnInit {
           title: 'Error',
           text: Array.isArray(error.error.message)
             ? error.error.message[0]
-            : error.error.message
+            : error.error.message,
+          customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+          }
         });
       }
     );

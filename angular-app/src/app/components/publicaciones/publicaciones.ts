@@ -118,6 +118,10 @@ export class Publicaciones implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Carga exitosa',
+           customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+          }
         });
         
   // Actualización del estado de publicaciones
@@ -139,7 +143,13 @@ export class Publicaciones implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.error.message
+            text: error.error.message,
+            customClass: {
+              popup: 'swal-popup',
+              title: 'swal-titulo',
+              htmlContainer: 'swal-texto',
+              
+            }
           });
       })
     }
@@ -227,8 +237,7 @@ export class Publicaciones implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-     // confirmButtonColor: '#d8c3a2',
-      //cancelButtonColor: '#5f4f39',
+
       customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
@@ -245,11 +254,17 @@ export class Publicaciones implements OnInit {
            
           this.publicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id)); // Actualizo y creo nuevo array filtrando las que no tienen el id de la eliminada 
 
-            Swal.fire(
-              'Eliminado',
-              'La publicación fue eliminada',
-              'success'
-            );
+            Swal.fire({
+                      icon: 'success',
+                      title: 'Eliminada',
+                      text: 'La publicación se eliminó correctamente',
+                      customClass: {
+                        popup: 'swal-popup',
+                        title: 'swal-titulo',
+                        htmlContainer: 'swal-texto',
+                      }
+                        
+                });
           });
       }
   })
