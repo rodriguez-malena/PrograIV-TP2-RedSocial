@@ -288,20 +288,6 @@
   margin-top: 6px;
 }
 
-.comentario-burbuja button {
-  margin-top: 8px;
-  margin-right: 6px;
-  background:#d8c3a2;
-  color:#fff;
-  border: none;
-  border-radius: 10px;
-
-  padding: 6px 10px;
-  font-size: 12px;
-
-  cursor: pointer;
-}
-
 
 .comentario-burbuja button:hover {
   opacity: 1;
