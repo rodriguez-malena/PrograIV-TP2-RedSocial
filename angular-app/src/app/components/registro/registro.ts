@@ -128,11 +128,12 @@ export class Registro implements OnInit {
           icon: 'success',
           title: 'Registro exitoso',
           text: 'Usuario creado correctamente',
+          showConfirmButton: false,
+
           customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
             htmlContainer: 'swal-texto',
-            confirmButton: 'swal-confirm-btn',
 
           }
             
@@ -148,11 +149,12 @@ export class Registro implements OnInit {
           icon: 'error',
           title: 'Error',
           text:  Array.isArray(error.error.message)? error.error.message[0] : error.error.message,
+          showConfirmButton: false,
+
           customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
             htmlContainer: 'swal-texto',
-            confirmButton: 'swal-confirm-btn',
           }
           
       });

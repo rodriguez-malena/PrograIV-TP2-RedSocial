@@ -81,10 +81,13 @@ export class Login  implements OnInit{
         icon: 'error',
         title: 'Usuario inexistente',
         text: 'Usuario o contraseña incorrectos',
+        showConfirmButton: false,
+
         customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
             htmlContainer: 'swal-texto',
+            
           }
       })
   })   

@@ -109,11 +109,18 @@ export class MiPerfil implements OnInit {
              
             this.misPublicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id)); // Actualizo y creo nuevo array filtrando las que no tienen el id de la eliminada 
   
-              Swal.fire(
-                'Eliminada',
-                'La publicación fue eliminada del perfil',
-                'success'
-              );
+              Swal.fire({
+                icon: 'success',
+                title: 'Eliminada',
+                text: 'La publicación se eliminó correctamente',
+                showConfirmButton: false,
+              
+                customClass: {
+                              popup: 'swal-popup',
+                              title: 'swal-titulo',
+                              htmlContainer: 'swal-texto',
+                            }
+            });
             });
           this.cerrarPost()
         }
@@ -186,6 +193,8 @@ export class MiPerfil implements OnInit {
         icon:'success',
         title:'Perfil actualizado',
         text: 'Los cambios se guardaron',
+        showConfirmButton: false,
+
         customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
@@ -205,6 +214,8 @@ export class MiPerfil implements OnInit {
           text: Array.isArray(error.error.message)
             ? error.error.message[0]
             : error.error.message,
+          showConfirmButton: false,
+
           customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',

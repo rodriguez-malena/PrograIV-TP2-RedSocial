@@ -118,10 +118,10 @@ export class Publicaciones implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'Se ha publicado tu post!',
+          showConfirmButton: false,
            customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
-            confirmButton: 'swal-confirm-btn',
           }
         });
         
@@ -260,6 +260,8 @@ export class Publicaciones implements OnInit {
                       icon: 'success',
                       title: 'Eliminada',
                       text: 'La publicación se eliminó correctamente',
+                      showConfirmButton: false,
+
                       customClass: {
                         popup: 'swal-popup',
                         title: 'swal-titulo',
