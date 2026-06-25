@@ -33,7 +33,7 @@ export class SessionService {
 
             console.log('Token refrescado');
 
-            // Reinicia otros 20 segundos
+            // Reinicia otros  segundos
             this.iniciarTemporizador();
 
           }, () => {
@@ -48,7 +48,7 @@ export class SessionService {
 
         }
 
-      }, 10000); // Avisa a los 10 segundos
+      }, 60000); // Avisa a los 10 segundos
     }
 
   cerrarSesion() {
