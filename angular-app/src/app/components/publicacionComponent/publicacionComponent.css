@@ -372,11 +372,15 @@
 }
 
 .btn-cargar-mas {
-  background: transparent;
+  background: #cfcfcf;
   border: none;
   font-family: 'Poppins', sans-serif;
   color:#5f4f39;
   font-size: 12px;
   cursor: pointer;
   margin-bottom: 5px;
+}
+
+.btn-cargar-mas:hover {
+  color: #342b1f;
 }
