@@ -187,7 +187,7 @@ export class MiPerfil implements OnInit {
 
       sessionStorage.setItem('usuario', JSON.stringify(usuarioActualizado));
 
-      this.editarPerfil = false;
+      this.cerrarEditarPerfil()
 
       Swal.fire({
         icon:'success',
