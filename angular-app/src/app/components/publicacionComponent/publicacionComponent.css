@@ -316,11 +316,11 @@
 
 .nuevo-comentario button{
     border:none;
-    background:none;
-    color:#fff;
-    padding:0 22px;
+    background: #c8b08a;;
+    color:white;
+    padding:12px;
     border-radius:30px;
-    cursor:pointer;
+    cursor: pointer;
     transition:.2s;
     font-family: 'Poppins', sans-serif;
 }
@@ -339,7 +339,7 @@
 }
 
 .nuevo-comentario button:hover{
-    background:#c8b08a;
+    color:#342b1f;
 }
 
 .btn-edit-comentario {
