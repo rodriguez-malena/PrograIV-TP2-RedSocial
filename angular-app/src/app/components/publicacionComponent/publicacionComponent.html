@@ -90,12 +90,7 @@
                   }
                 </div>
 
-                @if (hayMasComentarios()) {
-                  <button class="btn-cargar-mas" (click)="cargarMas()">
-                    Cargar más comentarios
-                  </button>
-                }
-
+               
   
                  @if (comentarioEditandoId === comentario._id) {
 
@@ -132,7 +127,15 @@
 
           }
 
+
         </div>
+
+         @if (hayMasComentarios()) {
+                  <button class="btn-cargar-mas" (click)="cargarMas()">
+                    Cargar más
+                  </button>
+          }
+
 
         <div class="nuevo-comentario">
           <input [formControl]="comentarioControl" placeholder="Escribe un comentario...">

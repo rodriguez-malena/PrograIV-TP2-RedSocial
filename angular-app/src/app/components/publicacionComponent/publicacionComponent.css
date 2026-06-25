@@ -370,3 +370,13 @@
   font-size: 13px;
   font-weight: 500;
 }
+
+.btn-cargar-mas {
+  background: transparent;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  color:#5f4f39;
+  font-size: 12px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
