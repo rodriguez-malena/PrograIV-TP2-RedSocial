@@ -25,10 +25,10 @@ export class ComentariosService {
     async obtener(publicacionId: string, limit: number, offset: number){
        
         const filtro = { publicacion: publicacionId };
-        
+
         const total = await this.comentarioModel.countDocuments(filtro);
 
-        const comentarios = this.comentarioModel.find(filtro).populate('usuario').sort({ createdAt : -1 }).skip(Number(offset)).limit(Number(limit))
+        const comentarios = await this.comentarioModel.find(filtro).populate('usuario').sort({ createdAt : -1 }).skip(Number(offset)).limit(Number(limit))
         
         return {
             comentarios,
