@@ -27,8 +27,8 @@ export class Registro implements OnInit {
   ngOnInit(): void {
       this.miRegistro = this.fb.group({
 
-        nombre: ["", [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\s]+$'), Validators.minLength(4), Validators.maxLength(15)]], 
-        apellido: ["", [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\s]+$'),  Validators.minLength(4), Validators.maxLength(20)]],
+        nombre: ["", [Validators.required, Validators.pattern('/^(?!\s*$)[a-zA-ZÀ-ÿ\s]+$/'), Validators.minLength(4), Validators.maxLength(15)]], 
+        apellido: ["", [Validators.required, Validators.pattern('/^(?!\s*$)[a-zA-ZÀ-ÿ\s]+$/'),  Validators.minLength(4), Validators.maxLength(20)]],
         email: ["", [Validators.required, Validators.email, Validators.maxLength(30)]],
         nombreUsuario: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
         fechaNacimiento: ["",[Validators.required, fechaValidator()]],
