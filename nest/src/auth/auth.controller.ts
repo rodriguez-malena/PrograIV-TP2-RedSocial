@@ -71,7 +71,8 @@ export class AuthController {
 
     @Post('refrescar')
     async refrescar(@Req() req: Request, @Res({ passthrough: true }) res: Response){
-    
+        
+        console.log('COOKIE TOKEN:', req.cookies.token);
 
         const respuesta = await this.authService.refrescar(req.cookies.token)
         
