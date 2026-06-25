@@ -127,7 +127,7 @@ export class AuthService {
 
             return {
                 token: this.jwtService.sign(newPayload, {
-                    expiresIn: '60s'
+                    expiresIn: '120s'
                 })
             };
 

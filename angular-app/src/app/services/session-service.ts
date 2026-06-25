@@ -55,7 +55,7 @@ export class SessionService {
 
         }
 
-      }, 60000); // Avisa a los 10 segundos
+      }, 40000); // Avisa a los 40 segundos
     }
 
   cerrarSesion() {
