@@ -58,7 +58,13 @@ export class Login  implements OnInit{
         icon: 'success',
         title: 'Login exitoso',
         timer: 1500,
-        showConfirmButton: false
+        showConfirmButton: false,
+        customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+            
+          }
       });
       
       sessionStorage.setItem('usuario', JSON.stringify(respuesta.usuario));
@@ -76,10 +82,10 @@ export class Login  implements OnInit{
         title: 'Usuario inexistente',
         text: 'Usuario o contraseña incorrectos',
         customClass: {
-            confirmButton: 'btn-propio',
-            popup: 'mi-modal',
-            title: 'mi-titulo',                    
-        }
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+          }
       })
   })   
   }  
