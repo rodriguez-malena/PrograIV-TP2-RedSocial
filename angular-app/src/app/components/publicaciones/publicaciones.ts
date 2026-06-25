@@ -227,8 +227,16 @@ export class Publicaciones implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#d8c3a2',
-      cancelButtonColor: '#5f4f39'
+     // confirmButtonColor: '#d8c3a2',
+      //cancelButtonColor: '#5f4f39',
+      customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+            confirmButton: 'swal-confirm-btn',
+            cancelButton: 'swal-cancel-btn'
+          }
+
     }).then((result) => {
 
       if (result.isConfirmed) {
