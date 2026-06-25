@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Comentario } from '../interfaces/comentario';
+import { RespuestaComentarios } from '../interfaces/comentarioRespuesta';
 
 
 @Injectable({
@@ -17,12 +19,12 @@ export class ComentarioService {
     
     let url = `${this.url}/comentarios/${publicacionId}?&offset=${offset}&limit=${limit}`
   
-    return this.http.get(url)
+    return this.http.get<RespuestaComentarios>(url)
   
   }
 
   crearComentario(datos: any){
-    return this.http.post( `${this.url}/comentarios`,datos)
+    return this.http.post<Comentario>( `${this.url}/comentarios`,datos)
 
   }
 

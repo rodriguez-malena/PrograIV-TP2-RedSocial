@@ -90,6 +90,12 @@
                   }
                 </div>
 
+                @if (hayMasComentarios()) {
+                  <button class="btn-cargar-mas" (click)="cargarMas()">
+                    Cargar más comentarios
+                  </button>
+                }
+
   
                  @if (comentarioEditandoId === comentario._id) {
 
