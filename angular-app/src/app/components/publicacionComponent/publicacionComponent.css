@@ -388,7 +388,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-
+  z-index: 10;
   background: #e74c3c;
   color: white;
   border: none;

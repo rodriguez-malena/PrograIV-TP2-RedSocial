@@ -105,7 +105,7 @@ export class MiPerfil implements OnInit {
   
         if (result.isConfirmed) {
   
-          this.publicacionService.eliminar(publicacion._id, this.usuario._id).subscribe(() => {
+          this.publicacionService.eliminar(publicacion._id).subscribe(() => {
              
             this.misPublicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id)); // Actualizo y creo nuevo array filtrando las que no tienen el id de la eliminada 
   
