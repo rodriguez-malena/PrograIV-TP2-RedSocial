@@ -24,11 +24,11 @@ export class ComentarioService {
   }
 
   crearComentario(datos: any){
-    return this.http.post<Comentario>( `${this.url}/comentarios`,datos)
+    return this.http.post<Comentario>( `${this.url}/comentarios`,datos, { withCredentials: true })
 
   }
 
   editarComentario(id:string, datos: {mensaje: string}){
-    return this.http.put( `${this.url}/comentarios/${id}`, datos)
+    return this.http.put( `${this.url}/comentarios/${id}`, datos, { withCredentials: true })
   }
 }
