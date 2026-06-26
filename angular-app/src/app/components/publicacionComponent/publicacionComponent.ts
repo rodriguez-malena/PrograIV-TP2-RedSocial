@@ -22,7 +22,7 @@ export class PublicacionComponent {
   
   @Output() like = new EventEmitter<void>();
   
-  @Output() eliminar = new EventEmitter<void>();
+  @Output() eliminar = new EventEmitter<Publicacion>();
   
   comentarios = signal<Comentario[]>([]);
   limit = 5;
@@ -33,6 +33,9 @@ export class PublicacionComponent {
   comentarioEditandoId: string | null = null;
   comentarioEditado = new FormControl('', [Validators.maxLength(30)]);
   totalComentarios = signal(0);
+
+  usuario = JSON.parse(sessionStorage.getItem('usuario')!)
+
 
   constructor(private comentarioService: ComentarioService){}
 
@@ -154,4 +157,10 @@ Like
   yaDioLike(){
     return this.publicacion.likes.includes(this.usuarioId)
     }
-  }
+  
+
+/*Poder de eliminar post */
+  puedeEliminar(publicacion: any): boolean {
+    return (this.usuario?.perfil === 'admin' || this.usuario?._id === publicacion.usuarioId);
+}
+}

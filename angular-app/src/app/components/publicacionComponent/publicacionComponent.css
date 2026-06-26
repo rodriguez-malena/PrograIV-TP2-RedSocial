@@ -383,3 +383,21 @@
 .btn-cargar-mas:hover {
   color: #342b1f;
 }
+
+.btn-eliminar {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.btn-eliminar:hover {
+  background: #c0392b;
+}

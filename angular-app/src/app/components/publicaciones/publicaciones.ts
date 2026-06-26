@@ -17,6 +17,7 @@ import { PublicacionComponent } from '../publicacionComponent/publicacionCompone
 })
 export class Publicaciones implements OnInit {
     usuario = JSON.parse(sessionStorage.getItem('usuario')!)
+
     cargando = false;
     formEnviado = false;
     mostrarModal= false;
@@ -212,7 +213,7 @@ export class Publicaciones implements OnInit {
 
   }
 
-   actualizarLikes(postId: string, likes: string[]) {
+  actualizarLikes(postId: string, likes: string[]) {
 
       this.publicaciones.update(estado => estado.map(publicacion => publicacion._id === postId // si le dieron like a esa publicacion
             ? { ...publicacion,
@@ -224,9 +225,9 @@ export class Publicaciones implements OnInit {
       );
   }
 
-  /*-------------------------
+/*-------------------------
   Eliminación de publicaciones
-  -----------------------*/
+-----------------------*/
 
   eliminarPublicacion(publicacion: Publicacion){
     Swal.fire({
@@ -249,7 +250,7 @@ export class Publicaciones implements OnInit {
 
       if (result.isConfirmed) {
 
-        this.publicacionService.eliminar(publicacion._id, this.usuario._id).subscribe(() => {
+        this.publicacionService.eliminar(publicacion._id).subscribe(() => {
            
           this.publicaciones.update(lista => lista.filter(publi => publi._id !== publicacion._id)); // Actualizo y creo nuevo array filtrando las que no tienen el id de la eliminada 
 

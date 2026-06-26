@@ -114,7 +114,7 @@
               [publicacion]="publicacion"
               [usuarioId]="usuario._id"
               (like)="cambiarLike(publicacion)"
-              (eliminar)="eliminarPublicacion(publicacion)">
+              (eliminar)="eliminarPublicacion($event)">
           </app-publicacion>
         
       }
