@@ -13,7 +13,7 @@ export class PublicacionService {
   constructor(private http: HttpClient){}
 
   crear(datos: FormData){
-    return this.http.post<Publicacion>(`${this.url}/publicaciones`, datos)
+    return this.http.post<Publicacion>(`${this.url}/publicaciones`, datos,  { withCredentials: true })
   }
   
   obtener(orden: 'fecha' | 'likes', offset: number, limit: number, usuarioId?: string){
