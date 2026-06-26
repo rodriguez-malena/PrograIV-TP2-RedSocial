@@ -161,6 +161,6 @@ Like
 
 /*Poder de eliminar post */
   puedeEliminar(publicacion: any): boolean {
-    return (this.usuario?.perfil === 'admin' || this.usuario?._id === publicacion.usuarioId);
+    return (this.usuario?.perfil === 'admin' || this.usuario?._id === publicacion.usuario);
 }
 }
