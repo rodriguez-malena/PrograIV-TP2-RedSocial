@@ -28,16 +28,12 @@ export class PublicacionService {
   
   }
 
-  darLike(publicacionId: string, usuarioId: string){
-    return this.http.post<Publicacion>(`${this.url}/publicaciones/${publicacionId}/like`, { usuarioId })
+  darLike(publicacionId: string){
+    return this.http.post<Publicacion>(`${this.url}/publicaciones/${publicacionId}/like`, {}, { withCredentials: true })
   }
 
-  borrarLike(publicacionId: string, usuarioId: string){
-    return this.http.delete<Publicacion>(`${this.url}/publicaciones/${publicacionId}/like`,
-      {
-        body: { usuarioId }
-      }
-    )
+  borrarLike(publicacionId: string){
+    return this.http.delete<Publicacion>(`${this.url}/publicaciones/${publicacionId}/like`, { withCredentials: true })
   }
 
   eliminar(publicacionId: string, usuarioId: string){

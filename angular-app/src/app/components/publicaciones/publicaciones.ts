@@ -103,9 +103,9 @@ export class Publicaciones implements OnInit {
       const formData = new FormData();
       formData.append('titulo', titulo);
       formData.append('descripcion', descripcion);
-      formData.append('nombreUsuario', this.usuario.nombreUsuario);
-      formData.append('imagenPerfil', this.usuario.imagenPerfil);
-      formData.append('usuarioId', this.usuario._id);
+      //formData.append('nombreUsuario', this.usuario.nombreUsuario);
+      //formData.append('imagenPerfil', this.usuario.imagenPerfil);
+      //formData.append('usuarioId', this.usuario._id);
       
       if(imagen) {
         formData.append('imagen', imagen)
@@ -115,6 +115,7 @@ export class Publicaciones implements OnInit {
       this.publicacionService.crear(formData).subscribe((publicacion: Publicacion) => {
         console.log(publicacion)
         this.cargando = false;
+
         Swal.fire({
           icon: 'success',
           title: 'Se ha publicado tu post!',
@@ -196,17 +197,15 @@ export class Publicaciones implements OnInit {
   }
 
   cambiarLike(publicacion: Publicacion){
-
-      const id = this.usuario._id;
     
       if(this.yaDioLike(publicacion)){
-        this.publicacionService.borrarLike(publicacion._id, id).subscribe((actualizacion: Publicacion)=> {
+        this.publicacionService.borrarLike(publicacion._id).subscribe((actualizacion: Publicacion)=> {
         
         this.actualizarLikes(publicacion._id, actualizacion.likes)
       })
     
     } else {
-      this.publicacionService.darLike(publicacion._id, id).subscribe((actualizacion: Publicacion)=> 
+      this.publicacionService.darLike(publicacion._id).subscribe((actualizacion: Publicacion)=> 
         
         this.actualizarLikes(publicacion._id, actualizacion.likes)
 

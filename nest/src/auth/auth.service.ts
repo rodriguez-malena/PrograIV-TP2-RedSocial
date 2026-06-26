@@ -43,23 +43,13 @@ export class AuthService {
         
         await usuario.save();
 
-        // Genero token
-        const payload = {
-            sub: usuario._id,
-            email: usuario.email,
-            username: usuario.nombreUsuario,
-            rol: usuario.perfil
-        }
-        
-        const token = this.jwtService.sign(payload, { expiresIn: '60s'})
-        
+            
         const usuarioObj = usuario.toObject();
 
         const { password, ...usuarioSinPassword } = usuarioObj;
 
         return {
             message: 'Usuario creado!',
-            token,
             usuario: usuarioSinPassword
         }
     }
@@ -106,6 +96,10 @@ export class AuthService {
         const payload = this.jwtService.verify(token); //validación del token y de la expiracion, devuelvbe payload si cumple
 
         const usuario = await this.usuarioModel.findById(payload.sub).select('-password')       
+
+        if (!usuario) {
+            throw new UnauthorizedException('Usuario no encontrado');
+        }
 
         return usuario;
 

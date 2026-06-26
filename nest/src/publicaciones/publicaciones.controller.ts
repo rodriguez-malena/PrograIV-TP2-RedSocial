@@ -1,13 +1,17 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Query, Req, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { crearStorageCloudinary } from '../cloudinary/cloudinary.storage';
 import { PublicacionDto } from './dto/publicacion.dto';
 import { PublicacionesService } from './publicaciones.service';
 import cloudinary from '../cloudinary/cloudinary.config';
+import { AuthService } from '../auth/auth.service';
+import type { Request } from 'express';
+
 
 @Controller('publicaciones')
 export class PublicacionesController {
-    constructor(private publicacionService: PublicacionesService){}
+    constructor(private publicacionService: PublicacionesService,
+                private authService: AuthService){}
 
     @Post()
     @UseInterceptors(
@@ -16,7 +20,7 @@ export class PublicacionesController {
         })
     )
 
-    async subirPublicacion(@UploadedFile() publicacion: Express.Multer.File, @Body() body: PublicacionDto){
+    async subirPublicacion(@Req() req: Request, @UploadedFile() publicacion: Express.Multer.File, @Body() body: PublicacionDto){
         if(publicacion){
             body.imagen = publicacion.path
         }
@@ -25,6 +29,12 @@ export class PublicacionesController {
         }
        
         try {
+            const usuario = await this.authService.autorizar(req.cookies.token);
+
+            body.usuarioId = usuario._id.toString();
+            body.nombreUsuario = usuario.nombreUsuario;
+            body.imagenPerfil = usuario.imagenPerfil;
+            
             return await this.publicacionService.crear(body)
         } 
         catch(error) {
@@ -47,13 +57,19 @@ export class PublicacionesController {
     }
 
     @Post(':id/like')
-    darLike(@Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
-        return this.publicacionService.darLike(publicacionId, usuarioId)
+    async darLike(@Req() req: Request, @Param('id') publicacionId: string){
+        
+        const usuario = await this.authService.autorizar(req.cookies.token);
+        
+        return this.publicacionService.darLike(publicacionId, usuario._id.toString())
     }
 
     @Delete(':id/like')
-    eliminarLike(@Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
-        return this.publicacionService.eliminarLike(publicacionId, usuarioId)
+    async eliminarLike(@Req() req: Request, @Param('id') publicacionId: string){
+
+        const usuario = await this.authService.autorizar(req.cookies.token);
+
+        return this.publicacionService.eliminarLike(publicacionId, usuario._id.toString())
     }
 
 

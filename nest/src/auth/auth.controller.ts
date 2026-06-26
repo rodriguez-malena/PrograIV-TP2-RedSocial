@@ -35,7 +35,6 @@ export class AuthController {
         try {
             const respuesta = await this.authService.registrar(body);
             
-            res.cookie('token', respuesta.token, cookieOptions)
 
         return {
             message: respuesta.message,

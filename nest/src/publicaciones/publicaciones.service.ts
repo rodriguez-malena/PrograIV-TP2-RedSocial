@@ -80,7 +80,6 @@ export class PublicacionesService {
         publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
         
         publicacion.cantidadLikes = publicacion.likes.length;       
-        console.log(publicacion.likes);
 
         await publicacion.save()
 
