@@ -12,7 +12,7 @@ export class Auth {
   constructor(private http: HttpClient){}
 
   registro(datos: any){
-    return this.http.post(`${this.url}/auth/registro`, datos, { withCredentials: true })
+    return this.http.post(`${this.url}/auth/registro`, datos)
   }
 
   login(datos: any){
