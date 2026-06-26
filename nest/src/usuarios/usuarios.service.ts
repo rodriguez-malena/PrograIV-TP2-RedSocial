@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Usuario } from './schema/usuario.schema';
@@ -19,8 +19,19 @@ export class UsuariosService {
         return  this.usuarioModel.find().select('-password');
     }
 
-    async actualizarUsuario(id: string, datos: any){
+    async actualizarUsuario(id: string, datos: any, token: string){
+        const usuarioLogueado = await this.authService.autorizar(token);
+        const usuario =  await this.usuarioModel.findById(id);
 
+        if(!usuario){
+            throw new NotFoundException('Usuario no encontrado');
+
+        }
+
+        if(usuarioLogueado.perfil !== 'admin' && usuario._id.toString() !== usuarioLogueado._id.toString()){
+            throw new UnauthorizedException ('No tenes permisos para editar este perfil')
+        }
+        
         return await this.usuarioModel.findByIdAndUpdate(id, datos, { new: true}).select('-password')
     }
 

@@ -99,7 +99,7 @@ export class PublicacionesService {
             throw new NotFoundException('Publicación no encontrada')
         }
 
-        // No permite borrar si no es admin o el usuario creador
+        // No permite borrar si no es admin o el usuario
         if(usuario.perfil !== 'admin' && publicacion.usuarioId.toString() !== usuario._id.toString()){
             throw new BadRequestException('No podes eliminar publicaciones que no te pertenecen!');
 

@@ -21,13 +21,13 @@ export class UsuariosController {
     })
     )
 
-    async actualizarUsuario(@Param('id') id: string, @UploadedFile() archivo: Express.Multer.File, @Body() body: any){
+    async actualizarUsuario(@Req() req: Request, @Param('id') id: string, @UploadedFile() archivo: Express.Multer.File, @Body() body: any){
         
         if(archivo){
             body.imagenPerfil = archivo.path;
         }
         
-        return this.usuarioService.actualizarUsuario(id, body);
+        return this.usuarioService.actualizarUsuario(id, body, req.cookies.token);
     }
 
     @Delete(':id')
@@ -35,9 +35,9 @@ export class UsuariosController {
         return this.usuarioService.deshabilitar(id, req.cookies.token)
     }
 
-    @Post(':id')
+    @Post(':id/habilitar')
     habilitarUsuario(@Req() req: Request, @Param('id') id: string){
-
+        return this.usuarioService.habilitar(id, req.cookies.token)
     }
 
 }
