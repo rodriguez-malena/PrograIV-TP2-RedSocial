@@ -11,12 +11,8 @@ export class PublicacionDto {
     @IsOptional()
     imagen: string;
 
-    @IsNotEmpty()
-    usuarioId: string;
-
-    @IsNotEmpty()
-    imagenPerfil: string;
-
-    @IsNotEmpty()
-    nombreUsuario: string;
-    }
+    usuarioId?: string;
+    imagenPerfil?: string;
+    nombreUsuario?: string;
+    
+}
