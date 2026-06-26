@@ -36,12 +36,8 @@ export class PublicacionService {
     return this.http.delete<Publicacion>(`${this.url}/publicaciones/${publicacionId}/like`, { withCredentials: true })
   }
 
-  eliminar(publicacionId: string, usuarioId: string){
-    return this.http.delete(`${this.url}/publicaciones/${publicacionId}`,
-      {
-        body : { usuarioId }
-      }
-    )
+  eliminar(publicacionId: string){
+    return this.http.delete(`${this.url}/publicaciones/${publicacionId}`, { withCredentials: true })
   }
   
 

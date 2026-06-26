@@ -52,8 +52,8 @@ export class PublicacionesController {
     }
 
     @Delete(':id') 
-    borrarPublicacion(@Param('id') publicacionId: string, @Body('usuarioId') usuarioId: string){
-        return this.publicacionService.eliminar(publicacionId, usuarioId)
+    borrarPublicacion(@Req() req: Request, @Param('id') publicacionId: string){
+        return this.publicacionService.eliminar(publicacionId, req.cookies.token)
     }
 
     @Post(':id/like')

@@ -3,12 +3,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Publicacion } from './schema/publicacion.schema';
 import { Model } from 'mongoose';
 import { PublicacionDto } from './dto/publicacion.dto';
+import { AuthService } from '../auth/auth.service';
+
 
 @Injectable()
 export class PublicacionesService {
 
     constructor(@InjectModel(Publicacion.name)
-                private publicacionModel: Model<Publicacion>){}
+                private publicacionModel: Model<Publicacion>,
+                private authService: AuthService){}
     
     // Crear publicacion
     async crear(datos: PublicacionDto){
@@ -88,14 +91,16 @@ export class PublicacionesService {
 
     }
 
-    async eliminar(publicacionId: string, usuarioId: string){
+    async eliminar(publicacionId: string, token: string){
         const publicacion =  await this.publicacionModel.findById(publicacionId);
-        
+        const usuario = await this.authService.autorizar(token);
+
         if(!publicacion){
             throw new NotFoundException('Publicación no encontrada')
         }
 
-        if(publicacion.usuarioId != usuarioId){
+        // No permite borrar si no es admin o el usuario creador
+        if(usuario.perfil !== 'admin' && publicacion.usuarioId.toString() !== usuario._id.toString()){
             throw new BadRequestException('No podes eliminar publicaciones que no te pertenecen!');
 
         }

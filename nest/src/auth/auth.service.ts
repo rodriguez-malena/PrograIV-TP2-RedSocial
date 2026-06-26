@@ -62,9 +62,11 @@ export class AuthService {
             throw new UnauthorizedException('Este usuario no existe');
         }
 
-        const passwordCorrecta = await bcrypt.compare(datos.password,usuarioLogueado.password);
+        if (!usuarioLogueado.habilitado) {
+            throw new UnauthorizedException('Tu usuario fue deshabilitado');
+         } // para que no ingrese un usuario deshabilitado
 
-        console.log(passwordCorrecta);
+        const passwordCorrecta = await bcrypt.compare(datos.password,usuarioLogueado.password);
 
 
         if(!passwordCorrecta){
@@ -128,6 +130,19 @@ export class AuthService {
         } catch (e) {
             throw new UnauthorizedException('No se pudo refrescar el token');
         }
+    }
+
+    async verificarAdmin(token: string) {
+
+        const usuario = await this.autorizar(token);
+
+        if (usuario.perfil !== 'admin') {
+            throw new UnauthorizedException(
+                'Solo un administrador puede realizar esta acción'
+            );
+        }
+
+        return usuario;
     }
     
 }
