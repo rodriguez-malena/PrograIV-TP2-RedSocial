@@ -9,10 +9,10 @@ export class Comentario {
     mensaje: string
     
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Usuario'})
-    usuario: string;
+    usuario:  mongoose.Types.ObjectId;;
     
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Publicacion'})
-    publicacion: string;
+    publicacion:  mongoose.Types.ObjectId;;
 
     @Prop({ default: false })
     modificado: boolean;
