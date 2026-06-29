@@ -59,18 +59,18 @@ form {
 }
 
 .form-control:focus {
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+    border-color: #8a7555;
+    background: white;
+    box-shadow: 0 0 0 5px rgba(138,117,85,.12);
 }
 
-/* ERROR TEXT */
 .text-danger {
   color: #e74c3c;
   font-size: 12px;
+  font-family: 'Poppins', sans-serif;
   margin-top: 4px;
 }
 
-/* IMAGE UPLOAD */
 .box-carga-imagen {
   display: flex;
   align-items: center;
@@ -84,7 +84,7 @@ form {
 }
 
 .box-carga-imagen:hover {
-  border-color: #4a90e2;
+  border-color: #8a7555;
 }
 
 .box-carga-imagen input {
@@ -122,7 +122,6 @@ form {
   font-size: 14px;
 }
 
-/* BUTTON */
 .btn-crear {
   background: #4a90e2;
   color: white;
@@ -159,7 +158,6 @@ tr:hover {
   background: #fafafa;
 }
 
-/* ACTION BUTTONS */
 .btn-deshabilitar {
   background: #e74c3c;
   color: white;
