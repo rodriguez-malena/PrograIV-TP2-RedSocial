@@ -35,7 +35,7 @@ export const routes: Routes = [
         loadComponent: () => import('./components/publicaciones/publicaciones').then(m => m.Publicaciones)
     },
     {
-        path:'dashnnoard-usuarios',
+        path:'dashboard-usuarios',
         loadComponent: () => import('./components/dashboard-usuarios/dashboard-usuarios').then(m => m.DashboardUsuarios),
         canActivate: [adminGuard]
     },
