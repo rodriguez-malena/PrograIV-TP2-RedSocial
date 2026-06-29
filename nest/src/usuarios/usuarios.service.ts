@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Usuario } from './schema/usuario.schema';
 import { AuthService } from '../auth/auth.service';
 import * as bcrypt from 'bcrypt';
+import { UsuarioDto } from './dto/usuario.dto';
 
 
 @Injectable()
@@ -20,34 +21,41 @@ export class UsuariosService {
     }
 
 
-    async crearUsuario(datos: any, token: string) {
+    async crearUsuario(datos: UsuarioDto, token: string) {
 
-    await this.authService.verificarAdmin(token);
+        await this.authService.verificarAdmin(token);
 
-    const usuarioExistente = await this.usuarioModel.findOne({
-        email: datos.email
-    });
+        const usuarioExistente = await this.usuarioModel.findOne({ email: datos.email });
 
-    if (usuarioExistente) {
-        throw new UnauthorizedException('El email ya está registrado');
-    }
+        if (usuarioExistente) {
+            throw new ConflictException('El email ya está registrado');
+        }
 
-    const hash = await bcrypt.hash(datos.password, 10);
+        const encriptada = await bcrypt.hash(datos.password, 10);
 
-    const nuevoUsuario = await this.usuarioModel.create({
-        nombre: datos.nombre,
-        apellido: datos.apellido,
-        email: datos.email,
-        nombreUsuario: datos.nombreUsuario,
-        password: hash,
-        fechaNacimiento: datos.fechaNacimiento,
-        descripcion: datos.descripcion,
-        imagenPerfil: datos.imagenPerfil,
-        perfil: datos.perfil || 'usuario',
-        habilitado: true
-    });
+        const nuevoUsuario = new this.usuarioModel({
+            nombre: datos.nombre,
+            apellido: datos.apellido,
+            email: datos.email,
+            nombreUsuario: datos.nombreUsuario,
+            password: encriptada,
+            fechaNacimiento: datos.fechaNacimiento,
+            descripcion: datos.descripcion,
+            imagenPerfil: datos.imagenPerfil,
+            perfil: datos.perfil || 'usuario',
+            habilitado: true
+        });
 
-    return nuevoUsuario;
+        await nuevoUsuario.save()
+        
+        const usuarioObj = nuevoUsuario.toObject();
+
+        const { password, ...usuarioSinPassword } = usuarioObj;
+
+        return {
+            message: 'Usuario creado!',
+            usuario: usuarioSinPassword
+        }
     }
 
     async actualizarUsuario(id: string, datos: any, token: string){

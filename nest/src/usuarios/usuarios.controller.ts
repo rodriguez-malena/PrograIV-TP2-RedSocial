@@ -3,6 +3,7 @@ import { UsuariosService } from './usuarios.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { crearStorageCloudinary } from '../cloudinary/cloudinary.storage';
 import type { Request } from 'express';
+import { UsuarioDto } from './dto/usuario.dto';
 
 
 @Controller('usuarios')
@@ -21,11 +22,11 @@ export class UsuariosController {
     })
     )
 
-    crearUsuario(@Req() req: Request, @UploadedFile() archivo: Express.Multer.File, @Body() body: any) {
+    crearUsuario(@Req() req: Request, @UploadedFile() archivo: Express.Multer.File, @Body() body: UsuarioDto) {
         if(archivo){
             body.imagenPerfil = archivo.path
         }
-        
+
         return this.usuarioService.crearUsuario(body, req.cookies.token);
     }
 

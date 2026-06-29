@@ -16,7 +16,7 @@ export class UsuarioService {
   
   }
 
-  crearUsuario(datos: any) {
+  crearUsuario(datos: FormData) {
     return this.http.post<Usuario>(`${this.url}/usuarios`,datos, { withCredentials: true });
   }
 

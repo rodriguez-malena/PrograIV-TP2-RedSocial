@@ -25,8 +25,8 @@ export class DashboardUsuarios implements OnInit{
 
   ngOnInit(): void {
     this.formularioUsuario = this.fb.group({
-       nombre: ["", [Validators.required, Validators.pattern('/^(?!\s*$)[a-zA-ZÀ-ÿ\\s]+$/'), Validators.minLength(4), Validators.maxLength(15)]], 
-        apellido: ["", [Validators.required, Validators.pattern('/^(?!\s*$)[a-zA-ZÀ-ÿ\\s]+$/'),  Validators.minLength(4), Validators.maxLength(20)]],
+       nombre: ["", [Validators.required, Validators.pattern('/^(?!\s*$)[a-zA-ZÀ-ÿ\s]+$/'), Validators.minLength(4), Validators.maxLength(15)]], 
+        apellido: ["", [Validators.required, Validators.pattern('/^(?!\s*$)[a-zA-ZÀ-ÿ\s]+$/'),  Validators.minLength(4), Validators.maxLength(20)]],
         email: ["", [Validators.required, Validators.email, Validators.maxLength(30)]],
         nombreUsuario: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
         fechaNacimiento: ["",[Validators.required, fechaValidator()]],
@@ -49,6 +49,7 @@ export class DashboardUsuarios implements OnInit{
  
 
   crearUsuario(){
+    
      if (this.formularioUsuario.invalid) {
       this.formularioUsuario.markAllAsTouched();
       return;
@@ -90,8 +91,10 @@ export class DashboardUsuarios implements OnInit{
           });
 
           this.formularioUsuario.reset({
-            perfil: 'usuario'
+            perfil: 'usuario',
+            imagenPerfil: null,
           });
+          this.nombreArchivo = 'Ningún archivo seleccionado';
 
           this.cargarUsuarios();
 
