@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,11 @@ export const routes: Routes = [
     {
         path:'publicaciones',
         loadComponent: () => import('./components/publicaciones/publicaciones').then(m => m.Publicaciones)
+    },
+    {
+        path:'dashnnoard-usuarios',
+        loadComponent: () => import('./components/dashboard-usuarios/dashboard-usuarios').then(m => m.DashboardUsuarios),
+        canActivate: [adminGuard]
     },
     {
         path:'**',

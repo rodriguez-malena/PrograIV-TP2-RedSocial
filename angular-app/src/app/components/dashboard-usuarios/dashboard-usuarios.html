@@ -1,0 +1,151 @@
+<div class="dashboard">
+
+  <h1>Dashboard de Usuarios</h1>
+
+  <!-- Formulario -->
+  <div class="card">
+
+    <h2>Nuevo usuario</h2>
+
+    <form [formGroup]="formularioUsuario" (ngSubmit)="crearUsuario()">
+
+      <input
+        type="text"
+        formControlName="nombre"
+        placeholder="Nombre">
+
+      <input
+        type="text"
+        formControlName="apellido"
+        placeholder="Apellido">
+
+      <input
+        type="text"
+        formControlName="nombreUsuario"
+        placeholder="Nombre de usuario">
+
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Email">
+
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Contraseña">
+
+      <input
+        type="date"
+        formControlName="fechaNacimiento">
+
+      <textarea
+        formControlName="descripcion"
+        placeholder="Descripción">
+      </textarea>
+
+      <div class="roles">
+
+        <label>
+          <input
+            type="radio"
+            value="usuario"
+            formControlName="perfil">
+          Usuario
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            value="admin"
+            formControlName="perfil">
+          Administrador
+        </label>
+
+      </div>
+
+      <button type="submit">
+        Crear usuario
+      </button>
+
+    </form>
+
+  </div>
+
+  <!-- Tabla -->
+
+  <div class="card">
+
+    <h2>Usuarios registrados</h2>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Nombre</th>
+          <th>Usuario</th>
+          <th>Email</th>
+          <th>Perfil</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        @for(usuario of usuarios(); track usuario._id){
+
+          <tr>
+
+            <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+
+            <td>{{usuario.nombreUsuario}}</td>
+
+            <td>{{usuario.email}}</td>
+
+            <td>{{usuario.perfil}}</td>
+
+            <td>
+
+              @if(usuario.habilitado){
+                Activo
+              } @else {
+                Deshabilitado
+              }
+
+            </td>
+
+            <td>
+
+              @if(usuario.habilitado){
+
+                <button
+                  class="btn-deshabilitar"
+                  (click)="deshabilitar(usuario)">
+                  Deshabilitar
+                </button>
+
+              } @else {
+
+                <button
+                  class="btn-habilitar"
+                  (click)="habilitar(usuario)">
+                  Habilitar
+                </button>
+
+              }
+
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>

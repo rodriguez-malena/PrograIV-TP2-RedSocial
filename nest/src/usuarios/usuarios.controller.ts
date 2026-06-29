@@ -14,6 +14,21 @@ export class UsuariosController {
         return this.usuarioService.obtenerUsuarios(req.cookies.token);
     }
 
+    @Post()
+    @UseInterceptors(
+        FileInterceptor('imagenPerfil',{
+        storage: crearStorageCloudinary('red-social-perfiles')
+    })
+    )
+
+    crearUsuario(@Req() req: Request, @UploadedFile() archivo: Express.Multer.File, @Body() body: any) {
+        if(archivo){
+            body.imagenPerfil = archivo.path
+        }
+        
+        return this.usuarioService.crearUsuario(body, req.cookies.token);
+    }
+
     @Put(':id')
     @UseInterceptors(
         FileInterceptor('imagenPerfil',{
@@ -29,6 +44,8 @@ export class UsuariosController {
         
         return this.usuarioService.actualizarUsuario(id, body, req.cookies.token);
     }
+
+
 
     @Delete(':id')
     deshabilitarUsuario(@Req() req: Request, @Param('id') id: string){

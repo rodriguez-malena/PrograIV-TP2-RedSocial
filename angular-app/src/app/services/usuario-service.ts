@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Usuario } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +12,16 @@ export class UsuarioService {
   constructor(private http: HttpClient){}
 
   obtenerUsuarios(){   
-    return this.http.get(`${this.url}/usuarios/`, { withCredentials: true })
+    return this.http.get<Usuario[]>(`${this.url}/usuarios/`, { withCredentials: true })
   
   }
 
+  crearUsuario(datos: any) {
+    return this.http.post<Usuario>(`${this.url}/usuarios`,datos, { withCredentials: true });
+  }
+
   actualizarUsuario(usuarioId: string, datos: any){
-    return this.http.put(`${this.url}/usuarios/${usuarioId}`, datos, {withCredentials: true});
+    return this.http.put<Usuario>(`${this.url}/usuarios/${usuarioId}`, datos, {withCredentials: true});
   }
 
 
@@ -24,8 +29,10 @@ export class UsuarioService {
     return this.http.delete(`${this.url}/usuarios/${usuarioId}`, { withCredentials: true })
   }
 
-  habilitar(usuarioId: string){
+  habilitarUsuario(usuarioId: string){
     return this.http.post(`${this.url}/usuarios/${usuarioId}/habilitar`,{}, { withCredentials: true })
   }
+
+
 }
 

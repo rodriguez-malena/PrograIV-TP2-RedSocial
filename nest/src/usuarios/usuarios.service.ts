@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Usuario } from './schema/usuario.schema';
 import { AuthService } from '../auth/auth.service';
-
+import * as bcrypt from 'bcrypt';
 
 
 @Injectable()
@@ -17,6 +17,37 @@ export class UsuariosService {
     async obtenerUsuarios(token: string){
         await this.authService.verificarAdmin(token)
         return  this.usuarioModel.find().select('-password');
+    }
+
+
+    async crearUsuario(datos: any, token: string) {
+
+    await this.authService.verificarAdmin(token);
+
+    const usuarioExistente = await this.usuarioModel.findOne({
+        email: datos.email
+    });
+
+    if (usuarioExistente) {
+        throw new UnauthorizedException('El email ya está registrado');
+    }
+
+    const hash = await bcrypt.hash(datos.password, 10);
+
+    const nuevoUsuario = await this.usuarioModel.create({
+        nombre: datos.nombre,
+        apellido: datos.apellido,
+        email: datos.email,
+        nombreUsuario: datos.nombreUsuario,
+        password: hash,
+        fechaNacimiento: datos.fechaNacimiento,
+        descripcion: datos.descripcion,
+        imagenPerfil: datos.imagenPerfil,
+        perfil: datos.perfil || 'usuario',
+        habilitado: true
+    });
+
+    return nuevoUsuario;
     }
 
     async actualizarUsuario(id: string, datos: any, token: string){
