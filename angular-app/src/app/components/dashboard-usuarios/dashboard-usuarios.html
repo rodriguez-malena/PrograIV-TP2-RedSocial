@@ -2,170 +2,160 @@
 
   <h1>Dashboard de Usuarios</h1>
 
-  <!-- Formulario -->
   <div class="card">
 
     <h2>Nuevo usuario</h2>
 
     <form [formGroup]="formularioUsuario" (ngSubmit)="crearUsuario()">
 
-      <input
-        type="text"
-        formControlName="nombre"
-        placeholder="Nombre">
-        @if (nombre.touched && nombre.hasError('pattern')) {
-            <small class="text-danger">Sólo debe contener letras</small>
-        }
-  
-        @if (nombre.touched && nombre.hasError('minlength')) {
-            <small class="text-danger">Mínimo {{nombre.getError('minlength')?.requiredLength}} caracteres</small>
-        }
-  
-        @if (nombre.touched && nombre.hasError('maxlength')) {
-            <small class="text-danger">Máximo {{nombre.getError('maxlength')?.requiredLength}} caracteres</small>
-        }
-  
-        @if (nombre.touched && nombre.hasError('required')) {
-            <small class="text-danger">El nombre es obligatorio</small>
-        }
+      <div class="row">
 
-      <input
-        type="text"
-        formControlName="apellido"
-        placeholder="Apellido">
-        @if (apellido.touched && apellido.hasError('pattern')) { 
-            <small class="text-danger">Sólo debe contener letras</small>
-        }
-  
-        @if (apellido.touched && apellido.hasError('minlength')) {
-            <small class="text-danger">Mínimo {{apellido.getError('minlength')?.requiredLength}} caracteres</small>
-        }
-  
-        @if (apellido.touched && apellido.hasError('maxlength')) {
-            <small class="text-danger">Máximo {{apellido.getError('maxlength')?.requiredLength}} caracteres</small>
-        }
-  
-        @if (apellido.touched && apellido.hasError('required')) {
-            <small class="text-danger">El apellido es obligatorio</small>
-        }
+        <div class="col">
 
-      <input
-        type="text"
-        formControlName="nombreUsuario"
-        placeholder="Nombre de usuario">
-        @if (nombreUsuario.touched && nombreUsuario.hasError('required')) {
-            <small class="text-danger">El nombre de usuario es obligatorio</small>
-        }
-        @if (nombreUsuario.touched && nombreUsuario.hasError('minlength')) { 
-            <small class="text-danger">Debe tener como mínimo {{nombreUsuario.getError('minlength').requiredLength}} caracteres</small>
-        }
-        @if (nombreUsuario.touched && nombreUsuario.hasError('maxlength')) { 
-            <small class="text-danger">Solo se permiten {{nombreUsuario.getError('maxlength').requiredLength}} caracteres</small>
-        }
+          <!-- NOMBRE -->
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre">
 
-      <input
-        type="email"
-        formControlName="email"
-        placeholder="Email">
-        @if (email.touched && email.hasError('required') ) {
-            <small class="text-danger">El email es obligatorio</small>
-        }
-        @if (email.touched && email.hasError('email')) {
-            <small class="text-danger">Formato inválido</small>
-        }
-        @if (email.touched && email.hasError('maxlength')) {
-            <small class="text-danger">Máximo {{email.getError('maxlength').requiredLength}} caracteres permitidos</small>
-        }
+            @if (nombre.touched && nombre.hasError('required')) {
+              <small class="text-danger">El nombre es obligatorio</small>
+            }
+            @if (nombre.touched && nombre.hasError('pattern')) {
+              <small class="text-danger">Solo letras</small>
+            }
+            @if (nombre.touched && nombre.hasError('minlength')) {
+              <small class="text-danger">Mínimo {{nombre.getError('minlength')?.requiredLength}} caracteres</small>
+            }
+            @if (nombre.touched && nombre.hasError('maxlength')) {
+              <small class="text-danger">Máximo {{nombre.getError('maxlength')?.requiredLength}} caracteres</small>
+            }
+          </div>
 
-      <input
-        type="password"
-        formControlName="password"
-        placeholder="Contraseña">
-        @if (password.touched && password.hasError('required')) {
-            <small class="text-danger">La password es obligatoria</small>
-        }
-        @if (password.touched && password.hasError('minlength')) { 
-            <small class="text-danger">La password debe tener mínimo {{password.getError('minlength').requiredLength}} caracteres</small>
-        }
-    
-        @if (password.touched && password.hasError('pattern')) {
-            <small class="text-danger">La password debe contener al menos una letra mayúscula y un número</small>
-        }
-    
-        @if (password.touched && password.hasError('maxlength')) {
-            <small class="text-danger">Máximo {{password.getError('maxlength').requiredLength}} caracteres permitidos</small>
-        }
+          <!-- APELLIDO -->
+          <div class="form-group">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control" formControlName="apellido">
 
-      <input
-        type="date"
-        formControlName="fechaNacimiento">
-        @if (fechaNacimiento.touched && fechaNacimiento.hasError('required')) {
-            <small class="text-danger">La fecha de nacimiento es obligatoria</small>
-        }
-  
-        @if (fechaNacimiento.touched && fechaNacimiento.hasError('fechaFutura')) {
-            <small class="text-danger">La fecha de nacimiento es inválida</small>
-        }
-  
-        @if (fechaNacimiento.hasError('edadMaxima') && fechaNacimiento.touched) {
-            <small class="text-danger">La edad máxima permitida es 100 años</small>
-        }
+            @if (apellido.touched && apellido.hasError('required')) {
+              <small class="text-danger">El apellido es obligatorio</small>
+            }
+            @if (apellido.touched && apellido.hasError('pattern')) {
+              <small class="text-danger">Solo letras</small>
+            }
+            @if (apellido.touched && apellido.hasError('minlength')) {
+              <small class="text-danger">Mínimo {{apellido.getError('minlength')?.requiredLength}}</small>
+            }
+            @if (apellido.touched && apellido.hasError('maxlength')) {
+              <small class="text-danger">Máximo {{apellido.getError('maxlength')?.requiredLength}}</small>
+            }
+          </div>
 
-      <textarea formControlName="descripcion" placeholder="Descripción"></textarea>
-        @if (descripcion.touched && descripcion.hasError('required')) {
-            <small class="text-danger">La descripcion es obligatoria</small>
-        }
-  
-        @if (descripcion.touched && descripcion.hasError('minlength')) { 
-            <small class="text-danger">Debe tener como mínimo {{descripcion.getError('minlength').requiredLength}} caracteres</small>
-        }
-  
-        @if (formEnviado && descripcion.hasError('maxlength'))  { 
-            <small class="text-danger">Solo se permiten hasta {{descripcion.getError('maxlength').requiredLength}} caracteres</small>
-        }
-      
-         <div class="form-group">
-              <label class="form-label" for="imagenPerfil">Foto de perfil</label>
-                <label class="box-carga-imagen">
-  
-                  <input type="file" id="imagenPerfil" accept=".png, .jpg, .jpeg" (change)="seleccionarImagen($event)" >
-                    <div class="carga-contenido">
-                      
-                      <img src="subir-imagen.png" class="carga-icono" alt="">
-  
-                      <span>Subir imagen <br> <small>PNG, JPG o JPEG</small></span>
-                      <small class="nombre-archivo">{{ nombreArchivo }}</small>
-  
-                    </div>
-  
-                  </label>
-                  @if (formEnviado && imagenPerfil.hasError('required')) {
-                    <small class="text-danger">La foto de perfil es obligatoria</small>
-                  }
-            </div> 
-    
+          <!-- EMAIL -->
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email">
 
-      <div class="roles">
+            @if (email.touched && email.hasError('required')) {
+              <small class="text-danger">Email obligatorio</small>
+            }
+            @if (email.touched && email.hasError('email')) {
+              <small class="text-danger">Email inválido</small>
+            }
+          </div>
 
-        <label>
-          <input
-            type="radio"
-            value="usuario"
-            formControlName="perfil">
-          Usuario
-        </label>
+          <!-- USERNAME -->
+          <div class="form-group">
+            <label class="form-label">Nombre de usuario</label>
+            <input type="text" class="form-control" formControlName="nombreUsuario">
 
-        <label>
-          <input
-            type="radio"
-            value="admin"
-            formControlName="perfil">
-          Administrador
-        </label>
+            @if (nombreUsuario.touched && nombreUsuario.hasError('required')) {
+              <small class="text-danger">Obligatorio</small>
+            }
+          </div>
 
+          <!-- PASSWORD -->
+          <div class="form-group">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password">
+
+            @if (password.touched && password.hasError('required')) {
+              <small class="text-danger">Obligatoria</small>
+            }
+            @if (password.touched && password.hasError('pattern')) {
+              <small class="text-danger">Debe tener mayúscula y número</small>
+            }
+            @if (password.touched && password.hasError('minlength')) {
+              <small class="text-danger">Mínimo {{password.getError('minlength')?.requiredLength}}</small>
+            }
+          </div>
+
+        </div>
+
+        <div class="col">
+
+          <!-- FECHA -->
+          <div class="form-group">
+            <label class="form-label">Fecha de nacimiento</label>
+            <input type="date" class="form-control" formControlName="fechaNacimiento">
+
+            @if (fechaNacimiento.touched && fechaNacimiento.hasError('required')) {
+              <small class="text-danger">Obligatoria</small>
+            }
+            @if (fechaNacimiento.hasError('fechaFutura') && fechaNacimiento.touched) {
+              <small class="text-danger">Fecha inválida</small>
+            }
+          </div>
+
+          <!-- DESCRIPCION -->
+          <div class="form-group">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" formControlName="descripcion"></textarea>
+
+            @if (descripcion.touched && descripcion.hasError('required')) {
+              <small class="text-danger">Obligatoria</small>
+            }
+          </div>
+
+          <!-- IMAGEN -->
+          <div class="form-group">
+            <label class="form-label">Foto de perfil</label>
+
+            <label class="box-carga-imagen">
+
+              <input type="file" (change)="seleccionarImagen($event)" accept="image/*">
+
+              <div class="carga-contenido">
+                <img src="subir-imagen.png" class="carga-icono">
+                <span>Subir imagen</span>
+                <small>{{ nombreArchivo }}</small>
+              </div>
+
+            </label>
+
+            @if (imagenPerfil.hasError('required')) {
+              <small class="text-danger">Imagen obligatoria</small>
+            }
+          </div>
+
+          <!-- ROL -->
+          <div class="form-group roles">
+
+            <label>
+              <input type="radio" value="usuario" formControlName="perfil">
+              Usuario
+            </label>
+
+            <label>
+              <input type="radio" value="admin" formControlName="perfil">
+              Administrador
+            </label>
+
+          </div>
+
+        </div>
       </div>
 
-      <button type="submit">
+      <button type="submit" class="btn-crear">
         Crear usuario
       </button>
 
