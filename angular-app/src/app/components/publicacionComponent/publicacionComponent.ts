@@ -115,12 +115,17 @@ export class PublicacionComponent {
   }
 
   cancelarEdicion() {
-  this.comentarioEditandoId = null;
-  this.comentarioEditado.reset();
+    this.comentarioEditandoId = null;
+    this.comentarioEditado.reset();
   }
 
 
   guardarEdicion(comentarioId: string) {
+    
+    if (this.comentarioEditado.invalid) {
+      this.comentarioEditado.markAsTouched();
+      return;
+    }
 
     const nuevoMensaje = this.comentarioEditado.value;
 
