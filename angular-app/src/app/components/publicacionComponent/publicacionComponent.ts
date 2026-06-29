@@ -121,7 +121,7 @@ export class PublicacionComponent {
 
 
   guardarEdicion(comentarioId: string) {
-    
+
     if (this.comentarioEditado.invalid) {
       this.comentarioEditado.markAsTouched();
       return;

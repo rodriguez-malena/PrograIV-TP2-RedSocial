@@ -25,6 +25,11 @@ export class SessionService {
           showCancelButton: true,
           confirmButtonText: 'Sí, extender',
           cancelButtonText: 'Cerrar sesión',
+          timer: 20000,
+          timerProgressBar: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+
           customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
@@ -36,23 +41,40 @@ export class SessionService {
 
         if (respuesta.isConfirmed) {
 
-          this.auth.refrescar().subscribe(() => {
+          this.auth.refrescar().subscribe({
 
-            console.log('Token refrescado');
+            next: () => {
 
-            // Reinicia otros  segundos
-            this.iniciarTemporizador();
+              console.log('Token refrescado');
+  
+              // Reinicia otros  segundos
+              this.iniciarTemporizador();
+            },
 
-          }, () => {
+          error: async() => {
 
+            await Swal.fire({
+              icon: 'error',
+              title: 'Sesión terminada',
+              text: 'Tu sesión ya venció. Volvé a iniciar sesión.',
+              allowOutsideClick: false,
+
+              customClass: {
+                popup: 'swal-popup',
+                title: 'swal-titulo',
+                htmlContainer: 'swal-texto',
+                confirmButton: 'swal-confirm-btn'
+              }
+
+            });
             this.cerrarSesion();
+          }
 
           });
 
         } else {
 
           this.cerrarSesion();
-
         }
 
       }, 40000); // Avisa a los 40 segundos
