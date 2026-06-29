@@ -73,8 +73,23 @@ export class SessionService {
           });
 
         } else {
+           Swal.fire({
+              icon: 'info',
+              title: 'Sesión expirada',
+              text: 'Tu tiempo para extender la sesión terminó.',
+              allowOutsideClick: false,
+              timer: 20000,
 
+              customClass: {
+                popup: 'swal-popup',
+                title: 'swal-titulo',
+                htmlContainer: 'swal-texto',
+                confirmButton: 'swal-confirm-btn'
+              }
+
+            });
           this.cerrarSesion();
+
         }
 
       }, 40000); // Avisa a los 40 segundos
