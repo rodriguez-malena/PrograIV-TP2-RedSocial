@@ -17,6 +17,14 @@
                 Publicaciones
             </a>
         </li>
+
+        @if (usuario?.perfil === 'admin') {
+            <li>
+                <a routerLink="/dashboard-usuarios">
+                Dashboard
+                </a>
+            </li>
+        }
         <li>
             <a (click)="logout()">
                 <img src="cerrar-sesion.png" alt="Imagen de logout">

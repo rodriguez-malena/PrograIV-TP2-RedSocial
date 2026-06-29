@@ -12,7 +12,14 @@ export class Navbar {
 
   constructor(private sessionService: SessionService){}
 
-  
+
+  usuario: any;
+
+  ngOnInit() {
+    this.usuario = JSON.parse(sessionStorage.getItem('usuario') || 'null');
+  }
+
+    
   logout() {
     this.sessionService.cerrarSesion()
     
