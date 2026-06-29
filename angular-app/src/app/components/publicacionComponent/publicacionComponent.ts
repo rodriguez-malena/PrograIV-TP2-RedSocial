@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { ComentarioService } from '../../services/comentario-service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Comentario } from '../../interfaces/comentario';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -125,20 +126,29 @@ export class PublicacionComponent {
 
     if (!nuevoMensaje || !nuevoMensaje.trim()) return;
 
-    this.comentarioService
-      .editarComentario(comentarioId, { mensaje: nuevoMensaje })
-      .subscribe((actualizado: any) => {
+    this.comentarioService.editarComentario(comentarioId, { mensaje: nuevoMensaje }).subscribe((actualizado: any) => {
 
-        this.comentarios.update(lista =>
-          lista.map(c =>
-            c._id === comentarioId
-              ? { ...c, mensaje: actualizado.mensaje, modificado: true }
-              : c
-          )
-        );
-
+        this.comentarios.update(lista => lista.map(c =>
+          c._id === comentarioId ? { ...c, mensaje: actualizado.mensaje, modificado: true } : c));
+        });
+        
         this.cancelarEdicion();
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Comentario editado',
+          text: 'El comentario se actualizó correctamente.',
+          timer: 1500,
+          showConfirmButton: false,
+
+          customClass: {
+            popup: 'swal-popup',
+            title: 'swal-titulo',
+            htmlContainer: 'swal-texto',
+          }
       });
+
+    
   }
 
 /*-------------------
