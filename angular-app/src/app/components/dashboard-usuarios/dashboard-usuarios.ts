@@ -4,12 +4,13 @@ import { UsuarioService } from '../../services/usuario-service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { fechaValidator } from '../../validators/fechaValidator';
 import Swal from 'sweetalert2';
+import { RouterModule } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-dashboard-usuarios',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   templateUrl: './dashboard-usuarios.html',
   styleUrl: './dashboard-usuarios.css',
 })
@@ -49,7 +50,7 @@ export class DashboardUsuarios implements OnInit{
  
 
   crearUsuario(){
-    
+
      if (this.formularioUsuario.invalid) {
       this.formularioUsuario.markAllAsTouched();
       return;
