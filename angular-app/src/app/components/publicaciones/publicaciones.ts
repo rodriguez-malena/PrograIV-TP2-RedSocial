@@ -119,6 +119,7 @@ export class Publicaciones implements OnInit {
           icon: 'success',
           title: 'Se ha publicado tu post!',
           showConfirmButton: false,
+          timer: 1500,
            customClass: {
             popup: 'swal-popup',
             title: 'swal-titulo',
@@ -144,7 +145,8 @@ export class Publicaciones implements OnInit {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.error.message,
+            text: 'No se pudo realizar el posteo',
+            timer: 1500,
             customClass: {
               popup: 'swal-popup',
               title: 'swal-titulo',
@@ -259,6 +261,7 @@ export class Publicaciones implements OnInit {
                       title: 'Eliminada',
                       text: 'La publicación se eliminó correctamente',
                       showConfirmButton: false,
+                      timer: 1500,
 
                       customClass: {
                         popup: 'swal-popup',

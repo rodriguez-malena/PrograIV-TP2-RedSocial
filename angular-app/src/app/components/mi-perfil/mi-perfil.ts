@@ -114,6 +114,7 @@ export class MiPerfil implements OnInit {
                 title: 'Eliminada',
                 text: 'La publicación se eliminó correctamente',
                 showConfirmButton: false,
+                timer: 1500,
               
                 customClass: {
                               popup: 'swal-popup',
@@ -191,6 +192,7 @@ export class MiPerfil implements OnInit {
         title:'Perfil actualizado',
         text: 'Los cambios se guardaron',
         showConfirmButton: false,
+        timer: 1500,
         
         customClass: {
           popup: 'swal-popup',

@@ -82,6 +82,7 @@ export class Login  implements OnInit{
         title: 'Usuario inexistente',
         text: 'Usuario o contraseña incorrectos',
         showConfirmButton: false,
+        timer: 1500,
 
         customClass: {
             popup: 'swal-popup',

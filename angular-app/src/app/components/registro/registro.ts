@@ -129,6 +129,7 @@ export class Registro implements OnInit {
           title: 'Registro exitoso',
           text: 'Usuario creado correctamente',
           showConfirmButton: false,
+          timer: 1500,
 
           customClass: {
             popup: 'swal-popup',
@@ -148,8 +149,9 @@ export class Registro implements OnInit {
       Swal.fire({
           icon: 'error',
           title: 'Error',
-          text:  Array.isArray(error.error.message)? error.error.message[0] : error.error.message,
+          text: 'No pudo completarse el registro, vuelva a intentar',
           showConfirmButton: false,
+          timer: 1500,
 
           customClass: {
             popup: 'swal-popup',
