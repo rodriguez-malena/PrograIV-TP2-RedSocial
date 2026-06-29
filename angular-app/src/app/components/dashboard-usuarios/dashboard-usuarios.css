@@ -46,6 +46,16 @@ textarea {
 }
 
 
+.text-danger {
+  display: block;
+  color: #c0392b;
+  margin-top: 7px;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
 
 
 form button {
@@ -133,7 +143,7 @@ tbody tr:hover {
 }
 
 .btn-habilitar:hover {
-  background: #1f8d4d;
+  background: hsl(145, 64%, 34%);
 }
 
 @media (max-width: 768px) {

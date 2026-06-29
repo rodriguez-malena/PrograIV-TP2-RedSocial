@@ -18,7 +18,9 @@ export class DashboardUsuarios implements OnInit{
   
   usuarios = signal<Usuario[]>([]);
   formularioUsuario!: FormGroup
-     nombreArchivo: string = 'Ningún archivo seleccionado';
+  nombreArchivo: string = 'Ningún archivo seleccionado';
+  formEnviado = false;
+
 
 
   constructor(private usuarioService: UsuarioService, 
@@ -90,6 +92,9 @@ export class DashboardUsuarios implements OnInit{
             }
 
           });
+          
+          this.formEnviado = true;
+
 
           this.formularioUsuario.reset({
             perfil: 'usuario',
