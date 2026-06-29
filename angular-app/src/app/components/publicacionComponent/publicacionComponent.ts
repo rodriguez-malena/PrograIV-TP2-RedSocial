@@ -42,16 +42,21 @@ export class PublicacionComponent {
 /*--------------------------------
   Vista de comentarios 
 ----------------------------------*/
+
   inicializarComentarios() {
     this.offset = 0;
     this.comentarios.set([])
     this.totalComentarios.set(0)
+
     this.cargarComentarios();
   }
 
   cargarComentarios(){
 
+    console.log('Offset', this.offset)
     this.comentarioService.obtenerComentarios(this.publicacion._id, this.offset, this.limit).subscribe((respuesta) => {
+      
+     
       console.log('Respuesta', respuesta)
 
       this.comentarios.update(actual=> [...actual, ...respuesta.comentarios])
@@ -89,9 +94,8 @@ export class PublicacionComponent {
       usuarioId: this.usuarioId
     }
 
-    this.comentarioService.crearComentario(datos).subscribe((respuesta: Comentario)=> {
+    this.comentarioService.crearComentario(datos).subscribe(() => {
     
-      this.comentarios.update(actual => [respuesta, ...actual])
       this.comentarioControl.setValue('')
       this.inicializarComentarios();
 
@@ -141,7 +145,7 @@ export class PublicacionComponent {
 Acciones del modal Post
 --------------------*/
   abrirPost() {
-    console.log('Abriendo', this.publicacion._id);
+    console.log('Abriendo publicacion: ', this.publicacion._id);
 
     this.postAbierto = true;
     this.inicializarComentarios();
