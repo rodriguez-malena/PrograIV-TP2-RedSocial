@@ -124,23 +124,26 @@
             <small class="text-danger">Solo se permiten hasta {{descripcion.getError('maxlength').requiredLength}} caracteres</small>
         }
       
-
-    <label class="box-carga-imagen">
-
-      <input type="file" id="imagenPerfil" accept=".png, .jpg, .jpeg" (change)="seleccionarImagen($event)" >
-            <div class="carga-contenido">
+         <div class="form-group">
+              <label class="form-label" for="imagenPerfil">Foto de perfil</label>
+                <label class="box-carga-imagen">
+  
+                  <input type="file" id="imagenPerfil" accept=".png, .jpg, .jpeg" (change)="seleccionarImagen($event)" >
+                    <div class="carga-contenido">
                       
-            <img src="subir-imagen.png" class="carga-icono" alt="">
+                      <img src="subir-imagen.png" class="carga-icono" alt="">
   
-                <span>Subir imagen <br> <small>PNG, JPG o JPEG</small></span>
-                <small class="nombre-archivo">{{ nombreArchivo }}</small>
+                      <span>Subir imagen <br> <small>PNG, JPG o JPEG</small></span>
+                      <small class="nombre-archivo">{{ nombreArchivo }}</small>
+  
+                    </div>
+  
+                  </label>
+                  @if (formEnviado && imagenPerfil.hasError('required')) {
+                    <small class="text-danger">La foto de perfil es obligatoria</small>
+                  }
+            </div> 
     
-            </div>
-    </label>
-  
-    @if (formEnviado && imagenPerfil.hasError('required')) {
-        <small class="text-danger">La foto de perfil es obligatoria</small>
-    }
 
       <div class="roles">
 
