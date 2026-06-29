@@ -37,7 +37,7 @@ export const routes: Routes = [
     {
         path:'dashboard-usuarios',
         loadComponent: () => import('./components/dashboard-usuarios/dashboard-usuarios').then(m => m.DashboardUsuarios),
-        canActivate: [adminGuard]
+        //canActivate: [adminGuard]
     },
     {
         path:'**',
