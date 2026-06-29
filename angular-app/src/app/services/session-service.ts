@@ -75,8 +75,8 @@ export class SessionService {
         } else {
            Swal.fire({
               icon: 'info',
-              title: 'Sesión expirada',
-              text: 'Tu tiempo para extender la sesión terminó.',
+              title: 'Sesión terminada',
+              text: 'Se ha cerrado la sesión',
               allowOutsideClick: false,
               timer: 20000,
 
