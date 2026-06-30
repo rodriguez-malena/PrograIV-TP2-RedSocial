@@ -22,24 +22,16 @@ export class AuthService {
         const existeUsuario = await this.usuarioModel.findOne({ nombreUsuario: datos.nombreUsuario });
 
         if(existeEmail){
-            throw new ConflictException(
-                'El email ya esta registrado'
-            )
+            throw new ConflictException('El email ya esta registrado')
         }
 
         if(existeUsuario){
-            throw new ConflictException(
-                'El nombre de usuario ya existe'
-            )
+            throw new ConflictException('El nombre de usuario ya existe')
         }
-
 
         const encriptada = await bcrypt.hash(datos.password, 10)
         
-        const usuario = new this.usuarioModel({
-            ...datos,
-            password: encriptada
-        });
+        const usuario = new this.usuarioModel({ ...datos, password: encriptada });
         
         await usuario.save();
 
@@ -95,7 +87,7 @@ export class AuthService {
 
     async autorizar(token: string) {
     try {
-        const payload = this.jwtService.verify(token); //validación del token y de la expiracion, devuelvbe payload si cumple
+        const payload = this.jwtService.verify(token); //validación del token y de la expiracion, devuelve payload si cumple
 
         const usuario = await this.usuarioModel.findById(payload.sub).select('-password')       
 
@@ -115,10 +107,10 @@ export class AuthService {
             const payload = this.jwtService.verify(token);
 
             const newPayload = {
-            sub: payload.sub,
-            email: payload.email,
-            username: payload.username,
-            rol: payload.rol
+                sub: payload.sub,
+                email: payload.email,
+                username: payload.username,
+                rol: payload.rol
             };
 
             return {
