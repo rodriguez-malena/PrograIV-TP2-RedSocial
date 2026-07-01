@@ -64,13 +64,15 @@
     <div class="modal">
 
       <div class="modal-left">
+        <div class="imagen-container">
 
-        <img [src]="publicacion.imagen" class="modal-img">
-
-        <div class="modal-info">
-          <strong>@{{ publicacion.nombreUsuario }}</strong>
-          <p>{{ publicacion.descripcion }}</p>
-          <small>{{ publicacion.fechaCreacion | tiempoTranscurrido}}</small>
+          <img [src]="publicacion.imagen" class="modal-img">
+          
+          <div class="modal-info">
+            <strong>@{{ publicacion.nombreUsuario }}</strong>
+            <p>{{ publicacion.descripcion }}</p>
+            <small>{{ publicacion.fechaCreacion | tiempoTranscurrido}}</small>
+          </div>
         </div>
 
       </div>
