@@ -64,7 +64,7 @@
 
       <div class="modal-left">
 
-        <img [src]="publicacion.imagen" class="modal-img">
+        <img [src]="publicacion.imagen" [appImagenBrillante]="publicacion.cantidadLikes" class="modal-img">
 
         <div class="modal-info">
           <strong>@{{ publicacion.nombreUsuario }}</strong>
