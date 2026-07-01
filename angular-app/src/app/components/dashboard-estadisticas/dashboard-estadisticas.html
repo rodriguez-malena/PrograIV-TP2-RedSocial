@@ -32,46 +32,37 @@
       </button>
 
     </form>
-
-    <div class="card">
-      @if (loadingPosts) {
-        <div class="chart-container loading">
-          <p>Cargando gráfico...</p>
-        </div>
-    } @else{
-      <div class="chart-container">
-        <canvas #chartPosts></canvas>
+    
+    @if (!loading) {
+      <div class="chart-container loading">
+        <p>Seleccioná un rango de fechas para ver las estadísticas</p>
       </div>
     }
-    </div>
 
-    <div class="card">
-      @if (loadingComentarios) {
-        <div class="chart-container loading">
-          <p>Cargando comentarios...</p>
-      </div>
-      } @else {
-        
+    @if (loading) {
+      <div class="card">
         <div class="chart-container">
-          <canvas #chartComentarios></canvas>
+          <canvas #chartPosts></canvas>
         </div>
-      }
-    </div>
+      </div>
+    }
 
-    <div class="card">
-      @if (loadingComentariosPost) {
-        <div class="chart-container loading">
-          <p>Cargando datos...</p>
+    @if (loading) {
+      <div class="card">
+          <div class="chart-container">
+            <canvas #chartComentarios></canvas>
+          </div>
         </div>
-      } @else {
+    }
 
+    @if (loading) {
+      <div class="card">
         <div class="chart-container">
           <canvas #chartComentariosPost></canvas>
         </div>
+      </div>
       }
-    </div>
 
-    </div>
 
 </div>
 
