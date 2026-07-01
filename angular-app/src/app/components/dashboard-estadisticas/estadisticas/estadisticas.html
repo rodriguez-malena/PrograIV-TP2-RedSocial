@@ -1,0 +1,39 @@
+<div class="dashboard">
+
+  <div class="card">
+
+    <h2>Estadísticas</h2>
+
+    <form [formGroup]="formularioEstadistica" (ngSubmit)="buscar()">
+
+      <div class="fechas">
+
+        <div class="form-group">
+          <label>Desde</label>
+          <input type="date" formControlName="desde" class="form-control">
+           
+          @if (formularioEstadistica.hasError('rangoInvalido') && formularioEstadistica.touched) {
+            <small class="text-danger">
+                La fecha "Desde" no puede ser mayor que la fecha "Hasta".
+            </small>
+            }
+        
+        </div>
+
+        <div class="form-group">
+          <label>Hasta</label>
+          <input type="date" formControlName="hasta" class="form-control">
+            
+        </div>
+
+      </div>
+
+      <button type="submit">
+        Buscar
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
