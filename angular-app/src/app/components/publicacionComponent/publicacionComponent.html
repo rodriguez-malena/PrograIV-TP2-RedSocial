@@ -50,7 +50,7 @@
     
   </div>
   
-    <button *ngIf="esAdmin && !publicacion.eliminada"  class="btn-eliminar">
+    <button [appBotonEliminarAdmin]="esAdmin" class="btn-eliminar">
       Eliminar 
     </button>
   
