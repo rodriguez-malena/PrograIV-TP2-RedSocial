@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EstadisticasService } from '../../services/estadisticas-service';
 import { rangoFechasValidator } from '../../validators/rangoFechasValidator';
@@ -17,6 +17,10 @@ export class DashboardEstadisticas implements OnInit {
   chartPosts: any;
   chartComentarios: any;
   chartComentariosPost: any;
+
+  @ViewChild('chartPosts') chartPostsRef!: ElementRef;
+  @ViewChild('chartComentarios') chartComentariosRef!: ElementRef;
+  @ViewChild('chartComentariosPost') chartComentariosPostRef!: ElementRef;
 
   constructor(private estadisticasService: EstadisticasService,
               private fb: FormBuilder){}
@@ -50,14 +54,15 @@ export class DashboardEstadisticas implements OnInit {
 
         this.chartPosts?.destroy();
 
-        this.chartPosts = new Chart('chartPosts', {
-          type: 'bar',
-          data: {
-            labels: res.map((r: any) => r.usuario),
-            datasets: [{
-              label: 'Publicaciones',
-              data: res.map((r: any) => r.publicaciones)
-            }]
+        this.chartPosts = new Chart(this.chartPostsRef.nativeElement,
+          {
+            type: 'bar',
+            data: {
+              labels: res.map((r: any) => r.usuario),
+              datasets: [{
+                label: 'Publicaciones',
+                data: res.map((r: any) => r.publicaciones)
+              }]
           }
         });
         
@@ -73,14 +78,15 @@ export class DashboardEstadisticas implements OnInit {
         console.log(res)
         this.chartComentarios?.destroy();
         
-        this.chartComentarios = new Chart('chartComentarios', {
-          type: 'line',
-          data: {
-            labels: ['Total'],
-            datasets: [{
-              label: 'Comentarios',
-              data: [res.total]
-            }]
+        this.chartComentarios = new Chart(this.chartComentariosRef.nativeElement,
+          {
+            type: 'line',
+            data: {
+              labels: ['Total'],
+              datasets: [{
+                label: 'Comentarios',
+                data: [res.total]
+              }]
           }
         })
     });
@@ -94,13 +100,14 @@ export class DashboardEstadisticas implements OnInit {
         console.log(res);
         this.chartComentariosPost?.destroy();
 
-        this.chartComentariosPost = new Chart('chartComentariosPost', {
-          type: 'pie',
-          data: {
-            labels: res.map((r: any) => r.titulo),
-            datasets: [{
-              data: res.map((r: any) => r.comentarios)
-            }]
+        this.chartComentariosPost = new Chart(this.chartComentariosPostRef.nativeElement,
+          {
+            type: 'pie',
+            data: {
+              labels: res.map((r: any) => r.titulo),
+              datasets: [{
+                data: res.map((r: any) => r.comentarios)
+              }]
           }
         });
       
