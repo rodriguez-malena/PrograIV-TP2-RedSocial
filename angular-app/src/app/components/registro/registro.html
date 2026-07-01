@@ -79,6 +79,10 @@
               @if (nombreUsuario.touched && nombreUsuario.hasError('minlength')) { 
                 <small class="text-danger">Debe tener como mínimo {{nombreUsuario.getError('minlength').requiredLength}} caracteres</small>
               }
+
+              @if (nombreUsuario.touched && nombreUsuario.hasError('pattern')) {
+                <small class="text-danger">Solo letras</small>
+              }
   
               @if (nombreUsuario.touched && nombreUsuario.hasError('maxlength')) { 
                 <small class="text-danger">Solo se permiten {{nombreUsuario.getError('maxlength').requiredLength}} caracteres</small>

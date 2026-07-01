@@ -30,7 +30,6 @@
             }
           </div>
 
-          <!-- APELLIDO -->
           <div class="form-group">
             <label class="form-label">Apellido</label>
             <input type="text" class="form-control" formControlName="apellido">
@@ -49,7 +48,6 @@
             }
           </div>
 
-          <!-- EMAIL -->
           <div class="form-group">
             <label class="form-label">Email</label>
             <input type="email" class="form-control" formControlName="email">
@@ -65,7 +63,6 @@
               }
           </div>
 
-          <!-- USERNAME -->
           <div class="form-group">
             <label class="form-label">Nombre de usuario</label>
             <input type="text" class="form-control" formControlName="nombreUsuario">
@@ -73,6 +70,11 @@
             @if (nombreUsuario.touched && nombreUsuario.hasError('required')) {
               <small class="text-danger">Obligatorio</small>
             }
+
+            @if (nombreUsuario.touched && nombreUsuario.hasError('pattern')) {
+              <small class="text-danger">Solo letras</small>
+            }
+
             @if (nombreUsuario.touched && nombreUsuario.hasError('minlength')) { 
                 <small class="text-danger">Debe tener como mínimo {{nombreUsuario.getError('minlength').requiredLength}} caracteres</small>
               }
@@ -83,7 +85,6 @@
   
           </div>
 
-          <!-- PASSWORD -->
           <div class="form-group">
             <label class="form-label">Contraseña</label>
             <input type="password" class="form-control" formControlName="password">
@@ -151,7 +152,6 @@
             }
           </div>
 
-          <!-- ROL -->
           <div class="form-group roles">
 
             <label>
@@ -177,7 +177,6 @@
 
   </div>
 
-  <!-- Tabla -->
 
   <div class="card">
 
@@ -201,6 +200,7 @@
       <tbody>
 
         @for(usuario of usuarios(); track usuario._id){
+          
 
           <tr>
 
