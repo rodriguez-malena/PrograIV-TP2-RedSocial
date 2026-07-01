@@ -15,7 +15,7 @@ export class Publicacion extends Document {
     @Prop({ required: true })
     usuarioId: string;
 
-    @Prop({ timestamps: true  })
+    @Prop({ default: Date.now  })
     fechaCreacion: Date;
 
    @Prop({ required: true })

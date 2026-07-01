@@ -35,7 +35,7 @@ export class EstadisticasService {
 
             { // filtra publicaciones entre las fechas.
                 $match: {
-                createdAt: {
+                fechaCreacion: {
                     $gte: fechaDesde,
                     $lte: fechaHasta
                 },
@@ -45,18 +45,18 @@ export class EstadisticasService {
 
             { // agrupa x usuario creador y cuenta las que hizo
                 $group: {
-                _id: '$nombreUsuario',
-                publicaciones: {
-                    $sum: 1
+                    _id: '$nombreUsuario',
+                    publicaciones: {
+                        $sum: 1
                 }
                 }
             },
 
             { // devuelve solo lo que necesita el grafico
                 $project: {
-                _id: 0,
-                usuario: '$_id',
-                publicaciones: '1'
+                    _id: 0,
+                    usuario: '$_id',
+                    publicaciones: 1
                 }
             },
 
@@ -151,7 +151,7 @@ export class EstadisticasService {
 
             { // ordena d mayor a menor
                 $sort: {
-                    publicaciones: -1
+                    comentarios: -1
                 }
             }
 
