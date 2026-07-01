@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { Publicacion } from '../../interfaces/publicacion';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { ComentarioService } from '../../services/comentario-service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Comentario } from '../../interfaces/comentario';
@@ -13,7 +13,7 @@ import { ImagenBrillante } from '../../directivas/imagen-brillante';
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin, ImagenBrillante],
+  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin, ImagenBrillante, NgIf],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
