@@ -10,7 +10,11 @@ async function bootstrap() {
 
   app.use(cookieParser());
   app.enableCors({
-    origin: 'https://angular-tawny-kappa.vercel.app',
+    origin: [
+      'https://angular-tawny-kappa.vercel.app',
+      'http://localhost:3000',
+      'http://localhost:4200'
+    ],
     credentials: true,
     });
 
