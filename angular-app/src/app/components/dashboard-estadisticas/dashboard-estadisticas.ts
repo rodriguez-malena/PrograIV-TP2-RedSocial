@@ -83,11 +83,23 @@ export class DashboardEstadisticas implements OnInit {
           {
             type: 'line',
             data: {
-              labels: ['Total'],
+              labels: res.map((r: any) => r.fecha),
               datasets: [{
                 label: 'Comentarios',
-                data: [res.total]
+                data: res.map((r: any) => r.comentarios),
+                fill: false,
+                tension: 0.2
               }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { stepSize: 1}
+              }
+            }
           }
         })
     });
