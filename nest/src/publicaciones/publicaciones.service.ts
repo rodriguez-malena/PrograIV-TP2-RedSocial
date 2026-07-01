@@ -31,12 +31,11 @@ export class PublicacionesService {
         const filtro : any = {};
         //const filtro : any = { eliminada : false};
 
-         if (!esAdmin) {
-            filtro.eliminada = false;
-        }
-
-        if(usuarioId){
+         if (usuarioId) {
             filtro.usuarioId = usuarioId;
+            filtro.eliminada = false;
+        } else if (!esAdmin) {
+            filtro.eliminada = false;
         }
 
         const total = await this.publicacionModel.countDocuments(filtro);

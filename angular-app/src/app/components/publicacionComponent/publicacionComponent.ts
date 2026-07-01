@@ -14,7 +14,7 @@ import { ContadorCaracteresPipe } from '../../pipes/contador-caracteres-pipe';
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin, ImagenBrillante, NgIf, ContadorCaracteresPipe],
+  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin, ImagenBrillante, ContadorCaracteresPipe],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
