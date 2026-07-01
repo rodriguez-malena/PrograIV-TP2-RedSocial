@@ -1,0 +1,37 @@
+<div class="dashboard">
+
+  <div class="card">
+
+    <h2>Estadísticas</h2>
+
+    <form [formGroup]="formularioEstadisticas" (ngSubmit)="buscar()">
+
+      <div class="fechas">
+
+        <div class="form-group">
+          <label>Desde</label>
+          <input
+            type="date"
+            formControlName="desde"
+            class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label>Hasta</label>
+          <input
+            type="date"
+            formControlName="hasta"
+            class="form-control">
+        </div>
+
+      </div>
+
+      <button type="submit">
+        Buscar
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
