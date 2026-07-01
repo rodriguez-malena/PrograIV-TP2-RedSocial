@@ -7,12 +7,12 @@ import { Comentario } from '../../interfaces/comentario';
 import Swal from 'sweetalert2';
 import { TiempoTranscurridoPipe } from '../../pipes/tiempo-transcurrido-pipe';
 import { EstadoPublicacion } from '../../directivas/estado-publicacion';
-
+import { BotonEliminarAdmin } from '../../directivas/boton-eliminar-admin';
 
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion],
+  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
