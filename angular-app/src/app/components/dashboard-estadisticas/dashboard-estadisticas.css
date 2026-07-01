@@ -3,7 +3,6 @@
   min-height: 100vh;
   padding: 30px;
   font-family: 'Poppins', sans-serif;
-
   display: flex;
   justify-content: center;
 }
@@ -18,7 +17,6 @@
   box-shadow: 0 6px 20px rgba(95, 79, 57, 0.15);
 }
 
-/* título */
 h2 {
   font-family: 'Chonburi', serif;
   color: #5f4f39;
@@ -93,8 +91,8 @@ button:hover {
 /* FIX tamaño gráficos */
 .chart-container {
   width: 100%;
-  max-width: 750px;
-  height: 350px;
+  max-width: 650px;
+  height: 280px;
   margin: 0 auto;
 }
 

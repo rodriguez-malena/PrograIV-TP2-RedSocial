@@ -64,6 +64,10 @@ export class DashboardEstadisticas implements OnInit {
                 label: 'Publicaciones',
                 data: res.map((r: any) => r.publicaciones)
               }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false   
           }
         });
         
@@ -121,6 +125,10 @@ export class DashboardEstadisticas implements OnInit {
               datasets: [{
                 data: res.map((r: any) => r.comentarios)
               }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false  
           }
         });
       
