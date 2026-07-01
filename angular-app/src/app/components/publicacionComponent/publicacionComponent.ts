@@ -6,12 +6,13 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Comentario } from '../../interfaces/comentario';
 import Swal from 'sweetalert2';
 import { TiempoTranscurridoPipe } from '../../pipes/tiempo-transcurrido-pipe';
+import { EstadoPublicacion } from '../../directivas/estado-publicacion';
 
 
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe],
+  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })

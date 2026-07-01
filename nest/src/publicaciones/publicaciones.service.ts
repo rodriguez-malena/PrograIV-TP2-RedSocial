@@ -22,9 +22,18 @@ export class PublicacionesService {
     }
 
     // Listar publis
-    async listar(orden: 'fecha' | 'likes' = 'fecha', offset = 0, limit = 5,   usuarioId?: string){
+    async listar(orden: 'fecha' | 'likes' = 'fecha', offset = 0, limit = 5,   usuarioId?: string, token?: string){
         
+        const usuario = token ? await this.authService.autorizar(token): null
+        
+        const esAdmin = usuario?.perfil === 'admin';
+
         const filtro : any = { eliminada : false};
+        //const filtro : any = { eliminada : false};
+
+         if (!esAdmin) {
+            filtro.eliminada = false;
+        }
 
         if(usuarioId){
             filtro.usuarioId = usuarioId;
