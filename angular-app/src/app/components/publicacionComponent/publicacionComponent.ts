@@ -191,6 +191,9 @@ Like
 
 
 get esAdmin(): boolean {
-  return this.usuario?.perfil === 'admin';
+  const resultado = this.usuario?.perfil === 'admin';
+  console.log('usuario:', this.usuario, 'esAdmin:', resultado);
+  return resultado;
+
 }
 }
