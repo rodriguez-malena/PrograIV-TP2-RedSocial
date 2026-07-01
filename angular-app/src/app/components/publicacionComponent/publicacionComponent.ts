@@ -9,11 +9,12 @@ import { TiempoTranscurridoPipe } from '../../pipes/tiempo-transcurrido-pipe';
 import { EstadoPublicacion } from '../../directivas/estado-publicacion';
 import { BotonEliminarAdmin } from '../../directivas/boton-eliminar-admin';
 import { ImagenBrillante } from '../../directivas/imagen-brillante';
+import { ContadorCaracteresPipe } from '../../pipes/contador-caracteres-pipe';
 
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin, ImagenBrillante, NgIf],
+  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin, ImagenBrillante, NgIf, ContadorCaracteresPipe],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })

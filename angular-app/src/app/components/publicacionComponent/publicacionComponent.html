@@ -102,6 +102,8 @@
                  @if (comentarioEditandoId === comentario._id) {
 
                     <input [formControl]="comentarioEditado"/>
+                    <small>{{ comentarioEditado.value | contadorCaracteres:30 }}</small>
+
                     
                       @if (comentarioEditado.touched && comentarioEditado.hasError('maxlength')) {
                         <small class="text-danger">
@@ -143,7 +145,8 @@
 
         <div class="nuevo-comentario">
           <input [formControl]="comentarioControl" placeholder="Dejá tu comentario...">
-            
+            <small>{{ comentarioControl.value | contadorCaracteres:30 }}</small>
+
             @if (comentarioControl.touched && comentarioControl.hasError('maxlength')) {
               <small class="text-danger">
                   Máximo {{ comentarioControl.getError('maxlength')?.requiredLength }} caracteres
