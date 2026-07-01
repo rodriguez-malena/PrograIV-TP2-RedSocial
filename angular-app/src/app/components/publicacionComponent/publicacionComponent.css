@@ -87,6 +87,12 @@
   font-size: 14px;
   line-height: 1.5;
   margin-left: 2px;
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-wrap;
+
 }
 
 .icono-like {
