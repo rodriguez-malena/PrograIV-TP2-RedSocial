@@ -174,7 +174,7 @@
           <span><strong>{{ misPublicaciones().length }}</strong> publicaciones</span>
         </div>
   
-        <div class="perfil-nombre">{{usuario.nombre}} {{usuario.apellido}}</div>
+        <div class="perfil-nombre">{{usuario.nombre | primeraMayuscula}} {{usuario.apellido | primeraMayuscula}}</div>
   
         <div class="perfil-descripcion">
           {{usuario.descripcion}}
@@ -236,7 +236,7 @@
     <div class="seccion-posts">
       @if (misPublicaciones().length === 0){
         <div class="sin-posts">
-          No tienes publicaciones aun
+          No hay publicaciones aun
         </div>
       }
 

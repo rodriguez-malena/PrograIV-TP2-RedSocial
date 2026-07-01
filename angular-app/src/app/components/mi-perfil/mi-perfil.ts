@@ -7,11 +7,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UsuarioService } from '../../services/usuario-service';
 import { fechaValidator } from '../../validators/fechaValidator';
 import { manejarSubidaImagen } from '../../utils/imagen';
-
+import { PrimeraMayusculaPipe } from '../../pipes/primera-mayuscula-pipe';
 
 @Component({
   selector: 'app-mi-perfil',
-  imports: [DatePipe, ReactiveFormsModule],
+  imports: [DatePipe, ReactiveFormsModule, PrimeraMayusculaPipe],
   templateUrl: './mi-perfil.html',
   styleUrl: './mi-perfil.css',
 })
