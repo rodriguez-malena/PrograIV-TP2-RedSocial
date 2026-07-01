@@ -14,7 +14,8 @@ export const adminGuard: CanActivateFn = () => {
   }
 
   const usuario = JSON.parse(usuarioStr);
-
+  console.log("usuario parseado")
+  
   if (usuario?.perfil === 'admin') {
     return true;
   }
