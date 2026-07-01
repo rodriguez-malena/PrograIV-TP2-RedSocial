@@ -185,4 +185,8 @@ Like
   puedeEliminar(publicacion: any): boolean {
     return (this.usuario?.perfil === 'admin' || this.usuario?._id === publicacion.usuario);
 }
+
+get esAdmin(): boolean {
+  return this.usuario?.perfil === 'admin';
+}
 }

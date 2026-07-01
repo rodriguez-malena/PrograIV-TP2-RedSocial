@@ -11,7 +11,7 @@ export class BotonEliminarAdmin {
     private viewContainer: ViewContainerRef
   ) {}
 
-  @Input() set appSoloAdmin(esAdmin: boolean) {
+  @Input() set appBotonEliminarAdmin(esAdmin: boolean) {
 
     if (esAdmin && !this.hasView) {
       this.viewContainer.createEmbeddedView(this.templateRef);
