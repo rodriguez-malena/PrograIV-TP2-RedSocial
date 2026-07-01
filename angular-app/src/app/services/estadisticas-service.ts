@@ -19,7 +19,7 @@ export class EstadisticasService {
   }
 
   comentariosPorPost(desde: string, hasta: string){
-    return this.http.get<any[]>(`${this.url}/estadisticas/cometarios-publicaciones?desde=${desde}&hasta=${hasta}`, { withCredentials: true})
+    return this.http.get<any[]>(`${this.url}/estadisticas/comentarios-publicaciones?desde=${desde}&hasta=${hasta}`, { withCredentials: true})
   }
 
 
