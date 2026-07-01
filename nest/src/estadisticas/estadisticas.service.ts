@@ -79,16 +79,33 @@ export class EstadisticasService {
 
         fechaHasta.setHours(23, 59, 59, 999);
 
-        const total = await this.comentarioModel.countDocuments({
-            createdAt: {
-                $gte: fechaDesde,
-                $lte: fechaHasta
+        return this.comentarioModel.aggregate([
+            {
+                $match: {
+                    createdAt: { 
+                        $gte: fechaDesde,
+                        $lte: fechaHasta
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+                    comentarios: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    fecha: '$_id',
+                    comentarios: 1
+                }
+            },
+            { $sort: 
+                { fecha: 1 }
             }
-        });
-
-        return {
-            total
-        }
+            
+        ])
     }
 
     async comentariosPorPublicacion(token: string, desde: string, hasta: string){
