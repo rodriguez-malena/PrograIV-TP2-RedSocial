@@ -141,13 +141,15 @@ form {
   font-size: 15px;
   cursor: pointer;
   transition: 0.2s;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .btn-crear:hover {
-  background: #d8c3a2;
+  background: #fffbf4;
 }
 
-/* TABLa */
+/* TABLA */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -155,7 +157,7 @@ table {
 }
 
 thead {
-  background: #d9c3a0;
+  background: #fffbf4;
 }
 
 th {
@@ -175,12 +177,13 @@ tr:hover {
 }
 
 .btn-deshabilitar {
-  background: #e74c3c;
+  background: #ae1f0f;
   color: white;
   border: none;
   padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn-habilitar {
@@ -190,6 +193,8 @@ tr:hover {
   padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .btn-deshabilitar:hover {
