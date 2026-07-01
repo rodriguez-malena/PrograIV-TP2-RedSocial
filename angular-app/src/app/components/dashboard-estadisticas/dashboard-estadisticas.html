@@ -1,5 +1,6 @@
 <div class="dashboard">
 
+  <!-- Formulario -->
   <div class="card">
 
     <h2>Estadísticas</h2>
@@ -10,28 +11,35 @@
 
         <div class="form-group">
           <label>Desde</label>
+
           <input
             type="date"
             formControlName="desde"
             class="form-control">
-            @if (desde.hasError('required') && desde.touched) {
-              <small>La fecha es obligatoria.</small>
-            }
-            @if (formularioEstadisticas.hasError('rangoFechas')) {
-              <small>La fecha "Desde" no puede ser mayor que la fecha "Hasta".</small>
-            }  
-          </div>
-          
-          <div class="form-group">
-            <label>Hasta</label>
-            <input
+
+          @if (desde.hasError('required') && desde.touched) {
+            <small class="text-danger">La fecha es obligatoria.</small>
+          }
+
+          @if (formularioEstadisticas.hasError('rangoFechas') && (desde.touched || hasta.touched)) {
+            <small class="text-danger">La fecha "Desde" no puede ser mayor que la fecha "Hasta".</small>
+          }
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Hasta</label>
+
+          <input
             type="date"
             formControlName="hasta"
             class="form-control">
-            @if (hasta.hasError('required') && hasta.touched) {
-              <small>La fecha es obligatoria.</small>
-            }
-            
+
+          @if (hasta.hasError('required') && hasta.touched) {
+            <small class="text-danger">La fecha es obligatoria.</small>
+          }
+
         </div>
 
       </div>
@@ -39,63 +47,86 @@
       <button type="submit">
         Buscar
       </button>
-      
+
     </form>
+
   </div>
-    
+
+  <!-- Gráficos -->
+  <div class="charts">
+
     @if (!busquedaRealizada) {
 
       <div class="card">
-        <div class="chart-container busquedaRealizada">
-          <p>Seleccioná un rango de fechas para ver las estadísticas</p>
+        <div class="chart-container loading">
+          <p>Seleccioná un rango de fechas para visualizar las estadísticas.</p>
         </div>
       </div>
 
     } @else {
-      
+
+      <!-- Publicaciones -->
+
       <div class="card">
-        @if(sinPosts){
+
+        @if (sinPosts) {
+
           <div class="sin-datos">
             No hay publicaciones para el período seleccionado.
           </div>
+
         } @else {
+
           <div class="chart-container">
             <canvas #chartPosts></canvas>
           </div>
+
         }
-        
+
       </div>
 
-  
+      <!-- Comentarios -->
+
       <div class="card">
+
         @if (sinComentarios) {
+
           <div class="sin-datos">
             No hay comentarios para el período seleccionado.
           </div>
+
         } @else {
+
           <div class="chart-container">
             <canvas #chartComentarios></canvas>
           </div>
 
         }
+
       </div>
-    
+
+      <!-- Comentarios por publicación -->
 
       <div class="card">
+
         @if (sinComentariosPost) {
+
           <div class="sin-datos">
             No hay comentarios para el período seleccionado.
           </div>
+
         } @else {
+
           <div class="chart-container">
             <canvas #chartComentariosPost></canvas>
           </div>
 
         }
-      
-    </div>
-  }
-    
 
-    
+      </div>
 
+    }
+
+  </div>
+
+</div>
