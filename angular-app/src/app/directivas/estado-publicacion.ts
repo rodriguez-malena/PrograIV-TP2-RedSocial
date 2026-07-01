@@ -1,9 +1,9 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appEstadoPublicacion]',
 })
-export class EstadoPublicacion {
+export class EstadoPublicacion implements OnChanges {
 
   @Input() appEstadoPublicacion = false;
 

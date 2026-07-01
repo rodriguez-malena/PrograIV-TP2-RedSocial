@@ -28,7 +28,7 @@ export class PublicacionesService {
         
         const esAdmin = usuario?.perfil === 'admin';
 
-        const filtro : any = { eliminada : false};
+        const filtro : any = {};
         //const filtro : any = { eliminada : false};
 
          if (!esAdmin) {
