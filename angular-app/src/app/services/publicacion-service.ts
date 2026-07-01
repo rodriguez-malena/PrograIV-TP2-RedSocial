@@ -24,7 +24,7 @@ export class PublicacionService {
       url += `&usuarioId=${usuarioId}`
     }
 
-    return this.http.get<RespuestaPublicacion>(url)
+    return this.http.get<RespuestaPublicacion>(url, { withCredentials: true })
   
   }
 
