@@ -120,19 +120,10 @@ export class EstadisticasService {
                 createdAt: {
                     $gte: fechaDesde,
                     $lte: fechaHasta
-                },
-                eliminado: false
+                }
                 }
             },
 
-            { // agrupa x publicacion y cuenta las que hizo
-                $group: {
-                _id: '$publicacion',
-                total: {
-                    $sum: 1
-                }
-                }
-            },
 
             { // busca info del usuario en la coleccion
                 $lookup: {
@@ -147,11 +138,27 @@ export class EstadisticasService {
                 $unwind: '$publicacion'
             },
 
+            {
+                $match: {
+                    'publicacion.eliminado': false
+                }
+            },
+            {
+                $group: {
+                _id: '$publicacion._id',
+                titulo: {
+                    $first: '$publicacion.titulo'
+                },
+                comentarios: {
+                    $sum: 1
+                }
+                }
+            },
             { // devuelve solo lo que necesita el grafico
                 $project: {
                     _id: 0,
-                    titulo: '$publicacion.titulo',
-                    comentarios: '$total'
+                    titulo: 1,
+                    comentarios: 1
                 }
             },
 
