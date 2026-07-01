@@ -28,7 +28,6 @@ export const routes: Routes = [
     {
         path:'mi-perfil',
         loadComponent: () => import('./components/mi-perfil/mi-perfil').then(m => m.MiPerfil),
-        //canActivate:[authGuard]
     },
     {
         path:'publicaciones',
@@ -37,11 +36,13 @@ export const routes: Routes = [
     {
         path:'dashboard-usuarios',
         loadComponent: () => import('./components/dashboard-usuarios/dashboard-usuarios').then(m => m.DashboardUsuarios),
-        //canActivate: [adminGuard]
+        canActivate: [adminGuard]
     },
     {
         path:'dashboard-estadisticas',
-        loadComponent: () => import('./components/dashboard-estadisticas/dashboard-estadisticas').then(m => m.DashboardEstadisticas)
+        loadComponent: () => import('./components/dashboard-estadisticas/dashboard-estadisticas').then(m => m.DashboardEstadisticas),
+        canActivate: [adminGuard]
+
     },
     {
         path:'**',
