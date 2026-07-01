@@ -19,7 +19,11 @@ export class DashboardEstadisticas implements OnInit {
   chartComentarios: any;
   chartComentariosPost: any;
 
-  loading = false;
+  busquedaRealizada = false;
+
+  sinPosts = false;
+  sinComentarios = false;
+  sinComentariosPost = false;
   
 
   @ViewChild('chartPosts') chartPostsRef!: ElementRef;
@@ -38,14 +42,22 @@ export class DashboardEstadisticas implements OnInit {
     })
   }
 
+  get desde(){
+    return this.formularioEstadisticas.get('desde')!
+  }
+
+  get hasta(){
+    return this.formularioEstadisticas.get('hasta')!
+  }
+
   buscar(){
     this.formularioEstadisticas.markAllAsTouched();
     const { desde, hasta } = this.formularioEstadisticas.value;
 
     if(!desde || !hasta) return;
 
-    this.loading = true;
-    
+    this.busquedaRealizada = true;
+
     this.obtenerPostPorUsuario(desde, hasta);
     this.obtenerComentarios(desde, hasta);
     this.obtenerComentariosPorPost(desde, hasta);
@@ -55,6 +67,12 @@ export class DashboardEstadisticas implements OnInit {
   // Publicaciones
     obtenerPostPorUsuario(desde: string, hasta: string){
       this.estadisticasService.postPorUsuario(desde, hasta).subscribe(res => {
+
+        this.sinPosts = res.length === 0;
+        if (this.sinPosts) {
+          this.chartPosts?.destroy();
+          return;
+        }
 
         console.log(res)
 
@@ -85,6 +103,12 @@ export class DashboardEstadisticas implements OnInit {
 
       this.estadisticasService.comentariosPorTiempo(desde, hasta).subscribe((res: any) => {
         
+        this.sinComentarios = res.total === 0;
+
+        if (this.sinComentarios) {
+          this.chartComentarios?.destroy();
+          return;
+        }
         console.log(res)
         this.chartComentarios?.destroy();
         
@@ -116,9 +140,16 @@ export class DashboardEstadisticas implements OnInit {
 
   // Cometarios por publicacion
     obtenerComentariosPorPost(desde: string, hasta: string){
-
+      
       this.estadisticasService.comentariosPorPost(desde, hasta).subscribe(res => {
-        
+          
+        this.sinComentariosPost = res.length === 0;
+
+          if (this.sinComentariosPost) {
+            this.chartComentariosPost?.destroy();
+            return;
+          }
+
         console.log(res);
         this.chartComentariosPost?.destroy();
 

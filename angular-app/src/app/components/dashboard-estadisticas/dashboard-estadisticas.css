@@ -73,6 +73,7 @@ button {
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s;
+  font-family: 'Poppins', sans-serif;
 }
 
 button:hover {
@@ -107,7 +108,7 @@ button:hover {
   margin-top: 20px;
 }
 
-.chart-container.loading {
+.chart-container.busquedaRealizada {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +121,6 @@ button:hover {
   font-family: "Poppins", sans-serif;
 }
 
-/* responsive */
 @media (max-width: 768px) {
   .fechas {
     flex-direction: column;
