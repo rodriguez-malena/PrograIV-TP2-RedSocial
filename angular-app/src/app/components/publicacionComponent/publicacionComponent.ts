@@ -164,8 +164,14 @@ export class PublicacionComponent {
 Acciones del modal Post
 --------------------*/
   abrirPost() {
-    console.log('Abriendo publicacion: ', this.publicacion._id);
-
+    if (this.publicacion.eliminada) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Publicación eliminada',
+        text: 'No podés ver una publicación eliminada'
+      });
+      return;
+    }
     this.postAbierto = true;
     this.inicializarComentarios();
   }
@@ -182,10 +188,6 @@ Like
     }
   
 
-/*Poder de eliminar post */
-  puedeEliminar(publicacion: any): boolean {
-    return (this.usuario?.perfil === 'admin' || this.usuario?._id === publicacion.usuario);
-}
 
 get esAdmin(): boolean {
   return this.usuario?.perfil === 'admin';
