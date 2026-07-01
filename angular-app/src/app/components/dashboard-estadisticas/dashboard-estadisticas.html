@@ -18,11 +18,11 @@
             class="form-control">
 
           @if (desde.hasError('required') && desde.touched) {
-            <small class="text-danger">La fecha es obligatoria.</small>
+            <small>La fecha es obligatoria.</small>
           }
 
           @if (formularioEstadisticas.hasError('rangoFechas') && (desde.touched || hasta.touched)) {
-            <small class="text-danger">La fecha "Desde" no puede ser mayor que la fecha "Hasta".</small>
+            <small>La fecha "Desde" no puede ser mayor que la fecha "Hasta".</small>
           }
 
         </div>
@@ -37,7 +37,7 @@
             class="form-control">
 
           @if (hasta.hasError('required') && hasta.touched) {
-            <small class="text-danger">La fecha es obligatoria.</small>
+            <small>La fecha es obligatoria.</small>
           }
 
         </div>
