@@ -39,37 +39,24 @@ export class EstadisticasService {
                     $gte: fechaDesde,
                     $lte: fechaHasta
                 },
-                eliminado: false
+                eliminada: false
                 }
             },
 
             { // agrupa x usuario creador y cuenta las que hizo
                 $group: {
-                _id: '$usuario',
-                total: {
+                _id: '$nombreUsuario',
+                publicaciones: {
                     $sum: 1
                 }
                 }
             },
 
-            { // busca info del usuario en la coleccion
-                $lookup: {
-                    from: 'usuarios',
-                    localField: '_id',
-                    foreignField: '_id',
-                    as: 'usuario'
-                }
-            },
-
-            { // convierte arreglo en objeto
-                $unwind: '$usuario'
-            },
-
             { // devuelve solo lo que necesita el grafico
                 $project: {
                 _id: 0,
-                usuario: '$usuario.nombreUsuario',
-                publicaciones: '$total'
+                usuario: '$_id',
+                publicaciones: '1'
                 }
             },
 
@@ -128,7 +115,7 @@ export class EstadisticasService {
             { // busca info del usuario en la coleccion
                 $lookup: {
                     from: 'publicacions',
-                    localField: '_id',
+                    localField: 'publicacion',
                     foreignField: '_id',
                     as: 'publicacion'
                 }
@@ -140,7 +127,7 @@ export class EstadisticasService {
 
             {
                 $match: {
-                    'publicacion.eliminado': false
+                    'publicacion.eliminada': false
                 }
             },
             {
