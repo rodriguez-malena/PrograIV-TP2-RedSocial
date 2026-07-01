@@ -67,6 +67,10 @@ export class PublicacionesService {
             throw new NotFoundException('Publicación no encontrada')
         }
 
+        if (publicacion.eliminada) {
+            throw new BadRequestException('No se puede dar like a una publicación eliminada');
+        }
+
         if(publicacion.likes.includes(usuarioId)){
             throw new BadRequestException('Ya diste like');
         }
@@ -87,6 +91,10 @@ export class PublicacionesService {
 
         if(!publicacion){
             throw new NotFoundException('Publicación no encontrada')
+        }
+
+        if (publicacion.eliminada) {
+            throw new BadRequestException('No se puede modificar una publicación eliminada');
         }
 
         publicacion.likes = publicacion.likes.filter(like => like !== usuarioId) // filtra y borra del array el like de tal usuario
@@ -112,6 +120,10 @@ export class PublicacionesService {
         if(usuario.perfil !== 'admin' && publicacion.usuarioId.toString() !== usuario._id.toString()){
             throw new BadRequestException('No podes eliminar publicaciones que no te pertenecen!');
 
+        }
+
+        if (publicacion.eliminada) {
+            throw new BadRequestException('La publicación ya está eliminada');
         }
 
         publicacion.eliminada = true;

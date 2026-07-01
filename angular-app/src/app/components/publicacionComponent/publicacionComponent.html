@@ -24,7 +24,8 @@
       <img
         [src]="yaDioLike() ? 'Like.png' : 'Nolike.png'"
         class="icono-like"
-        (click)="like.emit()"
+        [class.disabled]="publicacion.eliminada"
+        (click)="!publicacion.eliminada && like.emit()"
         alt="Like"
       >
 
@@ -64,7 +65,7 @@
 
       <div class="modal-left">
 
-        <img [src]="publicacion.imagen" [appImagenBrillante]="publicacion.cantidadLikes" class="modal-img">
+        <img [src]="publicacion.imagen" class="modal-img">
 
         <div class="modal-info">
           <strong>@{{ publicacion.nombreUsuario }}</strong>

@@ -385,6 +385,11 @@
   color: #342b1f;
 }
 
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .btn-eliminar {
   position: absolute;
   bottom: 10px;
