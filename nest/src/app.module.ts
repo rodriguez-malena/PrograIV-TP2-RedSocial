@@ -7,6 +7,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { ConfigModule } from '@nestjs/config';
 import { PublicacionesModule } from './publicaciones/publicaciones.module';
 import { ComentariosModule } from './comentarios/comentarios.module';
+import { EstadisticasModule } from './estadisticas/estadisticas.module';
 
 
 @Module({
@@ -15,7 +16,8 @@ import { ComentariosModule } from './comentarios/comentarios.module';
             UsuariosModule,
             MongooseModule.forRoot(process.env.MONGO_URI!),
             PublicacionesModule,
-            ComentariosModule],
+            ComentariosModule,
+            EstadisticasModule],
   controllers: [AppController],
   providers: [AppService],
 })
