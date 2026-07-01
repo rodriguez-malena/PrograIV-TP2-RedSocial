@@ -12,6 +12,7 @@ export class BotonEliminarAdmin {
   ) {}
 
   @Input() set appBotonEliminarAdmin(esAdmin: boolean) {
+        console.log('Directiva ejecutada, esAdmin:', esAdmin); // <-- agregado
 
     if (esAdmin && !this.hasView) {
       this.viewContainer.createEmbeddedView(this.templateRef);
