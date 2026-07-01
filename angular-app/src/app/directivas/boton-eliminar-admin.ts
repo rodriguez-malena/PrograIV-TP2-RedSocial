@@ -17,6 +17,7 @@ export class BotonEliminarAdmin {
     if (esAdmin && !this.hasView) {
       this.viewContainer.createEmbeddedView(this.templateRef);
       this.hasView = true;
+      console.log('Vista creada'); 
     }
 
     if (!esAdmin && this.hasView) {
