@@ -106,3 +106,27 @@ button:hover {
 .card .card + .card {
   margin-top: 20px;
 }
+
+.chart-container.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 280px;
+  border-radius: 12px;
+  border: 2px dashed #d6c7b2;
+  background-color: #fffbf4;
+  color: #8a7555;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .fechas {
+    flex-direction: column;
+  }
+
+  .chart-container {
+    height: 240px;
+  }
+}

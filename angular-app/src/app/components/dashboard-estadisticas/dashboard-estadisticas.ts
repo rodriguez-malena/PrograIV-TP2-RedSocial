@@ -19,6 +19,10 @@ export class DashboardEstadisticas implements OnInit {
   chartComentarios: any;
   chartComentariosPost: any;
 
+  loadingPosts = false;
+  loadingComentarios = false;
+  loadingComentariosPost = false;
+
   @ViewChild('chartPosts') chartPostsRef!: ElementRef;
   @ViewChild('chartComentarios') chartComentariosRef!: ElementRef;
   @ViewChild('chartComentariosPost') chartComentariosPostRef!: ElementRef;
@@ -49,6 +53,7 @@ export class DashboardEstadisticas implements OnInit {
 
   // Publicaciones
     obtenerPostPorUsuario(desde: string, hasta: string){
+      this.loadingPosts = true
       this.estadisticasService.postPorUsuario(desde, hasta).subscribe(res => {
 
         console.log(res)
@@ -78,6 +83,7 @@ export class DashboardEstadisticas implements OnInit {
   // Comentarios totales
     obtenerComentarios(desde: string, hasta: string){
 
+      this.loadingComentarios = true
       this.estadisticasService.comentariosPorTiempo(desde, hasta).subscribe((res: any) => {
         
         console.log(res)
@@ -112,6 +118,7 @@ export class DashboardEstadisticas implements OnInit {
   // Cometarios por publicacion
     obtenerComentariosPorPost(desde: string, hasta: string){
 
+      this.loadingComentariosPost = true
       this.estadisticasService.comentariosPorPost(desde, hasta).subscribe(res => {
         
         console.log(res);
