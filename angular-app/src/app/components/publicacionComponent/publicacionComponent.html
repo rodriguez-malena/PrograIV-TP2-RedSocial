@@ -5,7 +5,7 @@
     <div class="post-user">
       <img [src]="publicacion.imagenPerfil" alt="">
       <strong>{{ publicacion.nombreUsuario }}</strong>
-      <small>{{ publicacion.fechaCreacion | date:'short' }}</small>
+      <small>{{ publicacion.fechaCreacion | tiempoTranscurrido }}</small>
     </div>
 
     <button class="btn-ver" (click)="abrirPost()">
@@ -68,6 +68,7 @@
         <div class="modal-info">
           <strong>@{{ publicacion.nombreUsuario }}</strong>
           <p>{{ publicacion.descripcion }}</p>
+          <p>{{ publicacion.fechaCreacion | tiempoTranscurrido}}</p>
         </div>
 
       </div>

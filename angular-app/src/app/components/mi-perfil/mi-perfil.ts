@@ -8,10 +8,12 @@ import { UsuarioService } from '../../services/usuario-service';
 import { fechaValidator } from '../../validators/fechaValidator';
 import { manejarSubidaImagen } from '../../utils/imagen';
 import { PrimeraMayusculaPipe } from '../../pipes/primera-mayuscula-pipe';
+import { TiempoTranscurridoPipe } from '../../pipes/tiempo-transcurrido-pipe';
+
 
 @Component({
   selector: 'app-mi-perfil',
-  imports: [DatePipe, ReactiveFormsModule, PrimeraMayusculaPipe],
+  imports: [DatePipe, ReactiveFormsModule, PrimeraMayusculaPipe, TiempoTranscurridoPipe],
   templateUrl: './mi-perfil.html',
   styleUrl: './mi-perfil.css',
 })

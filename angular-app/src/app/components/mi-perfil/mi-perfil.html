@@ -224,6 +224,9 @@
         <div class="post-descripcion">
           {{ postSeleccionado.descripcion }}
         </div>
+        <div class="fecha">
+          {{ postSeleccionado.fechaCreacion | tiempoTranscurrido}}
+        </div>
 
         <button class="cerrar" (click)="cerrarPost()">✕</button>
 
@@ -246,7 +249,6 @@
 
           <div class="post" (click)="abrirPost(publicacion)">
             <img [src]="publicacion.imagen" class="post-imagen" alt="">
-          
           
              <div class="overlay">
               <img src="Like.png" alt=""> {{ publicacion.likes.length }}

@@ -5,11 +5,13 @@ import { ComentarioService } from '../../services/comentario-service';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Comentario } from '../../interfaces/comentario';
 import Swal from 'sweetalert2';
+import { TiempoTranscurridoPipe } from '../../pipes/tiempo-transcurrido-pipe';
+
 
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, ReactiveFormsModule],
+  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
