@@ -52,12 +52,13 @@
 
   </div>
 
+  <!-- Gráficos -->
   <div class="charts">
 
     @if (!busquedaRealizada) {
 
       <div class="card">
-        <div class="loading">
+        <div class="chart-container loading">
           <p>Seleccioná un rango de fechas para visualizar las estadísticas.</p>
         </div>
       </div>
@@ -66,7 +67,7 @@
 
       <!-- Publicaciones -->
 
-      <div class="card card-grande">
+      <div class="card">
 
         @if (sinPosts) {
 
@@ -84,45 +85,43 @@
 
       </div>
 
-      <!-- Segunda fila -->
+      <!-- Comentarios -->
 
-      <div class="charts-row">
+      <div class="card">
 
-        <div class="card">
+        @if (sinComentarios) {
 
-          @if (sinComentarios) {
+          <div class="sin-datos">
+            No hay comentarios para el período seleccionado.
+          </div>
 
-            <div class="sin-datos">
-              No hay comentarios para el período seleccionado.
-            </div>
+        } @else {
 
-          } @else {
+          <div class="chart-container">
+            <canvas #chartComentarios></canvas>
+          </div>
 
-            <div class="chart-container">
-              <canvas #chartComentarios></canvas>
-            </div>
+        }
 
-          }
+      </div>
 
-        </div>
+      <!-- Comentarios por publicación -->
 
-        <div class="card">
+      <div class="card">
 
-          @if (sinComentariosPost) {
+        @if (sinComentariosPost) {
 
-            <div class="sin-datos">
-              No hay comentarios para el período seleccionado.
-            </div>
+          <div class="sin-datos">
+            No hay comentarios para el período seleccionado.
+          </div>
 
-          } @else {
+        } @else {
 
-            <div class="chart-container">
-              <canvas #chartComentariosPost></canvas>
-            </div>
+          <div class="chart-container">
+            <canvas #chartComentariosPost></canvas>
+          </div>
 
-          }
-
-        </div>
+        }
 
       </div>
 
