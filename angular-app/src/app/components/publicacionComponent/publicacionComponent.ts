@@ -8,11 +8,12 @@ import Swal from 'sweetalert2';
 import { TiempoTranscurridoPipe } from '../../pipes/tiempo-transcurrido-pipe';
 import { EstadoPublicacion } from '../../directivas/estado-publicacion';
 import { BotonEliminarAdmin } from '../../directivas/boton-eliminar-admin';
+import { ImagenBrillante } from '../../directivas/imagen-brillante';
 
 
 @Component({
   selector: 'app-publicacion',
-  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin],
+  imports: [DatePipe, ReactiveFormsModule, TiempoTranscurridoPipe, EstadoPublicacion, BotonEliminarAdmin, ImagenBrillante],
   templateUrl: './publicacionComponent.html',
   styleUrl: './publicacionComponent.css',
 })
