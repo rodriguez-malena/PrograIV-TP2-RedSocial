@@ -198,7 +198,7 @@
           <div class="post-user">
             <img [src]="postSeleccionado.imagenPerfil" alt="">
             <strong>{{ postSeleccionado.nombreUsuario }}</strong>
-            <small>{{ postSeleccionado.fechaCreacion | date:'short' }}</small>
+            <small>{{ postSeleccionado.fechaCreacion | tiempoTranscurrido }}</small>
           </div>
           <div>
               <button class="btn-eliminar" (click)="eliminarPublicacion(postSeleccionado)">
@@ -224,9 +224,7 @@
         <div class="post-descripcion">
           {{ postSeleccionado.descripcion }}
         </div>
-        <div class="fecha">
-          {{ postSeleccionado.fechaCreacion | tiempoTranscurrido}}
-        </div>
+        
 
         <button class="cerrar" (click)="cerrarPost()">✕</button>
 
